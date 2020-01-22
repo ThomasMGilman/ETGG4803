@@ -1,0 +1,9 @@
+# Ignore compressed files
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+
+# Ignore .vs directories
+.vs/
