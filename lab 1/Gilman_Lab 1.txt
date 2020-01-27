@@ -1,9 +1,9 @@
 Crossing Bridge Problem:
 
-1.) in the case of 4 people having to cross the bridge. To brute force the problem would lead to 15 possible solutions.
+1.) in the case of 4 people having to cross the bridge. To brute force the problem would lead to 108 possible solutions.
  The reason being is that you must choose two from the left side of the bridge, and must choose only one from the other side once crossed.
  This is because they can only travel in pairs of two and no more, and it would be pointless to send one person as one person needs to bring the flashlight back across. 
- The order follows as so 4choose2, 2choose1, 3choose2, 3choose1, 2choose2 = 6 + 2 + 3 + 3 + 1 = 15 combinations.
+ The order follows as so 4choose2, 2choose1, 3choose2, 3choose1, 2choose2 = 6 * 2 * 3 * 3 * 1 = 108 combinations.
  
 3.) The method i used for finding the minimum time to get across the bridge with 4 people was the brute force approach.
 The method trys every possible combination, and keeps tack of which is the fastest pattern so far and the time it took.
