@@ -14,9 +14,8 @@ namespace Graph_Traversal_Searcher
         static string CityTextFileName = "connections.txt";
         static bool usingAStar = false;
 
-
         static Dictionary<string, City> map;
-        static Dictionary<string, Dictionary<int, List<City>>> shortestPathFromStart;
+        static Dictionary<string, Path> shortestPathFromStart;
         static City start;
         static City end;
 
@@ -28,16 +27,53 @@ namespace Graph_Traversal_Searcher
             traverse();
         }
 
+        // Copy path to get to neighbor into newPath and append new end point
+        static public void copyPath(in string neighboringCity, out List<City> newPath, in City end)
+        {
+            newPath = new List<City>();
+            foreach(City c in shortestPathFromStart[neighboringCity].path)
+                newPath.Add(c);
+            newPath.Add(end);
+        }
+
+        /// <summary>
+        /// Goes through each Citys connections from the start all the way to the finish and finds the shortest path to the end city
+        /// </summary>
         static public void traverse()
         {
-            SortedList<int, City> toVisit = new SortedList<int, City>();
-            SortedList<int, City> visited = new SortedList<int, City>();
+            HashSet<City> Visited = new HashSet<City>();
+            Stack<City> toVisit = new Stack<City>();
+            toVisit.Push(start);
+            shortestPathFromStart.Add(start.cityName, new Path() { cost = start.costToGetToFromStart , path = new List<City> {start} });
 
-            City currentCity = start;
-            while(currentCity != end)
+            while(toVisit.Count > 0)
             {
-                foreach(KeyValuePair<int, City> connection in currentCity.connections)
+                City currentCity = toVisit.Pop();
+                Visited.Add(currentCity);
+                foreach (KeyValuePair<int, City> connection in currentCity.connections)
                 {
+                    City neighboringCity = connection.Value;
+                    int costToGetTo = shortestPathFromStart[currentCity.cityName].cost + connection.Key;
+
+                    // Neightbor already visited before, 
+                    // check if path to it from this city is cheaper then current path
+                    if (Visited.Contains(neighboringCity))       
+                    {
+                        // New Path is cheaper to this city
+                        if(shortestPathFromStart[neighboringCity.cityName].cost  > costToGetTo)
+                        {
+                            List<City> pathToCity;
+                            copyPath(in currentCity.cityName, out pathToCity, in neighboringCity);
+                        }
+                    }
+                    // Other wise add city to, toVisit stack to have its neighbors checked
+                    else
+                    {
+                        toVisit.Push(neighboringCity);
+                        List<City> pathToCity;
+                        copyPath(in currentCity.cityName, out pathToCity, in currentCity);
+                        shortestPathFromStart.Add(neighboringCity.cityName, new Path() { cost = costToGetTo, path = pathToCity});
+                    }
                 }
             }
         }
@@ -75,14 +111,13 @@ namespace Graph_Traversal_Searcher
                     string s = lines[i].Trim().Split(":")[1];
                     if (s.Length == 0)
                         throw new Exception("Bad Start City Exception!!\n\tLine " + i.ToString() + " Need to specify a start city Got: " + lines[i]);
-                    if (map.ContainsKey(s))
-                        start = map[s];
-                    else
+                    if (!map.TryGetValue(s, out start))
                     {
                         debugPrintConnections();
                         throw new Exception("Bad Start City Exception!!\n\tLine " + i.ToString() + " Need to give a valid city, Got: " + s);
                     }
-                        
+                    else
+                        start.costToGetToFromStart = 0;  //Cost to get to start from start is 0
                 }
                 else if(lines[i].StartsWith("End"))
                 {

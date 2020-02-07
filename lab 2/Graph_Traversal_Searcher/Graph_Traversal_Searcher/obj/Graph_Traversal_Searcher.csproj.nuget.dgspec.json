@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj": {}
+    "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj": {}
   },
   "projects": {
-    "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj": {
+    "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj",
+        "projectUniqueName": "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj",
         "projectName": "Graph_Traversal_Searcher",
-        "projectPath": "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj",
-        "packagesPath": "C:\\Users\\Thoma\\.nuget\\packages\\",
-        "outputPath": "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\obj\\",
+        "projectPath": "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj",
+        "packagesPath": "C:\\Users\\Thomass Tower\\.nuget\\packages\\",
+        "outputPath": "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Thomass Tower\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],

@@ -4,11 +4,17 @@ using System.Text;
 
 namespace Graph_Traversal_Searcher
 {
+    struct Path
+    {
+        public int cost;
+        public List<City> path;
+    }
+
     class City
     {
         public string cityName;
         public SortedList<int, City> connections;
-        public int heuristic, costToGetTo;
+        public int heuristic, costToGetToFromStart;
 
         public struct connection{
             public City otherCity;
@@ -19,7 +25,7 @@ namespace Graph_Traversal_Searcher
         {
             this.cityName = name;
             this.heuristic = heuristic;
-            this.costToGetTo = costToGetTo;
+            this.costToGetToFromStart = costToGetTo;
             this.connections = new SortedList<int, City>();
         }
 
