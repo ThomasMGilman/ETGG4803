@@ -1,0 +1,11 @@
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.csprojAssemblyReference.cache
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.AssemblyInfoInputs.cache
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.AssemblyInfo.cs
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.exe
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.deps.json
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.runtimeconfig.json
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.runtimeconfig.dev.json
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.dll
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.pdb
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.dll
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.pdb

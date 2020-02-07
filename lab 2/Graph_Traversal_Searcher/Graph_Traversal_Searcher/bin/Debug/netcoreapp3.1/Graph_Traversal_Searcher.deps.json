@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Graph_Traversal_Searcher/1.0.0": {
+        "runtime": {
+          "Graph_Traversal_Searcher.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Graph_Traversal_Searcher/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -6,30 +6,33 @@ namespace Graph_Traversal_Searcher
 {
     class City
     {
-        string cityName;
-        List<connection> connections;
+        public string cityName;
+        public SortedList<int, City> connections;
+        public int heuristic, costToGetTo;
 
         public struct connection{
             public City otherCity;
             public int costOfTravel;
-
-            public static implicit operator connection(Tuple<City, int> path)
-            {
-                return new connection() { otherCity = path.Item1, costOfTravel = path.Item2};
-            }
         };
 
-        City(string name)
+        public City(string name, int heuristic = 0, int costToGetTo = Int32.MaxValue)
         {
-            cityName = name;
+            this.cityName = name;
+            this.heuristic = heuristic;
+            this.costToGetTo = costToGetTo;
+            this.connections = new SortedList<int, City>();
         }
 
-        void set_Connections(in List<Tuple<City, int>> connections)
+        public void add_Connections(in City c, int cost)
         {
-            foreach(Tuple<City, int> path in connections){
-                connection c = path;
-                this.connections.Add(c);
-            }
+            connections.Add(cost,  c);
+        }
+
+        public void print_Connections()
+        {
+            Console.WriteLine("City: " + cityName + " Heuristic: " + heuristic.ToString()+" Connections:");
+            foreach(KeyValuePair<int, City> c in connections)
+                Console.WriteLine("\t"+c.Value.cityName + " Cost: " + c.Key);
         }
     }
 }
