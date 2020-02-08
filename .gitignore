@@ -7,3 +7,10 @@
 
 # Ignore .vs directories
 .vs/
+Binaries/
+Build/
+Builds/
+StagedBuilds/
+
+#ignore this as its rather large
+SharedPCH.Engine.h.pch

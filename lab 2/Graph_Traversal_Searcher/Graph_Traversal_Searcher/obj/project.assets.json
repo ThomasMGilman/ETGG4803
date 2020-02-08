@@ -8,23 +8,25 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Thomass Tower\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\Thoma\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj",
+      "projectUniqueName": "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj",
       "projectName": "Graph_Traversal_Searcher",
-      "projectPath": "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj",
-      "packagesPath": "C:\\Users\\Thomass Tower\\.nuget\\packages\\",
-      "outputPath": "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\obj\\",
+      "projectPath": "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher.csproj",
+      "packagesPath": "C:\\Users\\Thoma\\.nuget\\packages\\",
+      "outputPath": "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 2\\Graph_Traversal_Searcher\\Graph_Traversal_Searcher\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Thomass Tower\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

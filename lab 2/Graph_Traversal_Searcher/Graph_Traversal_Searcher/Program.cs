@@ -23,11 +23,40 @@ namespace Graph_Traversal_Searcher
         {
             //Create a empty map and fill it with the Citys provided by the textfile
             map = new Dictionary<string, City>();
+            shortestPathFromStart = new Dictionary<string, Path>();
+
             parseCityData();
             traverse();
+            printShortestPathToDestination();
+            printOutPaths();
         }
 
-        // Copy path to get to neighbor into newPath and append new end point
+        static public void printShortestPathToDestination()
+        {
+            Console.WriteLine("The shortest path To '" + end.cityName + "' From '" + start.cityName + "'\n\tDistance: " + shortestPathFromStart[end.cityName].cost.ToString());
+            Console.WriteLine("\tPath: ");
+            foreach (City c in shortestPathFromStart[end.cityName].path)
+                Console.WriteLine("\t\t" + c.cityName);
+        }
+
+        static public void printOutPaths()
+        {
+            Console.WriteLine("Paths:");
+            foreach(KeyValuePair<string, Path> cityPath in shortestPathFromStart)
+            {
+                Console.WriteLine("\tTo "+cityPath.Key+":");
+                foreach (City c in cityPath.Value.path)
+                    Console.WriteLine("\t\t" + c.cityName);
+                Console.WriteLine("\tCost: " + cityPath.Value.cost+"\n");
+            }
+        }
+
+        /// <summary>
+        /// Copy path to get to neighbor into newPath and append new end point
+        /// </summary>
+        /// <param name="neighboringCity"></param>
+        /// <param name="newPath"></param>
+        /// <param name="end"></param>
         static public void copyPath(in string neighboringCity, out List<City> newPath, in City end)
         {
             newPath = new List<City>();
@@ -42,13 +71,14 @@ namespace Graph_Traversal_Searcher
         static public void traverse()
         {
             HashSet<City> Visited = new HashSet<City>();
-            Stack<City> toVisit = new Stack<City>();
-            toVisit.Push(start);
+            Queue<City> toVisit = new Queue<City>();
+            toVisit.Enqueue(start);
+
             shortestPathFromStart.Add(start.cityName, new Path() { cost = start.costToGetToFromStart , path = new List<City> {start} });
 
             while(toVisit.Count > 0)
             {
-                City currentCity = toVisit.Pop();
+                City currentCity = toVisit.Dequeue();
                 Visited.Add(currentCity);
                 foreach (KeyValuePair<int, City> connection in currentCity.connections)
                 {
@@ -57,22 +87,32 @@ namespace Graph_Traversal_Searcher
 
                     // Neightbor already visited before, 
                     // check if path to it from this city is cheaper then current path
-                    if (Visited.Contains(neighboringCity))       
+                    if (Visited.Contains(neighboringCity) || shortestPathFromStart.ContainsKey(neighboringCity.cityName))       
                     {
                         // New Path is cheaper to this city
                         if(shortestPathFromStart[neighboringCity.cityName].cost  > costToGetTo)
                         {
                             List<City> pathToCity;
                             copyPath(in currentCity.cityName, out pathToCity, in neighboringCity);
+                            shortestPathFromStart[neighboringCity.cityName] = new Path() { cost = costToGetTo, path = pathToCity };
+
+                            // Re add previously visited neighboring city to toVisit to check if shorter path to its neighbors
+                            toVisit.Enqueue(neighboringCity);
                         }
                     }
-                    // Other wise add city to, toVisit stack to have its neighbors checked
+                    // Otherwise add city to toVisit to have its neighbors checked
                     else
                     {
-                        toVisit.Push(neighboringCity);
+                        toVisit.Enqueue(neighboringCity);
                         List<City> pathToCity;
-                        copyPath(in currentCity.cityName, out pathToCity, in currentCity);
-                        shortestPathFromStart.Add(neighboringCity.cityName, new Path() { cost = costToGetTo, path = pathToCity});
+                        copyPath(in currentCity.cityName, out pathToCity, in neighboringCity);
+                        if(shortestPathFromStart.ContainsKey(neighboringCity.cityName))
+                        {
+                            printOutPaths();
+                            throw new Exception("Trying to add CityPath that is already added!!");
+                        }
+                        else
+                            shortestPathFromStart.Add(neighboringCity.cityName, new Path() { cost = costToGetTo, path = pathToCity});
                     }
                 }
             }
