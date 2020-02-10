@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Diagnostics;
 
 namespace Graph_Traversal_Searcher
 {
@@ -16,27 +17,41 @@ namespace Graph_Traversal_Searcher
 
         static Dictionary<string, City> map;
         static Dictionary<string, Path> shortestPathFromStart;
+        static List<string> orderChecked;
         static City start;
         static City end;
+        static Stopwatch timer;
+        
 
         static void Main(string[] args)
         {
             //Create a empty map and fill it with the Citys provided by the textfile
             map = new Dictionary<string, City>();
             shortestPathFromStart = new Dictionary<string, Path>();
-
+            orderChecked = new List<string>();
             parseCityData();
+
+            timer = new Stopwatch();
+            timer.Start();
             traverse();
+            timer.Stop();
+
             printShortestPathToDestination();
-            printOutPaths();
+            //printOutPaths();
         }
 
         static public void printShortestPathToDestination()
         {
+            Console.WriteLine("Using " + (usingAStar ? "A*" : "Dijkstras") + " Algorithm");
+            Console.WriteLine("Reached Goal in: " + timer.Elapsed.TotalSeconds.ToString() + "Seconds");
             Console.WriteLine("The shortest path To '" + end.cityName + "' From '" + start.cityName + "'\n\tDistance: " + shortestPathFromStart[end.cityName].cost.ToString());
             Console.WriteLine("\tPath: ");
             foreach (City c in shortestPathFromStart[end.cityName].path)
                 Console.WriteLine("\t\t" + c.cityName);
+
+            Console.WriteLine("\n\nChecked Cities and their neighbors in the order of:");
+            for(int i = 0; i < orderChecked.Count; i++)
+                Console.WriteLine("\t"+i.ToString() +"\t"+ orderChecked[i]);
         }
 
         static public void printOutPaths()
@@ -71,15 +86,21 @@ namespace Graph_Traversal_Searcher
         static public void traverse()
         {
             HashSet<City> Visited = new HashSet<City>();
-            Queue<City> toVisit = new Queue<City>();
-            toVisit.Enqueue(start);
+            SortedList<int, City> toVisit = new SortedList<int, City>();
+            //Queue<City> toVisit = new Queue<City>();
+            toVisit.Add(0, start); //.Enqueue(start);
 
             shortestPathFromStart.Add(start.cityName, new Path() { cost = start.costToGetToFromStart , path = new List<City> {start} });
 
             while(toVisit.Count > 0)
             {
-                City currentCity = toVisit.Dequeue();
+                City currentCity = toVisit[toVisit.Keys[0]]; //toVisit.Dequeue();
+                orderChecked.Add(currentCity.cityName);
                 Visited.Add(currentCity);
+
+                if (currentCity == end)
+                    break;
+
                 foreach (KeyValuePair<int, City> connection in currentCity.connections)
                 {
                     City neighboringCity = connection.Value;
@@ -95,15 +116,12 @@ namespace Graph_Traversal_Searcher
                             List<City> pathToCity;
                             copyPath(in currentCity.cityName, out pathToCity, in neighboringCity);
                             shortestPathFromStart[neighboringCity.cityName] = new Path() { cost = costToGetTo, path = pathToCity };
-
-                            // Re add previously visited neighboring city to toVisit to check if shorter path to its neighbors
-                            toVisit.Enqueue(neighboringCity);
                         }
                     }
                     // Otherwise add city to toVisit to have its neighbors checked
                     else
                     {
-                        toVisit.Enqueue(neighboringCity);
+                        toVisit.Add(costToGetTo + (usingAStar ? connection.Value.heuristic : 0), neighboringCity);//.Enqueue(neighboringCity);
                         List<City> pathToCity;
                         copyPath(in currentCity.cityName, out pathToCity, in neighboringCity);
                         if(shortestPathFromStart.ContainsKey(neighboringCity.cityName))
@@ -115,24 +133,35 @@ namespace Graph_Traversal_Searcher
                             shortestPathFromStart.Add(neighboringCity.cityName, new Path() { cost = costToGetTo, path = pathToCity});
                     }
                 }
+                toVisit.RemoveAt(0);
             }
         }
 
         /// <summary>
         /// Parses an Text File that should be placed within the relase or debug folder
         /// </summary>
-        static public void parseCityData()
+        static public void parseCityData(string fileName = null)
         {
-            string path = System.IO.Directory.GetCurrentDirectory() + "\\" +CityTextFileName;
-            if (!System.IO.File.Exists(path))
-                throw new Exception("File Exception!!! File: \n\t" + path + "\nDoesnt Exist!!");
+            string[] lines;
+            if (fileName != null)
+            {
+                string path = System.IO.Directory.GetCurrentDirectory() + "\\" + fileName;
+                if (!System.IO.File.Exists(path))
+                    throw new Exception("File Exception!!! File: \n\t" + path + "\nDoesnt Exist!!");
 
-            string[] lines = System.IO.File.ReadAllLines(@path);
-            if (lines.Length <= 0)
-                throw new Exception("File: " + path + " is empty!!");
+                lines = System.IO.File.ReadAllLines(@path);
+                if (lines.Length <= 0)
+                    throw new Exception("File: " + path + " is empty!!");
+            }
+            else
+            {
+                CityData mapData = new CityData();
+                lines = mapData.dataPack.Split('\n');
+            }
 
             for(int i = 0; i < lines.Length; i++)
             {
+                lines[i] = lines[i].Trim();
                 if (lines[i].StartsWith("#") || lines[i].StartsWith("//")) continue;             // File Comments
                 else if (lines[i].StartsWith("Citys"))
                 {
@@ -178,7 +207,7 @@ namespace Graph_Traversal_Searcher
                     {
                         string[] relation = lines[i].Trim().Split(":");
                         if (relation.Length < 3)
-                            throw new Exception("Bad connection between cities Exception!! in: "+CityTextFileName+"\n\tError at line "+i.ToString()+" Got: "+lines[i]+" Expected: CITY:CITY:COST");
+                            throw new Exception("Bad connection between cities Exception!! in: "+ fileName + "\n\tError at line "+i.ToString()+" Got: "+lines[i]+" Expected: CITY:CITY:COST");
 
                         int cost = Int32.Parse(relation[2]);
 

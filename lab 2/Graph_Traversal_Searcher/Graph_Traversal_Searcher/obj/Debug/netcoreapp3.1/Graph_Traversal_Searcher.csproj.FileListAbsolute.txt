@@ -9,3 +9,14 @@ D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_T
 D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.pdb
 D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.dll
 D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.pdb
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.exe
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.deps.json
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.runtimeconfig.json
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.runtimeconfig.dev.json
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.dll
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\bin\Debug\netcoreapp3.1\Graph_Traversal_Searcher.pdb
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.csprojAssemblyReference.cache
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.AssemblyInfoInputs.cache
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.AssemblyInfo.cs
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.dll
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 2\Graph_Traversal_Searcher\Graph_Traversal_Searcher\obj\Debug\netcoreapp3.1\Graph_Traversal_Searcher.pdb

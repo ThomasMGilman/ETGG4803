@@ -49,3 +49,26 @@ Connections:{
 	Vaslui:Iasi:92
 	Iasi:Neamt:87
 }
+# Positions for Cities to start with
+Positions:{
+	Arad:0:0:0
+	Bucharest:450:0:-211
+	Craiova:140:0:-226
+	Drobeta:111:0:-226
+	Elforie:630:0:-250
+	Fagaras:239:0:-20
+	Giurgiu:430:0:-300
+	Hirsova:600:0:-200
+	Iasi:550:0:100
+	Lugoj:111:0:-120
+	Mehadia:111:0:-201
+	Neamt:500:0:130
+	Oradea:15:0:146
+	Pitesti:200:0:-177
+	Rimnicu_Vilcea:150:0:-80
+	Sibiu:140:0:-20
+	Timisoara:0:0:-118
+	Urziceni:510:0:-200
+	Vaslui:530:0:-10
+	Zerind:10:0:75
+}
