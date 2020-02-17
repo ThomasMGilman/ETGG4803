@@ -9,8 +9,8 @@ public class Main : MonoBehaviour
     private DominoParser mazeParser;
     private List<List<DominoNode>> maze;
 
-    private HashSet<DominoNode> Visited;
-    private List<DominoNode> toVisit;
+    private HashSet<Vector2> Visited;
+    private SortedList<int, Queue<DominoNode>> toVisit;
     private Dictionary<Vector2, Path> shortestPathFromStart;
     private List<Vector2> orderChecked;
     private DominoNode start;
@@ -35,17 +35,40 @@ public class Main : MonoBehaviour
         this.start = this.mazeParser.startNode;
         this.end = this.mazeParser.endNode;
 
-        Visited = new HashSet<DominoNode>();
-        toVisit = new List<DominoNode>();
+        Visited = new HashSet<Vector2>();
+        toVisit = new SortedList<int ,Queue<DominoNode>>();
 
         this.start.costToGetToFromStart = 0;
         start.cost = 0;
-        toVisit.Add(start);
+        addToVisit(start);
+        start.DominoPiece.GetComponent<Renderer>().material.SetColor("_BaseColor", Color.green);
         shortestPathFromStart.Add(start.getPlaceInMaze(), new Path() { cost = start.costToGetToFromStart, path = new List<DominoNode> { start } });
-        toVisit[0].DominoPiece.GetComponent<Renderer>().material.SetColor("_BaseColor", Color.green);
 
         stopwatch = new Stopwatch();
         stopwatch.Start();
+    }
+
+    void addToVisit(in DominoNode val)
+    {
+        int cost = val.cost;
+        if(toVisit.ContainsKey(cost))
+            toVisit[cost].Enqueue(val);
+        else
+        {
+            Queue<DominoNode> newQueue = new Queue<DominoNode>();
+            newQueue.Enqueue(val);
+            toVisit.Add(cost, newQueue);
+        }
+    }
+
+    DominoNode getToVisit()
+    {
+        int smallestKey = toVisit.Keys[0];
+        DominoNode node = toVisit[smallestKey].Dequeue();
+
+        if (toVisit[smallestKey].Count == 0)
+            toVisit.Remove(smallestKey);
+        return node;
     }
 
     // Update is called once per frame
@@ -125,10 +148,9 @@ public class Main : MonoBehaviour
     {
         if (toVisit.Count > 0)
         {
-            toVisit.Sort();
-            DominoNode currentDominoNode = toVisit[0];
+            DominoNode currentDominoNode = getToVisit();
             orderChecked.Add(currentDominoNode.getPlaceInMaze());
-            Visited.Add(currentDominoNode);
+            Visited.Add(currentDominoNode.getPlaceInMaze());
 
             if (currentDominoNode.getPlaceInMaze() == end.getPlaceInMaze())
             {
@@ -143,11 +165,12 @@ public class Main : MonoBehaviour
                 foreach (DominoNode neighboringDomino in currentDominoNode.connections)
                 {
                     int costToGetTo = shortestPathFromStart[currentDominoNode.getPlaceInMaze()].cost + 1;
-                    neighboringDomino.DominoPiece.GetComponent<Renderer>().material.SetColor("_BaseColor", Color.blue);
+                    if(!Visited.Contains(neighboringDomino.getPlaceInMaze()))
+                        neighboringDomino.DominoPiece.GetComponent<Renderer>().material.SetColor("_BaseColor", Color.blue);
 
                     // Neightbor already visited before, 
                     // check if path to it from this city is cheaper then current path
-                    if (Visited.Contains(neighboringDomino) || shortestPathFromStart.ContainsKey(neighboringDomino.getPlaceInMaze()))
+                    if (Visited.Contains(neighboringDomino.getPlaceInMaze()) || shortestPathFromStart.ContainsKey(neighboringDomino.getPlaceInMaze()))
                     {
                         // New Path is cheaper to this city
                         if (shortestPathFromStart[neighboringDomino.getPlaceInMaze()].cost > costToGetTo)
@@ -163,7 +186,7 @@ public class Main : MonoBehaviour
                     else
                     {
                         neighboringDomino.cost = costToGetTo + (usingAStar ? (int)neighboringDomino.getHeuristic() : 0);
-                        toVisit.Add(neighboringDomino);
+                        addToVisit(neighboringDomino);
 
                         List<DominoNode> pathToCity;
                         copyPath(in currentDominoNode, out pathToCity, in neighboringDomino);
@@ -177,8 +200,7 @@ public class Main : MonoBehaviour
                     }
                 }
                 currentDominoNode.DominoPiece.GetComponent<Renderer>().material.SetColor("_BaseColor", Color.red);
-                toVisit.RemoveAt(0);
-                toVisit[0].DominoPiece.GetComponent<Renderer>().material.SetColor("_BaseColor", Color.green);
+                toVisit[toVisit.Keys[0]].Peek().DominoPiece.GetComponent<Renderer>().material.SetColor("_BaseColor", Color.green);
             }
         }
     }
