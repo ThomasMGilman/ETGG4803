@@ -1,0 +1,11 @@
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 3\Domino Solver\Domino Solver\bin\Debug\netcoreapp3.1\Domino Solver.exe
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 3\Domino Solver\Domino Solver\bin\Debug\netcoreapp3.1\Domino Solver.deps.json
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 3\Domino Solver\Domino Solver\bin\Debug\netcoreapp3.1\Domino Solver.runtimeconfig.json
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 3\Domino Solver\Domino Solver\bin\Debug\netcoreapp3.1\Domino Solver.runtimeconfig.dev.json
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 3\Domino Solver\Domino Solver\bin\Debug\netcoreapp3.1\Domino Solver.dll
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 3\Domino Solver\Domino Solver\bin\Debug\netcoreapp3.1\Domino Solver.pdb
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 3\Domino Solver\Domino Solver\obj\Debug\netcoreapp3.1\Domino Solver.csprojAssemblyReference.cache
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 3\Domino Solver\Domino Solver\obj\Debug\netcoreapp3.1\Domino Solver.AssemblyInfoInputs.cache
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 3\Domino Solver\Domino Solver\obj\Debug\netcoreapp3.1\Domino Solver.AssemblyInfo.cs
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 3\Domino Solver\Domino Solver\obj\Debug\netcoreapp3.1\Domino Solver.dll
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 3\Domino Solver\Domino Solver\obj\Debug\netcoreapp3.1\Domino Solver.pdb

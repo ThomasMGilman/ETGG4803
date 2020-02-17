@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-class DominoNode
+class DominoNode : IEquatable<DominoNode>, IComparable<DominoNode>
 {
-    string pip;
+    public int costToGetToFromStart = Int32.MaxValue;
+    public List<DominoNode> connections;
+    public int cost = 0;
+
+    int pip;
     string orientation;
     Tuple<int, int> placeInMaze;
-    List<DominoNode> connections;
     float heuristic = 0;
 
-    public DominoNode(string pip, string orientation, Tuple<int, int> mazePlacement, float heuristic = 0)
+    public DominoNode(int pip, string orientation, Tuple<int, int> mazePlacement, float heuristic = 0)
     {
         this.pip            = pip;
         this.orientation    = orientation;
@@ -19,12 +23,14 @@ class DominoNode
         connections         = new List<DominoNode>();
     }
 
-    public void setConnection(ref DominoNode node)
+    public void setConnection(in DominoNode node)
     {
         connections.Add(node);
     }
 
-    public string getPip() { return this.pip; }
+    public int getPip() { return this.pip; }
+
+    public bool isPipEqual(int otherPip) { return this.pip == otherPip; }
 
     public string getOrientation() { return this.orientation; }
 
@@ -32,5 +38,21 @@ class DominoNode
 
     public float getHeuristic() { return this.heuristic; }
 
+    public void setHeuristic(float newHeuristic) { this.heuristic = newHeuristic; }
+
     public bool isVisited(Tuple<int, int> otherLocation) { return this.placeInMaze == otherLocation; }
+
+    public bool Equals(DominoNode other)
+    {
+        if (other == null) return false;
+        return (this.placeInMaze.Equals(other.placeInMaze));
+    }
+
+    public int CompareTo(DominoNode other)
+    {
+        if (other == null)
+            return 1;
+        else
+            return this.cost.CompareTo(other.cost);
+    }
 }

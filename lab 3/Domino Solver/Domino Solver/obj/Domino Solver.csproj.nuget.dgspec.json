@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 3\\Domino Solver\\Domino Solver\\Domino Solver.csproj": {}
+    "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 3\\Domino Solver\\Domino Solver\\Domino Solver.csproj": {}
   },
   "projects": {
-    "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 3\\Domino Solver\\Domino Solver\\Domino Solver.csproj": {
+    "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 3\\Domino Solver\\Domino Solver\\Domino Solver.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 3\\Domino Solver\\Domino Solver\\Domino Solver.csproj",
+        "projectUniqueName": "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 3\\Domino Solver\\Domino Solver\\Domino Solver.csproj",
         "projectName": "Domino Solver",
-        "projectPath": "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 3\\Domino Solver\\Domino Solver\\Domino Solver.csproj",
-        "packagesPath": "C:\\Users\\Thoma\\.nuget\\packages\\",
-        "outputPath": "D:\\SchoolAndProjects\\Programs\\ETGG 4803_02 Artificial Intelligence\\lab 3\\Domino Solver\\Domino Solver\\obj\\",
+        "projectPath": "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 3\\Domino Solver\\Domino Solver\\Domino Solver.csproj",
+        "packagesPath": "C:\\Users\\Thomass Tower\\.nuget\\packages\\",
+        "outputPath": "D:\\School\\Programs\\ETGG 4803 Artificial Intelligence\\lab 3\\Domino Solver\\Domino Solver\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Thomass Tower\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],

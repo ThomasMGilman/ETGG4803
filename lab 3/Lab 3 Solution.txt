@@ -1,0 +1,10 @@
+The Approach I took to solve the domino maze problem was to breakup each domino piece into two nodes.
+Each domino node has an orientation and a pip, the pip determines which neighboring domino node can be traveled to.
+The orientation tells which other domino node is connected to the current domino node without being based on its pip.
+Because the cost of travel between each domino node is a cost of 1, the heuristic of the domino can be set to its distance from the end domino node.
+This distance is calculated when starting the program by distance_heuristic = abs(end.x - node.x)+abs(end.y - node.y).
+After the map was read in and placed into a List<List<DominoNode>> format and a fiew tweaks to the previous labs Dijkstra and AStar path solver,
+The entire maze can be passed to the solver and the shortest path to the end could be easily found including its cost to get to.
+
+Some better ways to solve this problem would be to also parallelize the path finding to explore multiple paths at the same time to increase the speed of the program.
+Another area for improvement would to integrate the openCV library or something similar to read in domino maze from the picture rather than plug it into a text document by hand.

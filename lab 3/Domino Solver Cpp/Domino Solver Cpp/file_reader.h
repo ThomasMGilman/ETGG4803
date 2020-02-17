@@ -4,7 +4,7 @@
 #include <iostream>
 #include <filesystem>
 
-#ifdef WINDOWS
+#ifdef _WINDOWS
 	#include <direct.h>
 	#define GET_CURRENT_DIR _getcwd
 #else
