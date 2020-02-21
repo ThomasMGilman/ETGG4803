@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{C05C9751-77FC-478B-B206-C03FF9652E96}</ProjectGuid>
-    <RootNamespace>MasterMindSolver</RootNamespace>
+    <ProjectGuid>{A8DF1AB9-6EAD-477B-B886-4C72DFC2BA83}</ProjectGuid>
+    <RootNamespace>GeneticMasterMindSolver</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -74,6 +74,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -138,12 +140,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MasterMind.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\MasterMind.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MasterMind.h" />
-    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="include\MasterMind.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

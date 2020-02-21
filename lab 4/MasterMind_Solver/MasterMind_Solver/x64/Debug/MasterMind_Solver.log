@@ -1,0 +1,15 @@
+﻿  Main.cpp
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.h(12,1): error C2234: 'toSolveFor': arrays of references are illegal
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.h(21): message : see reference to class template instantiation 'MasterMind<T>' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Main.cpp(7,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Main.cpp(11,79): error C2664: 'MasterMind<int>::MasterMind(const MasterMind<int> &)': cannot convert argument 1 from 'int [10]' to 'const T *[]'
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Main.cpp(11,61): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.h(12,2): message : see declaration of 'MasterMind<int>::MasterMind'
+  MasterMind.cpp
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.h(12,1): error C2234: 'toSolveFor': arrays of references are illegal
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.h(21): message : see reference to class template instantiation 'MasterMind<T>' being compiled
+  Generating Code...
