@@ -17,11 +17,15 @@ public:
 
 	~MasterMind();
 
-	tuple<string, string> roulette_selection(list<string> chromosomes)
+	/*tuple<string, string> roulette_selection(list<string> chromosomes)
 	{
 		list<float> fitnessScores = new list<float>();
-		for(int i = 0; i < chromosomes.size())
-	}
+		for (int i = 0; i < chromosomes.size())
+		{
+
+		}
+		return NULL;
+	}*/
 
 	void solver();
 };
