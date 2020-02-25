@@ -1,4 +1,5 @@
 #include "Utilities.h"
+#include <algorithm>
 
 int get_random_int(int max, int min)
 {
@@ -35,17 +36,17 @@ std::map<int, PipCount>* pip_probability_counter(int sampleSize, int numDice, in
 
 ///Selection Sampling algorithm using Algorithm S in 'Art of Computer Programming' Vol.2 by Knuth
 template<typename T>
-list<T> selection_sample(const T* samples, int sampleCount, int size)
+vector<T> selection_sample(vector<T>& samples, int sampleCount)
 {
-	if (sampleCount > size)
+	if (sampleCount > samples.size())
 		throw new exception("Got Bad sampleSize, needs to be equal or less than the size of the arrayProvided");
 
 	int t = 0, m = 0;
-	list<T> sampledElements = new list<T>;
+	vector<T> sampledElements = new vector<T>;
 	while (m < sampleCount)
 	{
 		int U = get_random_int(1);
-		int sampleIndex = (size - t) * U;
+		int sampleIndex = (samples.size() - t) * U;
 		if (sampleIndex < sampleCount - m)
 		{
 			sampledElements.push_back(samples[sampleIndex]);
@@ -59,7 +60,7 @@ list<T> selection_sample(const T* samples, int sampleCount, int size)
 ///Shuffling algorithm using Algorithm P in 'Art of Computer Programming' vol.2 by Knuth
 ///Attributed to Fisher and Yates(1938), Durstenfeld(1964)
 template<typename T>
-void sample_shuffle(list<T>& samples, int t)
+void sample_shuffle(vector<T>& samples, int t)
 {
 	int j = t;
 	while (j > 1)
@@ -72,7 +73,13 @@ void sample_shuffle(list<T>& samples, int t)
 }
 
 template<typename T>
-int get_match_count(list<T>& a, list<T>& b)
+void scramble(vector<T>& samples)
+{
+	random_shuffle(samples.begin(), samples.end());
+}
+
+template<typename T>
+int get_match_count(vector<T>& a, vector<T>& b)
 {
 	int matches = 0;
 	if (a.size() != b.size())
@@ -80,4 +87,17 @@ int get_match_count(list<T>& a, list<T>& b)
 	for (int i = 0; i < a.size(); i++)
 		matches += a[i] == b[i] ? 1 : 0;
 	return matches;
+}
+
+template<typename T>
+void multi_point_crossover(vector<T>& a, vector<T>& b, int start, int end)
+{
+	if (a.size() != b.size())
+		throw new exception("passed mismatched vector sizes!!!");
+	else if (start >= a.size() || start < 0 || (end != NULL && (end >= a.size() || end < 0)))
+		throw new exception("Given an crossover point greater than or less than size of vectors");
+	
+	int stop = end != NULL ? end : a.size() - 1;
+	for (int i = start; i <= stop; i++)
+		sawp(a.at(i), b.at(i));
 }

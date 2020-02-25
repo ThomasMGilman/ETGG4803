@@ -1,31 +1,38 @@
 #pragma once
 #include "Utilities.h"
+#include <vector>
 
-template<typename T>
 class MasterMind {
 protected:
 private:
-	std::string solution;
+	vector<int>* toSolveFor;
+	int samplesPerGeneration;
+	int parentsToKeep;
+	int generation = 0;
 public:
 	/// Initializer, takes argument of type T and converts it into a string to solve for
 	
-	MasterMind(const T toSolveFor[], int size = 1)
+	struct chromosome
 	{
-		this->solution = stringify(toSolveFor, size);
-		std::cout << "Got Data of type: " << typeid(T).name() << "\n\tData: " << this->solution << "\n"<< std::endl;
+		std::vector<int> sequence;
+		int matches = 0;
+
+		bool operator> (chromosome& other) const;
+		bool operator< (chromosome& other) const;
+		bool operator==(chromosome& other) const;
 	};
+
+	MasterMind(const int& size, const int& samples, const int& toKeep);
 
 	~MasterMind();
 
-	/*tuple<string, string> roulette_selection(list<string> chromosomes)
-	{
-		list<float> fitnessScores = new list<float>();
-		for (int i = 0; i < chromosomes.size())
-		{
+	void inversion(chromosome c);
 
-		}
-		return NULL;
-	}*/
+	chromosome create_chromosome();	
 
-	void solver();
+	vector<chromosome>* populate();
+
+	void solver(vector<chromosome>* lastGenParents = nullptr);
 };
+
+
