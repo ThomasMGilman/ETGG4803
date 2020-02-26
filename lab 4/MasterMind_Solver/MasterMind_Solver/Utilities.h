@@ -57,8 +57,8 @@ void sample_shuffle(vector<T>& samples, int t);
 template<typename T>
 void scramble(vector<T>& samples);
 
-template<typename T>
-void inversion(vector<T>& samples);
+/// Invert all numbers to their bit value within the given range within the maxnumber of bits
+void inversion(vector<int>& numbers, int numbits, int maxrange, int minrange);
 
 ///Get the number of matches between a and b
 template<typename T>

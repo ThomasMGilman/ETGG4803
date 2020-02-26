@@ -7,8 +7,7 @@ MasterMind::MasterMind(const int& size, const int& samples, const int& toKeep)
 	samplesPerGeneration = samples;
 	parentsToKeep = toKeep;
 
-	for (int i = 0; i < size; i++)
-		toSolveFor->push_back(rand() % 9);
+	toSolveFor = &create_chromosome_data();
 
 	populate();
 	solver();
@@ -19,25 +18,23 @@ MasterMind::~MasterMind()
 	delete(toSolveFor);
 }
 
-void MasterMind::inversion(chromosome c)
+vector<int> MasterMind::create_chromosome_data()
 {
-	for (int i : c.sequence)
-		i = ~i;
-}
-
-MasterMind::chromosome MasterMind::create_chromosome()
-{
-	chromosome c;
+	vector<int> sequence;
 	for (int i = 0; i < toSolveFor->size(); i++)
-		c.sequence.push_back(rand() % 9);
-	return c;
+		sequence.push_back(rand() % 9 + 1);
+	return sequence;
 }
 
 vector<MasterMind::chromosome>* MasterMind::populate()
 {
 	vector<chromosome>* generation = new vector<chromosome>();
 	for (int i = 0; i < samplesPerGeneration; i++)
-		generation->push_back(create_chromosome());
+	{
+		chromosome c;
+		c.sequence = create_chromosome_data();
+		generation->push_back(c);
+	}
 }
 
 void MasterMind::solver(vector<chromosome>* lastGenParents)
@@ -52,6 +49,9 @@ void MasterMind::solver(vector<chromosome>* lastGenParents)
 		for (int i = 0; i < lastGenParents->size(); i++)
 			gen->push_back(lastGenParents->at(i));
 		delete(lastGenParents);
+
+		// Fill in the rest of the children with crossover values, mutations, or random resets
+		
 	}
 	else
 		gen = populate();

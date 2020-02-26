@@ -26,9 +26,7 @@ public:
 
 	~MasterMind();
 
-	void inversion(chromosome c);
-
-	chromosome create_chromosome();	
+	vector<int> create_chromosome_data();	
 
 	vector<chromosome>* populate();
 

@@ -101,3 +101,16 @@ void multi_point_crossover(vector<T>& a, vector<T>& b, int start, int end)
 	for (int i = start; i <= stop; i++)
 		sawp(a.at(i), b.at(i));
 }
+
+void inversion(vector<int>& numbers, int numbits, int maxrange, int minrange)
+{
+	int bitRange = pow(2, numbits) - 1;
+	if (maxrange > bitRange) maxrange = bitRange;
+	int dif = bitRange - maxrange;
+	for (int i : numbers)
+	{
+		i = ~i & bitRange;						// invert bits and floor number to 4bit range
+		if (i > maxrange) i -= dif;				// keep numbers in range of min to max
+		else if (i < minrange) i = minrange;	// Should never happen
+	}
+}
