@@ -1,10 +1,14 @@
 #include "Utilities.h"
-#include <algorithm>
+
 
 int get_random_int(int max, int min)
 {
 	return rand() % max + min;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////// COUNT FUNCTIONS ///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 std::map<int, PipCount>* pip_probability_counter(int sampleSize, int numDice, int numFaces, bool outputData)
 {
@@ -32,85 +36,4 @@ std::map<int, PipCount>* pip_probability_counter(int sampleSize, int numDice, in
 		}
 	}
 	return pipCount;
-}
-
-///Selection Sampling algorithm using Algorithm S in 'Art of Computer Programming' Vol.2 by Knuth
-template<typename T>
-vector<T> selection_sample(vector<T>& samples, int sampleCount)
-{
-	if (sampleCount > samples.size())
-		throw new exception("Got Bad sampleSize, needs to be equal or less than the size of the arrayProvided");
-
-	int t = 0, m = 0;
-	vector<T> sampledElements = new vector<T>;
-	while (m < sampleCount)
-	{
-		int U = get_random_int(1);
-		int sampleIndex = (samples.size() - t) * U;
-		if (sampleIndex < sampleCount - m)
-		{
-			sampledElements.push_back(samples[sampleIndex]);
-			m++;
-		}
-		t++;
-	}
-	return sampledElements;
-}
-
-///Shuffling algorithm using Algorithm P in 'Art of Computer Programming' vol.2 by Knuth
-///Attributed to Fisher and Yates(1938), Durstenfeld(1964)
-template<typename T>
-void sample_shuffle(vector<T>& samples, int t)
-{
-	int j = t;
-	while (j > 1)
-	{
-		int U = get_random_int(1);
-		int k = ((int)floor(j * U)) + 1;
-		swap(samples[j], samples[k]);
-		j--;
-	}
-}
-
-template<typename T>
-void scramble(vector<T>& samples)
-{
-	random_shuffle(samples.begin(), samples.end());
-}
-
-template<typename T>
-int get_match_count(vector<T>& a, vector<T>& b)
-{
-	int matches = 0;
-	if (a.size() != b.size())
-		throw new exception("Mismatched list sizes given, need to give equally sized lists");
-	for (int i = 0; i < a.size(); i++)
-		matches += a[i] == b[i] ? 1 : 0;
-	return matches;
-}
-
-template<typename T>
-void multi_point_crossover(vector<T>& a, vector<T>& b, int start, int end)
-{
-	if (a.size() != b.size())
-		throw new exception("passed mismatched vector sizes!!!");
-	else if (start >= a.size() || start < 0 || (end != NULL && (end >= a.size() || end < 0)))
-		throw new exception("Given an crossover point greater than or less than size of vectors");
-	
-	int stop = end != NULL ? end : a.size() - 1;
-	for (int i = start; i <= stop; i++)
-		sawp(a.at(i), b.at(i));
-}
-
-void inversion(vector<int>& numbers, int numbits, int maxrange, int minrange)
-{
-	int bitRange = pow(2, numbits) - 1;
-	if (maxrange > bitRange) maxrange = bitRange;
-	int dif = bitRange - maxrange;
-	for (int i : numbers)
-	{
-		i = ~i & bitRange;						// invert bits and floor number to 4bit range
-		if (i > maxrange) i -= dif;				// keep numbers in range of min to max
-		else if (i < minrange) i = minrange;	// Should never happen
-	}
 }

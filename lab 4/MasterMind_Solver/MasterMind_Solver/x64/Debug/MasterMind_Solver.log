@@ -1,3 +1,38 @@
-﻿  Utilities.cpp
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Utilities.cpp(10,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  MasterMind_Solver.vcxproj -> D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\x64\Debug\MasterMind_Solver.exe
+﻿  Main.cpp
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Utilities.h(122,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Main.cpp(7,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  MasterMind.cpp
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Utilities.h(122,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.cpp(51,56): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.cpp(136,41): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.cpp(141,145): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.cpp(142,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.cpp(152,99): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Utilities.h(180,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.cpp(100): message : see reference to function template instantiation 'std::vector<int,std::allocator<int>> selection_sample<int>(std::vector<int,std::allocator<int>> &,int)' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Utilities.h(57,1): error C2440: '<function-style-cast>': cannot convert from 'T' to 'std::string'
+          with
+          [
+              T=std::vector<int,std::allocator<int>>
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Utilities.h(57,1): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Utilities.h(71): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>> stringify<T>(T &,int)' being compiled
+          with
+          [
+              T=std::vector<int,std::allocator<int>>
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.cpp(141): message : see reference to function template instantiation 'std::string convert_to_String<std::vector<int,std::allocator<int>>>(T [],int)' being compiled
+          with
+          [
+              T=std::vector<int,std::allocator<int>>
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Utilities.h(61,1): error C2440: '<function-style-cast>': cannot convert from '_Ty' to 'std::string'
+          with
+          [
+              _Ty=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Utilities.h(61,1): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+  Utilities.cpp
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Utilities.h(122,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Utilities.cpp(15,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Generating Code...

@@ -30,7 +30,11 @@ public:
 
 	vector<chromosome>* populate();
 
-	void solver(vector<chromosome>* lastGenParents = nullptr);
+	vector<chromosome>* create_generation(vector<chromosome>* lastGenParents, bool retainParents);
+
+	void solver(vector<chromosome>* lastGenParents = nullptr, bool retainParents = true);
+	
+	void print_generation(vector<chromosome>* children);
 };
 
 
