@@ -43,6 +43,68 @@ vector<MasterMind::chromosome>* MasterMind::populate()
 	return generation;
 }
 
+void MasterMind::mutate_chromosome(MasterMind::chromosome& c, int mutation, bool forceMutation)
+{
+	int chance = rand() % mutationRangeChance + 1;
+	if (chance <= mutationChance || forceMutation)
+	{
+		int m = mutation != -1 ? mutation : rand() % 3;
+		switch (m)
+		{
+			case 0:	//Shuffle the childs data
+			{
+				utility.sample_shuffle(c.sequence, rand() % c.sequence.size());
+				break;
+			}
+			case 1:	//Scramble the childs data
+			{
+				utility.scramble(c.sequence);
+				break;
+			}
+			case 2:	//invert the childs bit data
+			{
+				utility.bit_inversion(c.sequence, 4, 9, 1);
+				break;
+			}
+		}
+	}
+}
+
+bool MasterMind::random_reset_check(MasterMind::chromosome& c)
+{
+	int chance = rand() % resetRangeChance + 1;
+	if (chance <= resetChance)
+	{
+		c = create_chromosome();
+		return true;
+	}
+	return false;
+}
+
+void MasterMind::get_parent(chromosome& child, vector<MasterMind::chromosome>* lastGenParents, int offsetIntoParents)
+{
+	int index, chance = rand() % randomParentRangeChance + 1;
+	if (chance <= randParentChance)
+	{
+		index = rand() % lastGenParents->size();
+		child = lastGenParents->at(index);
+	}
+	else if (!random_reset_check(child))
+	{
+		chance = rand() % randomWheelSpinRangeChance + 1;
+		if (chance <= randwheelSpinChance)
+		{
+			vector<chromosome> copy = *lastGenParents;
+			child = roulette_wheel_selection(copy);
+		}
+		else
+		{
+			index = rand() % parentsToKeep + offsetIntoParents;
+			child = lastGenParents->at(index);
+		}
+	}
+}
+
 vector<MasterMind::chromosome>* MasterMind::create_generation(vector<MasterMind::chromosome>* lastGenParents, bool retainParents)
 {
 	vector<chromosome>* newGen;
@@ -53,70 +115,54 @@ vector<MasterMind::chromosome>* MasterMind::create_generation(vector<MasterMind:
 		int remaining = samplesPerGeneration - parentsToKeep;
 		for (int i = 0; i < remaining;)
 		{
-			int childAI = rand() % parentsToKeep + remaining, childBI;
-			chromosome childA = lastGenParents->at(childAI);
-			chromosome childB;
+			chromosome childA, childB;
+			get_parent(childA, lastGenParents, remaining);
+
 			bool childBSet = false;
-			int choice = rand() % 8;
-			switch (choice)
+			switch (rand() % 5)
 			{
-				case 0:	//Shuffle the childs data
+				case 0:	//crossover data at single point for two children, use only one child if not enough space to keep other
 				{
-					utility.sample_shuffle(childA.sequence, rand() % childA.sequence.size());
-					break;
-				}
-				case 1:	//Scramble the childs data
-				{
-					utility.scramble(childA.sequence);
-					break;
-				}
-				case 2:	//invert the childs bit data
-				{
-					utility.bit_inversion(childA.sequence, 4, 9, 1);
-					break;
-				}
-				case 3:	//crossover data at single point for two children, use only one child if not enough space to keep other
-				{
-					childBI = rand() % parentsToKeep + remaining;
-					childB = lastGenParents->at(childBI);
+					get_parent(childB, lastGenParents, remaining);
 					childBSet = true;
+
 					utility.multi_point_crossover(childA.sequence, childB.sequence, rand() % childA.sequence.size());
 					break;
 				}
-				case 4: //crossover data at multiple points for two children, use only one child if not enough space to keep other
+				case 1: //crossover data at multiple points for two children, use only one child if not enough space to keep other
 				{
-					childBI = rand() % parentsToKeep + remaining;
-					childB = lastGenParents->at(childBI);
+					get_parent(childB, lastGenParents, remaining);
 					childBSet = true;
+
 					int end = rand() % childA.sequence.size();
 					if (end == 0) end++;
 					int start = rand() % end;
 					utility.multi_point_crossover(childA.sequence, childB.sequence, end, start);
 					break;
 				}
-				case 5: //Uniform_crossover
+				case 2: //Uniform_crossover
 				{
-					childBI = rand() % parentsToKeep + remaining;
-					childB = lastGenParents->at(childBI);
+					get_parent(childB, lastGenParents, remaining);
 					childA.sequence = utility.uniform_crossover(childA.sequence, childB.sequence);
 					break;
 				}	
-				case 6:	//Selection Sampling
+				case 3:	//Selection Sampling
 				{
-					childBI = rand() % parentsToKeep + remaining;
-					childB = lastGenParents->at(childBI);
+					get_parent(childB, lastGenParents, remaining);
 					childA.sequence = utility.selection_sample(childB.sequence, childB.sequence.size());
 					break;
-				}	
-				case 7: //random reset child
+				}
+				case 4: //Force Mutation
 				{
-					childA.sequence = create_chromosome_data();
+					mutate_chromosome(childA, -1, true);
 					break;
 				}
 			}
+			mutate_chromosome(childA);
 			childA.matches = utility.get_match_count(childA.sequence, *toSolveFor);
 			if (childBSet)
 			{
+				mutate_chromosome(childB);
 				childB.matches = utility.get_match_count(childA.sequence, *toSolveFor);
 				if (i == remaining - 1)
 					newGen->push_back(rand() % 2 ? childB : childA);
@@ -131,16 +177,9 @@ vector<MasterMind::chromosome>* MasterMind::create_generation(vector<MasterMind:
 				newGen->push_back(childA);
 			i++;
 		}
-		if (resetChance > rand() % resetRangeChance)
-		{
-			for (int i = remaining; i < lastGenParents->size(); i++)
-				newGen->push_back(lastGenParents->at(i));
-		}
-		else
-		{
-			for (int i = remaining; i < lastGenParents->size(); i++)
-				newGen->push_back(create_chromosome());
-		}
+		for (int i = remaining; i < lastGenParents->size(); i++)
+			newGen->push_back(lastGenParents->at(i));
+			
 		delete(lastGenParents);
 	}
 	else
@@ -157,7 +196,7 @@ void MasterMind::solver(bool retainParents)
 		vector<chromosome>* newGen = create_generation(lastGenParents, retainParents);
 		utility.quickSort<chromosome>(*newGen, 0, newGen->size() - 1);
 		generation++;
-		print_generation(newGen);
+		//print_generation(newGen);
 		if ((newGen->end() - 1)->matches == toSolveFor->size())
 		{
 			cout << "Reached Matching Sequence on Generation: " << generation << " !!!\nSolution is: " << utility.convert_to_string((newGen->end() - 1)->sequence) << endl;
@@ -173,10 +212,15 @@ void MasterMind::print_generation(vector<MasterMind::chromosome>* children)
 	cout << "Generation: " << generation << endl;
 	cout << "toSolveFor:\t\t" << utility.convert_to_string(*toSolveFor) << endl;
 	for (chromosome c : *children)
-		cout << "matches: "<< c.matches << " child:\t"<< utility.convert_to_string(c.sequence) << endl;
+	{
+		cout << "matches: " << c.matches << " child:\t";
+		cout << utility.convert_to_string(c.sequence) << endl;
+	}
 	cout << endl;
 }
 
 bool MasterMind::chromosome::operator>(chromosome& other)	const { return matches > other.matches; }
 bool MasterMind::chromosome::operator<(chromosome& other)	const { return matches < other.matches; }
 bool MasterMind::chromosome::operator==(chromosome& other)	const { return matches == other.matches; }
+float MasterMind::chromosome::operator/(chromosome& other)	const { return (float)matches / (float)other.matches; }
+float MasterMind::chromosome::operator/(float other)	const { return (float)matches / other; }
