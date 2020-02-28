@@ -37,7 +37,12 @@ public:
 	};
 
 	template<typename T>
-	void swap_data(T& a, T& b);
+	void swap_data(T& a, T& b)
+	{
+		T tmp = a;
+		a = b;
+		b = tmp;
+	};
 
 	int get_random_int(int max, int min = 0);
 
@@ -139,10 +144,25 @@ public:
 
 	///Shuffling algorithm using Algorithm P in 'Art of Computer Programming' vol.2 by Knuth
 	///Attributed to Fisher and Yates(1938), Durstenfeld(1964)
-	void sample_shuffle(vector<int>& samples, int t);
+	template<typename T>
+	void sample_shuffle(vector<T>& samples, int t)
+	{
+		int j = t;
+		while (j > 1)
+		{
+			int U = get_random_int(1);
+			int k = ((int)floor(j * U)) + 1;
+			swap_data(samples[j], samples[k]);
+			j--;
+		}
+	};
 
 	///random shuffle of samples
-	void scramble(vector<int>& samples);
+	template<typename T>
+	void scramble(vector<T>& samples)
+	{
+		random_shuffle(samples.begin(), samples.end());
+	};
 
 	/// Invert all numbers to their bit value within the given range within the maxnumber of bits
 	void bit_inversion(vector<int>& numbers, int numbits, int maxrange, int minrange);
@@ -153,16 +173,57 @@ public:
 
 	///sawp the contents of a and b up to the point of crossover
 	///should pass the children/copies of the parent vectors to this function to retain parent info
-	void multi_point_crossover(vector<int>& a, vector<int>& b, int end, int start = NULL);
+	template<typename T>
+	void multi_point_crossover(vector<T>& a, vector<T>& b, int end, int start = NULL)
+	{
+		if (a.size() != b.size())
+			throw new exception("passed mismatched vector sizes!!!");
+		else if (end >= a.size() || end < 0 || (start != NULL && (start >= a.size() || start < 0 || start > end)))
+			throw new exception("Given an crossover point greater than or less than size of vectors");
 
-	vector<int> uniform_crossover(vector<int>& a, vector<int>& b);
+		int begining = start != NULL ? start : 0;
+		for (int i = begining; i <= end; i++)
+			swap_data(a.at(i), b.at(i));
+	};
+
+	template<typename T>
+	vector<T> uniform_crossover(vector<T>& a, vector<T>& b)
+	{
+		vector<int> child;
+		if (a.size() != b.size())
+			throw new exception("passed mismatched vector sizes!!!");
+
+		for (int i = 0; i < a.size(); i++)
+			child.push_back(rand() % 2 ? a.at(i) : b.at(i));
+		return child;
+	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////// SAMPLING FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	///Selection Sampling algorithm using Algorithm S in 'Art of Computer Programming' Vol.2 by Knuth
-	vector<int> selection_sample(vector<int>& samples, int sampleCount);
+	template<typename T>
+	vector<T> selection_sample(vector<T>& samples, int sampleCount)
+	{
+		if (sampleCount > samples.size())
+			throw new exception("Got Bad sampleSize, needs to be equal or less than the size of the arrayProvided");
+
+		int t = 0, m = 0;
+		vector<T> sampledElements;
+		while (m < sampleCount)
+		{
+			int U = get_random_int(1);
+			int sampleIndex = (samples.size() - t) * U;
+			if (sampleIndex < sampleCount - m)
+			{
+				sampledElements.push_back(samples[sampleIndex]);
+				m++;
+			}
+			t++;
+		}
+		return sampledElements;
+	};;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////// SORTING FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////
@@ -242,7 +303,7 @@ public:
 		return false;
 	}
 
-	/*template<typename T>
+	template<typename T>
 	void mutate_chromosome(chromosome<T>& c, int mutationChanceRange, int mutationChance,
 		int numbits, int maxRange, int minRange, 
 		int mutation = -1, bool forceMutation = false)
@@ -253,24 +314,24 @@ public:
 			int m = mutation != -1 ? mutation : rand() % 3;
 			switch (m)
 			{
-			case 0:	//Shuffle the childs data
-			{
-				sample_shuffle(c.sequence, rand() % c.sequence.size());
-				break;
-			}
-			case 1:	//Scramble the childs data
-			{
-				scramble(c.sequence);
-				break;
-			}
-			case 2:	//invert the childs bit data
-			{
-				bit_inversion(c.sequence, numbits, maxRange, minRange);
-				break;
-			}
+				case 0:	//Shuffle the childs data
+				{
+					sample_shuffle<T>(c.sequence, rand() % c.sequence.size());
+					break;
+				}
+				case 1:	//Scramble the childs data
+				{
+					scramble<T>(c.sequence);
+					break;
+				}
+				case 2:	//invert the childs bit data
+				{
+					bit_inversion(c.sequence, numbits, maxRange, minRange);
+					break;
+				}
 			}
 		}
-	}*/
+	}
 
 	template<typename T>
 	void get_parent(chromosome<T>& parent, vector<T>& sequenceToMatch, vector<chromosome<T>>* lastGenParents, vector<T>& sequenceToCreateFrom, 

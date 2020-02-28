@@ -57,9 +57,6 @@ public:
 
 	~MasterMind();
 
-	/// Check to see if mutation chance is reached; if so mutate the chromosomes data
-	void mutate_chromosome(Utilities::chromosome<int>& c, int mutation = -1, bool forceMutation = false);
-
 	void get_parent(Utilities::chromosome<int>& c, vector<Utilities::chromosome<int>>* lastGenParents, int offset);
 
 	vector<Utilities::chromosome<int>>* create_generation(vector<Utilities::chromosome<int>>* lastGenParents, bool retainParents);
