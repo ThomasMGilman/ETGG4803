@@ -1,0 +1,15 @@
+﻿  Main.cpp
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(73,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(80,16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Main.cpp(5,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  master_mind_solver.cpp
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(73,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(80,16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\master_mind_solver.cpp(151,88): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\master_mind_solver.cpp(196,63): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Utilities.cpp
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(43,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(102,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(157,45): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  Genetic Algorithms.vcxproj -> D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\x64\Debug\Genetic Algorithms.exe
