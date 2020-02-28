@@ -1,0 +1,4 @@
+﻿  Main.cpp
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\MasterMind.h(59,16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\MasterMind_Solver\Main.cpp(30,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  MasterMind_Solver.vcxproj -> D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 4\MasterMind_Solver\Debug\MasterMind_Solver.exe
