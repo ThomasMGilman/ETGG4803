@@ -1,5 +1,5 @@
 #pragma once
-#include "Utilities.h"
+#include "genetic_algorithm.h"
 
 /*
 Best Result of match on Generation 4
@@ -23,45 +23,20 @@ parentsToKeep:	10
 	mutationChance = 40;
 */
 
-class MasterMind {
+class MasterMind : GeneticAlgorithm<int>{
 protected:
 private:
-	Utilities utility;
-	vector<int>* toSolveFor;
-	vector<int> sequenceValues;
-	int sizeOfProblem;
-	int samplesPerGeneration;
-	int parentsToKeep;
-	int generation = 0;
-
-	// Roulette wheel chance
-	int randomWheelSpinRangeChance = 100;
-	int randwheelSpinChance = 0;									// 0% works best, as it takes a long time
-
-	// Random Parent chance
-	int randomParentRangeChance = 100;
-	int randParentChance = 20;										// 20% works well
-
-	// Range and chance for reset of rest of population to happen
-	int resetRangeChance = 100;
-	int resetChance = 5;											// 5% works well
-
-	// Range and chance for mutation to occur
-	int mutationRangeChance = 100;
-	int mutationChance = 40;										// 40% works well
-
 public:
 	/// Initializer, takes argument of type T and converts it into a string to solve for
 
-	MasterMind(const int& size, const int& samples, const int& toKeep, vector<int>& sequenceRange);
-
-	~MasterMind();
-
-	void get_parent(Utilities::chromosome<int>& c, vector<Utilities::chromosome<int>>* lastGenParents, int offset);
+	MasterMind(const int& size, const int& samples, const int& toKeep, vector<int>& sequenceRange) :
+		GeneticAlgorithm(size, samples, toKeep, sequenceRange) 
+	{
+		*toSolveFor = utility.create_chromosome_data<int>(sequenceValues, size);
+		solver();
+	};
 
 	vector<Utilities::chromosome<int>>* create_generation(vector<Utilities::chromosome<int>>* lastGenParents, bool retainParents);
-
-	void solver(bool retainParents = true);
 };
 
 

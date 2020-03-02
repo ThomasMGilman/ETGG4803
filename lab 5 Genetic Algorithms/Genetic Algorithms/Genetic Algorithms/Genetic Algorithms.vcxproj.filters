@@ -44,5 +44,8 @@
     <ClInclude Include="include\master_mind_solver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\genetic_algorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

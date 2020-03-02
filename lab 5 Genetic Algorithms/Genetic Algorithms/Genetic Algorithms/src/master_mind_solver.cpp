@@ -1,33 +1,5 @@
 #include "master_mind_solver.h"
 
-MasterMind::MasterMind(const int& size, const int& samples, const int& toKeep, vector<int>& sequenceRange)
-{
-	toSolveFor = new vector<int>();
-	sequenceValues = sequenceRange;
-	sizeOfProblem = size;
-	samplesPerGeneration = samples;
-	parentsToKeep = toKeep > samplesPerGeneration ? samplesPerGeneration : toKeep;
-
-
-	*toSolveFor = utility.create_chromosome_data<int>(sequenceValues, size);
-
-	solver();
-}
-
-MasterMind::~MasterMind()
-{
-	delete(toSolveFor);
-}
-
-void MasterMind::get_parent(Utilities::chromosome<int>& c, vector<Utilities::chromosome<int>>* lastGenParents, int offset)
-{
-	utility.get_parent<int>(c, *toSolveFor, lastGenParents, sequenceValues,
-		parentsToKeep, offset,
-		randomParentRangeChance, randParentChance,
-		randomWheelSpinRangeChance, randwheelSpinChance,
-		resetRangeChance, resetChance);
-}
-
 vector<Utilities::chromosome<int>>* MasterMind::create_generation(vector<Utilities::chromosome<int>>* lastGenParents, bool retainParents)
 {
 	vector<Utilities::chromosome<int>>* newGen;
@@ -114,24 +86,4 @@ vector<Utilities::chromosome<int>>* MasterMind::create_generation(vector<Utiliti
 	else
 		newGen = utility.create_population<int>(sequenceValues, *toSolveFor, samplesPerGeneration);
 	return newGen;
-}
-
-void MasterMind::solver(bool retainParents)
-{
-	vector<Utilities::chromosome<int>>* lastGenParents = nullptr;
-	bool foundSolution = false;
-	while (!foundSolution)
-	{
-		vector<Utilities::chromosome<int>>* newGen = create_generation(lastGenParents, retainParents);
-		utility.quickSort<Utilities::chromosome<int>>(*newGen, 0, newGen->size() - 1);
-		generation++;
-		//print_generation(newGen);
-		if ((newGen->end() - 1)->matches == toSolveFor->size())
-		{
-			cout << "Reached Matching Sequence on Generation: " << generation << " !!!\nSolution is: " << utility.convert_to_string((newGen->end() - 1)->sequence) << endl;
-			foundSolution = true;
-			break;
-		}
-		lastGenParents = newGen;
-	}
 }

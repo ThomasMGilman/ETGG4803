@@ -88,6 +88,7 @@
     <ClCompile Include="src\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\genetic_algorithm.h" />
     <ClInclude Include="include\master_mind_solver.h" />
     <ClInclude Include="include\n_queens_solver.h" />
     <ClInclude Include="include\phrase_solver.h" />
