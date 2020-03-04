@@ -82,7 +82,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\master_mind_solver.cpp" />
     <ClCompile Include="src\n_queens_solver.cpp" />
     <ClCompile Include="src\phrase_solver.cpp" />
     <ClCompile Include="src\Utilities.cpp" />
