@@ -58,15 +58,15 @@ public:
 
 		// Random Parent chance
 		randomParentRangeChance = 100;
-		randParentChance = 20;													// 20% works well
+		randParentChance = 40;													// 20% works well
 
 		// Range and chance for reset of rest of population to happen
 		resetRangeChance = 100;
-		resetChance = 20;														// 5% works well
+		resetChance = 30;														// 5% works well
 
 		// Range and chance for mutation to occur
 		mutationRangeChance = 100;
-		mutationChance = 60;													// 40% works well
+		mutationChance = 20;													// 40% works well
 
 		solver(true, false);
 	};

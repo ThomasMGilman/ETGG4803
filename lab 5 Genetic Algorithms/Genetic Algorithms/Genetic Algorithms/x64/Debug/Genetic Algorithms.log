@@ -1,71 +1,125 @@
 ﻿  Main.cpp
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(108,26): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(115,79): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(123,30): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(132,44): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(138,43): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(143,26): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(143,39): error C3861: 'mutationRangeChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(143,60): error C3861: 'mutationChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(144,5): error C3861: 'numBits': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(144,14): error C3861: 'maxBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(144,25): error C3861: 'minBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(149,24): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(149,37): error C3861: 'mutationRangeChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(149,58): error C3861: 'mutationChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(150,3): error C3861: 'numBits': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(150,12): error C3861: 'maxBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(150,23): error C3861: 'minBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(152,49): error C3861: 'toSolveFor': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(155,25): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(155,38): error C3861: 'mutationRangeChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(155,59): error C3861: 'mutationChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(156,4): error C3861: 'numBits': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(156,13): error C3861: 'maxBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(156,24): error C3861: 'minBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(158,50): error C3861: 'toSolveFor': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(159,3): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(161,25): error C3861: 'samplesPerGeneration': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(162,38): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(168,3): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(57,17): error C2672: 'create_chromosome_data': no matching overloaded function found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(57,1): error C2780: 'std::vector<T,std::allocator<_Ty>> create_chromosome_data(std::mutex &,std::vector<T,std::allocator<_Ty>> &,int)': expects 3 arguments - 2 provided
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(312): message : see declaration of 'create_chromosome_data'
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Main.cpp(6,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Main.cpp(23,103): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
-  n_queens_solver.cpp
-  phrase_solver.cpp
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(108,26): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(115,79): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(123,30): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(132,44): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(138,43): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(143,26): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(143,39): error C3861: 'mutationRangeChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(143,60): error C3861: 'mutationChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(144,5): error C3861: 'numBits': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(144,14): error C3861: 'maxBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(144,25): error C3861: 'minBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(149,24): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(149,37): error C3861: 'mutationRangeChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(149,58): error C3861: 'mutationChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(150,3): error C3861: 'numBits': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(150,12): error C3861: 'maxBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(150,23): error C3861: 'minBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(152,49): error C3861: 'toSolveFor': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(155,25): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(155,38): error C3861: 'mutationRangeChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(155,59): error C3861: 'mutationChance': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(156,4): error C3861: 'numBits': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(156,13): error C3861: 'maxBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(156,24): error C3861: 'minBitVal': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(158,50): error C3861: 'toSolveFor': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(159,3): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(161,25): error C3861: 'samplesPerGeneration': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(162,38): error C3861: 'mtx': identifier not found
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(168,3): error C3861: 'mtx': identifier not found
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Main.cpp(6,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Main.cpp(23,103): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(208,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(175): message : while compiling class template member function 'std::vector<chromosome<T>,std::allocator<chromosome<T>>> *GeneticAlgorithm<T>::create_generation(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,bool,bool)'
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(26): message : see reference to class template instantiation 'GeneticAlgorithm<int>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\chrono(632): message : see reference to class template instantiation 'std::chrono::duration<double,std::ratio<1,1>>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\chrono(178): message : see reference to class template instantiation 'std::chrono::duration<__int64,std::nano>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\chrono(610): message : see reference to class template instantiation 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(361,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(57): message : see reference to function template instantiation 'std::vector<T,std::allocator<T>> create_chromosome_data<int>(std::vector<T,std::allocator<T>> &,int)' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(110,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(99): message : while compiling class template member function 'void GeneticAlgorithm<int>::pick_cross_over(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int,int,int)'
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(193): message : see reference to function template instantiation 'void GeneticAlgorithm<int>::pick_cross_over(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int,int,int)' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(71): message : while compiling class template member function 'GeneticAlgorithm<int>::GeneticAlgorithm(const int &,const int &,const int &,std::vector<T,std::allocator<T>>,int (__cdecl *)(std::vector<T,std::allocator<T>> &,std::vector<T,std::allocator<T>> &))'
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(33): message : see reference to function template instantiation 'GeneticAlgorithm<int>::GeneticAlgorithm(const int &,const int &,const int &,std::vector<T,std::allocator<T>>,int (__cdecl *)(std::vector<T,std::allocator<T>> &,std::vector<T,std::allocator<T>> &))' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(118,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(134,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(305,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(134): message : see reference to function template instantiation 'std::vector<T,std::allocator<T>> selection_sample<T>(std::vector<T,std::allocator<T>> &,int)' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(99): message : while compiling class template member function 'void GeneticAlgorithm<int>::pick_cross_over(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int,int,int)'
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(193): message : see reference to function template instantiation 'void GeneticAlgorithm<int>::pick_cross_over(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int,int,int)' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(408,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(141): message : see reference to function template instantiation 'void mutate_chromosome<T>(chromosome<T> &,int,int,int,int,int,int,bool)' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(369,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(379): message : see reference to function template instantiation 'chromosome<T> create_chromosome<T>(std::vector<T,std::allocator<T>> &,std::vector<T,std::allocator<T>> &,int (__cdecl *)(std::vector<T,std::allocator<T>> &,std::vector<T,std::allocator<T>> &))' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(205): message : see reference to function template instantiation 'std::vector<chromosome<T>,std::allocator<chromosome<T>>> *create_population<T>(std::vector<T,std::allocator<T>> &,std::vector<T,std::allocator<T>> &,int,int (__cdecl *)(std::vector<T,std::allocator<T>> &,std::vector<T,std::allocator<T>> &))' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(175): message : while compiling class template member function 'std::vector<chromosome<T>,std::allocator<chromosome<T>>> *GeneticAlgorithm<T>::create_generation(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,bool,bool)'
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(450,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(94): message : see reference to function template instantiation 'void get_parent<T>(chromosome<T> &,std::vector<T,std::allocator<T>> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,std::vector<T,std::allocator<T>> &,int,int,int,int,int,int,int,int,int (__cdecl *)(std::vector<T,std::allocator<T>> &,std::vector<T,std::allocator<T>> &))' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(88): message : while compiling class template member function 'void GeneticAlgorithm<int>::get_gen_parent(chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)'
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(101): message : see reference to function template instantiation 'void GeneticAlgorithm<int>::get_gen_parent(chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(460,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(247,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(418): message : see reference to function template instantiation 'void bit_inversion<T>(std::vector<T,std::allocator<T>> &,int,T,T)' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(141): message : see reference to function template instantiation 'void mutate_chromosome<T>(chromosome<T> &,int,int,int,int,int,int,bool)' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(204,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(460): message : see reference to function template instantiation 'T roulette_wheel_selection<chromosome<int>>(std::vector<chromosome<int>,std::allocator<chromosome<int>>>,int)' being compiled
+          with
+          [
+              T=chromosome<int>
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(94): message : see reference to function template instantiation 'void get_parent<T>(chromosome<T> &,std::vector<T,std::allocator<T>> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,std::vector<T,std::allocator<T>> &,int,int,int,int,int,int,int,int,int (__cdecl *)(std::vector<T,std::allocator<T>> &,std::vector<T,std::allocator<T>> &))' being compiled
+          with
+          [
+              T=int
+          ]
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(211,15): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Utilities.cpp
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(29,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(38,30): error C2664: 'int get_random_int(std::mutex &,int,int)': cannot convert argument 1 from 'int' to 'std::mutex &'
-D:\School\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(8,5): message : see declaration of 'get_random_int'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(26,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  n_queens_solver.cpp
   Generating Code...
+  Genetic Algorithms.vcxproj -> D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\x64\Debug\Genetic Algorithms.exe

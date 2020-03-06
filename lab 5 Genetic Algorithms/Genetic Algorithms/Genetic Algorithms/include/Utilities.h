@@ -10,6 +10,8 @@
 
 using namespace std;
 
+static mutex mtx;	//global mutex lock
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////// UTILITY STRUCTS ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,9 +47,9 @@ void swap_data(T& a, T& b)
 	b = tmp;
 };
 
-int get_random_int(mutex& mtx, int max, int min = 0);
+int get_random_int(int max, int min = 0);
 
-float get_random_float(mutex& mtx, float max = 1.0f, float min = 0.0f);
+float get_random_float(float max = 1.0f, float min = 0.0f);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////// STRING FUNCTIONS //////////////////////////////////////////////////////////////////////////////////////////
@@ -90,11 +92,19 @@ string convert_to_string(vector<T>& data)
 };
 
 template<typename T>
-string convert_to_string2(vector<T>& data)
+string convert_to_string_using_stringstream(vector<T>& data)
 {
 	stringstream ss;
 	for (int i = 0; i < data.size(); i++)
 		ss << data[i];
+	return ss.str();
+}
+
+template<typename T>
+string convert_data_to_string_using_stringstream(T& data)
+{
+	stringstream ss;
+	ss << data;
 	return ss.str();
 }
 
@@ -103,9 +113,24 @@ string convert_to_string2(vector<T>& data)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 template<typename T>
+void print_dif_amount(vector<T>& a, vector<T>& b)
+{
+	if (a.size() != b.size())
+		throw new exception("Invalid vector sizes given!!");
+	cout << "a\t" << "diff\t" << "b" << endl;
+	for (int i = 0; i < a.size(); i++)
+	{
+		cout << convert_data_to_string_using_stringstream<T>(a[i]) << "\t" <<
+			abs(a[i] - b[i]) << "\t" <<
+			convert_data_to_string_using_stringstream<T>(b[i]) << endl;
+	}
+	cout << endl;
+}
+
+template<typename T>
 void print_chromosome_data(chromosome<T>& data)
 {
-	cout << "matches: " << data.matches << " child:\t" << convert_to_string2(data.sequence) << endl;
+	cout << "matches: " << data.matches << " child:\t" << convert_to_string_using_stringstream(data.sequence) << endl;
 }
 
 template<typename T>
@@ -127,6 +152,7 @@ std::map<int, PipCount>* pip_probability_counter(int sampleSize, int numDice, in
 template<typename T>
 int get_match_count(vector<T>& a, vector<T>& b)
 {
+	lock_guard<mutex> lock(mtx);
 	int matches = 0;
 	if (a.size() != b.size())
 		throw new exception("Mismatched list sizes given, need to give equally sized lists");
@@ -139,6 +165,7 @@ int get_match_count(vector<T>& a, vector<T>& b)
 template<typename T>
 int get_match_difference_offset(vector<T>& a, vector<T>& b)
 {
+	lock_guard<mutex> lock(mtx);
 	int distance = 0;
 	if (a.size() != b.size())
 		throw new exception("Mismatched list sizes given, need to give equally sized lists");
@@ -147,6 +174,25 @@ int get_match_difference_offset(vector<T>& a, vector<T>& b)
 	return distance;
 }
 
+template<typename T>
+bool compare_generations_equal(vector<chromosome<T>>& a, vector<chromosome<T>>& b)
+{
+	for (int i = 0; i < a.size(); i++)
+	{
+		cout << "index: " << to_string(i) << endl;
+		print_chromosome_data(a[i]);
+		print_chromosome_data(b[i]);
+		cout << endl;
+		if (get_match_difference_offset(a[i].sequence, b[i].sequence))
+		{
+			cout << "difference at: " << to_string(i) << endl;
+			print_chromosome_data(a[i]);
+			print_chromosome_data(b[i]);
+			return false;
+		}
+	}
+	return true;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////// SELECTION FUNCTIONS ///////////////////////////////////////////////////////////////////////////////////////
@@ -189,11 +235,9 @@ void sample_shuffle(vector<T>& samples, int t)
 
 ///random shuffle of samples
 template<typename T>
-void scramble(mutex& mtx,vector<T>& samples)
+void scramble(vector<T>& samples)
 {
-	mtx.lock();
 	random_shuffle(samples.begin(), samples.end());
-	mtx.unlock();
 };
 
 /// Invert all numbers to their bit value within the given range within the maxnumber of bits
@@ -231,14 +275,14 @@ void multi_point_crossover(vector<T>& a, vector<T>& b, int end, int start = NULL
 };
 
 template<typename T>
-vector<T> uniform_crossover(mutex& mtx, vector<T>& a, vector<T>& b)
+vector<T> uniform_crossover(vector<T>& a, vector<T>& b)
 {
 	vector<T> child;
 	if (a.size() != b.size())
 		throw new exception("passed mismatched vector sizes!!!");
 
 	for (int i = 0; i < a.size(); i++)
-		child.push_back(get_random_int(mtx, 2) ? a.at(i) : b.at(i));
+		child.push_back(get_random_int(2) ? a.at(i) : b.at(i));
 	return child;
 };
 
@@ -248,7 +292,7 @@ vector<T> uniform_crossover(mutex& mtx, vector<T>& a, vector<T>& b)
 
 ///Selection Sampling algorithm using Algorithm S in 'Art of Computer Programming' Vol.2 by Knuth
 template<typename T>
-vector<T> selection_sample(mutex& mtx, vector<T>& samples, int sampleCount)
+vector<T> selection_sample(vector<T>& samples, int sampleCount)
 {
 	if (sampleCount > samples.size())
 		throw new exception("Got Bad sampleSize, needs to be equal or less than the size of the arrayProvided");
@@ -257,7 +301,7 @@ vector<T> selection_sample(mutex& mtx, vector<T>& samples, int sampleCount)
 	vector<T> sampledElements;
 	while (m < sampleCount)
 	{
-		int U = get_random_int(mtx, 1);
+		int U = get_random_int(1);
 		int sampleIndex = (samples.size() - t) * U;
 		if (sampleIndex < sampleCount - m)
 		{
@@ -267,7 +311,7 @@ vector<T> selection_sample(mutex& mtx, vector<T>& samples, int sampleCount)
 		t++;
 	}
 	return sampledElements;
-};;
+};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////// SORTING FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////
@@ -309,72 +353,87 @@ void quickSort(vector<T>& data, int start, int end)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 template<typename T>
-vector<T> create_chromosome_data(mutex& mtx, vector<T>& sequenceToCreateFrom, int sizeOfChromosomeData)
+vector<T> create_chromosome_data(vector<T>& sequenceToCreateFrom, int sizeOfChromosomeData)
 {
+	lock_guard<mutex> lock(mtx);
 	vector<T> sequence;
 	for (int i = 0; i < sizeOfChromosomeData; i++)
-		sequence.push_back(sequenceToCreateFrom.at(get_random_int(mtx, sequenceToCreateFrom.size())));
+		sequence.push_back(sequenceToCreateFrom.at(get_random_int(sequenceToCreateFrom.size())));
 	return sequence;
 }
 
 template<typename T>
-chromosome<T> create_chromosome(mutex& mtx, vector<T>& sequenceToCreateFrom, vector<T>& sequenceToMatch, int (*fitnessFunc)(vector<T>&, vector<T>&))
+chromosome<T> create_chromosome(vector<T>& sequenceToCreateFrom, vector<T>& sequenceToMatch, int (*fitnessFunc)(vector<T>&, vector<T>&))
 {
 	chromosome<T> c;
-	c.sequence = create_chromosome_data<T>(mtx, sequenceToCreateFrom, sequenceToMatch.size());
+	c.sequence = create_chromosome_data<T>(sequenceToCreateFrom, sequenceToMatch.size());
 	c.matches = fitnessFunc(c.sequence, sequenceToMatch);
 	return c;
 }
 
 template<typename T>
-vector<chromosome<T>>* create_population(mutex& mtx,vector<T>& sequenceToCreateFrom, vector<T>& sequenceToMatch, int populationSize, int (*fitnessFunc)(vector<T>&, vector<T>&))
+vector<chromosome<T>>* create_population(vector<T>& sequenceToCreateFrom, vector<T>& sequenceToMatch, int populationSize, int (*fitnessFunc)(vector<T>&, vector<T>&))
 {
 	vector<chromosome<T>>* population = new vector<chromosome<T>>();
 	for (int i = 0; i < populationSize; i++)
-		population->push_back(create_chromosome<T>(mtx, sequenceToCreateFrom, sequenceToMatch, fitnessFunc));
+		population->push_back(create_chromosome<T>(sequenceToCreateFrom, sequenceToMatch, fitnessFunc));
 	return population;
 }
 
 template<typename T>
-bool random_reset_check(mutex& mtx, chromosome<T>& c, vector<T>& sequenceToMatch, vector<T>& sequenceToCreateFrom, int randResetChanceRange, int randResetChance, int (*fitnessFunc)(vector<T>&, vector<T>&))
+bool random_reset_check(chromosome<T>& c, vector<T>& sequenceToMatch, vector<T>& sequenceToCreateFrom, int randResetChanceRange, int randResetChance, int (*fitnessFunc)(vector<T>&, vector<T>&))
 {
-	int chance = rand() % randResetChanceRange + 1;
+	int chance = get_random_int(randResetChanceRange, 1);
 	if (chance <= randResetChance)
 	{
-		c = create_chromosome<T>(mtx, sequenceToCreateFrom, sequenceToMatch, fitnessFunc);
+		c = create_chromosome<T>(sequenceToCreateFrom, sequenceToMatch, fitnessFunc);
 		return true;
 	}
 	return false;
 }
 
 template<typename T>
-void mutate_chromosome(mutex& mtx, chromosome<T>& c, int mutationChanceRange, int mutationChance,
+void mutate_chromosome(chromosome<T>& c, int mutationChanceRange, int mutationChance,
 	int numbits, int maxRange, int minRange,
 	int mutation = -1, bool forceMutation = false)
 {
-	int chance = get_random_int(mtx, mutationChanceRange, 1);
+	int chance = get_random_int(mutationChanceRange, 1);
 	if (chance <= mutationChance || forceMutation)
 	{
-		int m = mutation != -1 ? mutation : get_random_int(mtx, 3);
+		int m = mutation != -1 ? mutation : get_random_int(3);
 		switch (m)
 		{
-		case 0:	//Shuffle the childs data
-		{
-			sample_shuffle<T>(c.sequence, get_random_int(mtx, c.sequence.size()));
-			break;
-		}
-		case 1:	//Scramble the childs data
-		{
-			scramble<T>(c.sequence);
-			break;
-		}
-		case 2:	//invert the childs bit data
-		{
-			bit_inversion<T>(c.sequence, numbits, maxRange, minRange);
-			break;
-		}
+			case 0:	//Shuffle the childs data
+			{
+				sample_shuffle<T>(c.sequence, get_random_int(c.sequence.size()));
+				break;
+			}
+			case 1:	//Scramble the childs data
+			{
+				scramble<T>(c.sequence);
+				break;
+			}
+			case 2:	//invert the childs bit data
+			{
+				bit_inversion<T>(c.sequence, numbits, maxRange, minRange);
+				break;
+			}
 		}
 	}
+}
+
+template<typename T>
+void retrieve_chromosome_from_vector(T& data, vector<T>* from, int index)
+{
+	lock_guard<mutex> lock(mtx);
+	data = from->at(index);
+}
+
+template<typename T>
+void safe_copy_vector(vector<T>& copyTo, vector<T>& copyFrom)
+{
+	lock_guard<mutex> lock(mtx);
+	copyTo = copyFrom;
 }
 
 template<typename T>
@@ -383,27 +442,27 @@ void get_parent(chromosome<T>& parent, vector<T>& sequenceToMatch, vector<chromo
 	int randParChanceRange, int randParChance,
 	int randWheelSpinChanceRange, int randWheelSpinChance,
 	int randResetChanceRange, int randResetChance,
-	mutex& mtx,
 	int (*fitnessFunc)(vector<T>&, vector<T>&))
 {
 	int index, chance = get_random_int(randParChanceRange + 1);
 	if (chance <= randParChance)
 	{
-		index = rand() % lastGenParents->size();
-		parent = lastGenParents->at(index);
+		index = get_random_int(lastGenParents->size());
+		retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
 	}
 	else if (!random_reset_check<T>(parent, sequenceToMatch, sequenceToCreateFrom, randResetChanceRange, randResetChance, fitnessFunc))
 	{
-		chance = rand() % randWheelSpinChanceRange + 1;
+		chance = get_random_int(randWheelSpinChanceRange, 1);
 		if (chance <= randWheelSpinChance)
 		{
-			vector<chromosome<T>> copy = *lastGenParents;
+			vector<chromosome<T>> copy;
+			safe_copy_vector<chromosome<T>>(copy, *lastGenParents);
 			parent = roulette_wheel_selection<chromosome<T>>(copy, sequenceToMatch.size());
 		}
 		else
 		{
-			index = rand() % parentsToKeep + offsetIntoParents;
-			parent = lastGenParents->at(index);
+			index = get_random_int(parentsToKeep, offsetIntoParents);
+			retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
 		}
 	}
 }

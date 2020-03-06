@@ -40,8 +40,6 @@ protected:
 
 	int (*fitnessFunc)(vector<T>&, vector<T>&);		//Fitness Function pointer
 
-	mutex* mtx;
-
 public:
 	GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, int (*fitFunc)(vector<T>&, vector<T>&) = get_match_count<T>);
 
@@ -49,7 +47,7 @@ public:
 
 	void get_gen_parent(chromosome<T>& c, vector<chromosome<T>>* lastGenParents, int offset);
 
-	void pick_cross_over(vector<chromosome<T>>* lastGenParents, vector<chromosome<T>>* newGen, int offset);
+	void pick_cross_over(vector<chromosome<T>>* lastGenParents, vector<chromosome<T>>* newGen, int offset, int numChildrenToPush, int crossOverChosen);
 
 	/*
 	Create a new generation using last gen parents. If specified, will retain a requested number of parents to keep in the next generation until a better parent is found.
@@ -77,14 +75,12 @@ inline GeneticAlgorithm<T>::GeneticAlgorithm(const int& size, const int& samples
 	samplesPerGeneration = samples;
 	parentsToKeep = toKeep > samplesPerGeneration ? samplesPerGeneration : toKeep;
 	fitnessFunc = fitFunc;
-	mtx = new mutex;
 }
 
 template<typename T>
 inline GeneticAlgorithm<T>::~GeneticAlgorithm()
 {
 	delete(toSolveFor);
-	delete(mtx);
 }
 
 template<typename T>
@@ -95,24 +91,23 @@ inline void GeneticAlgorithm<T>::get_gen_parent(chromosome<T>& c, vector<chromos
 		randomParentRangeChance, randParentChance,
 		randomWheelSpinRangeChance, randwheelSpinChance,
 		resetRangeChance, resetChance,
-		*mtx,
 		fitnessFunc);
 }
 
 template<typename T>
-inline void pick_cross_over(vector<chromosome<T>>* lastGenParents, vector<chromosome<T>>* newGen, int offset)
+inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenParents, vector<chromosome<T>>* newGen, int offset, int numChildrenToPush, int crossOverChosen)
 {
 	chromosome<T> childA, childB;
 	get_gen_parent(childA, lastGenParents, offset);
 	bool childBSet = false;
-	switch (get_random_int(*mtx, 5))
+	switch (crossOverChosen)
 	{
 		case 0:	//crossover data at single point for two children, use only one child if not enough space to keep other
 		{
 			get_gen_parent(childB, lastGenParents, offset);
 			childBSet = true;
 
-			multi_point_crossover<T>(childA.sequence, childB.sequence, get_random_int(*mtx, childA.sequence.size()));
+			multi_point_crossover<T>(childA.sequence, childB.sequence, get_random_int(childA.sequence.size()));
 			break;
 		}
 		case 1: //crossover data at multiple points for two children, use only one child if not enough space to keep other
@@ -120,81 +115,102 @@ inline void pick_cross_over(vector<chromosome<T>>* lastGenParents, vector<chromo
 			get_gen_parent(childB, lastGenParents, offset);
 			childBSet = true;
 
-			int end = get_random_int(*mtx, childA.sequence.size());
+			int end = get_random_int(childA.sequence.size());
 			if (end == 0) end++;
-			int start = rand() % end;
+			int start = get_random_int(end);
+
 			multi_point_crossover<T>(childA.sequence, childB.sequence, end, start);
 			break;
 		}
 		case 2: //Uniform_crossover
 		{
 			get_gen_parent(childB, lastGenParents, offset);
-			childA.sequence = uniform_crossover<T>(*mtx, childA.sequence, childB.sequence);
+			childA.sequence = uniform_crossover<T>(childA.sequence, childB.sequence);
 			break;
 		}
 		case 3:	//Selection Sampling
 		{
 			get_gen_parent(childB, lastGenParents, offset);
-			childA.sequence = selection_sample<T>(*mtx, childB.sequence, childB.sequence.size());
+			childA.sequence = selection_sample<T>(childB.sequence, childB.sequence.size());
 			break;
 		}
 		case 4: //Force Mutation
 		{
-			mutate_chromosome<T>(*mtx, childA, mutationRangeChance, mutationChance,
+			mutate_chromosome<T>(childA, mutationRangeChance, mutationChance,
 				numBits, maxBitVal, minBitVal,
 				-1, true);
 			break;
 		}
 	}
-	mutate_chromosome<T>(*mtx, childA, mutationRangeChance, mutationChance,
+	mutate_chromosome<T>(childA, mutationRangeChance, mutationChance,
 		numBits, maxBitVal, minBitVal,
 		-1, true);
-	childA.matches = fitnessFunc(childA.sequence, *toSolveFor);
+	childA.matches = fitnessFunc(childA.sequence, *toSolveFor);				// Use function pointer to call assigned fitnessfunc
+
 	if (childBSet)
 	{
-		mutate_chromosome<T>(*mtx, childB, mutationRangeChance, mutationChance,
+		mutate_chromosome<T>(childB, mutationRangeChance, mutationChance,
 			numBits, maxBitVal, minBitVal,
 			-1, true);
-		childB.matches = fitnessFunc(childA.sequence, *toSolveFor);
-		mtx->lock();
-		
-		if (newGen->size() == samplesPerGeneration - offset)
-			newGen->push_back(get_random_int(*mtx, 2) ? childB : childA);
+		childB.matches = fitnessFunc(childB.sequence, *toSolveFor);			// Use function pointer to call assigned fitnessfunc
+		mtx.lock();
+		if (numChildrenToPush == 1)
+			newGen->push_back(get_random_int(2) ? childB : childA);
 		else
 		{
 			newGen->push_back(childA);
 			newGen->push_back(childB);
 		}
-		mtx->unlock();
 	}
 	else
+	{
+		mtx.lock();
 		newGen->push_back(childA);
+	}
+	mtx.unlock();
 }
 
 template<typename T>
 inline vector<chromosome<T>>* GeneticAlgorithm<T>::create_generation(vector<chromosome<T>>* lastGenParents, bool retainParents, bool higherFitness)
 {
 	vector<chromosome<T>>* newGen;
-	vector<thread> workers;
+	//vector<thread> workers;
 	if (lastGenParents != nullptr)
 	{
 		newGen = new vector<chromosome<T>>();
 		// Fill in the rest of the children with crossover values, mutations, or random resets
-		int offset = higherFitness ? samplesPerGeneration - parentsToKeep : 0;
-		int numParents = offset + parentsToKeep;
-		for (int i = 0; i < samplesPerGeneration - parentsToKeep; i++)
+		int numChildrenToAdd = samplesPerGeneration - parentsToKeep;
+		int offsetToGetParent = higherFitness ? numChildrenToAdd : 0;
+		int numParentsIndexTo = offsetToGetParent + parentsToKeep;
+		for (int i = 0; i <= numChildrenToAdd; )
 		{
-			pick_cross_over(lastGenParents, newGen, numParents);
+			int crossOverChosen = get_random_int(5);
+			int childrenToAdd = (crossOverChosen == 0 || crossOverChosen == 1) ? 2 : 1;
+			i += childrenToAdd;
+			if (i + childrenToAdd > numChildrenToAdd)
+				childrenToAdd--;
+			pick_cross_over(lastGenParents, newGen, offsetToGetParent, childrenToAdd, crossOverChosen);
+			//workers.push_back(thread(&GeneticAlgorithm<T>::pick_cross_over, this, lastGenParents, newGen, offsetToGetParent, childrenToAdd, crossOverChosen));
 		}
-		for (int i = offset; i < numParents; i++)
-			newGen->push_back(lastGenParents->at(i));
+		//for (int i = 0; i < workers.size(); i++)
+		//	workers.at(i).join();
 
-		delete(lastGenParents);
+		for (int i = offsetToGetParent; i < numParentsIndexTo; i++)
+			newGen->push_back(lastGenParents->at(i));
+		
+		
 	}
 	else
 	{
 		newGen = create_population<T>(sequenceValues, *toSolveFor, samplesPerGeneration, fitnessFunc);
 		bestMatchCount = higherFitness ? (newGen->end() - 1)->matches : newGen->begin()->matches;
+	}
+	quickSort<chromosome<T>>(*newGen, 0, newGen->size() - 1);
+	if (lastGenParents != nullptr)
+	{
+		cout << "newgeneration == lastgeneration : " << compare_generations_equal(*newGen, *lastGenParents) << endl;
+		cout << endl;
+		delete(lastGenParents);
 	}
 	return newGen;
 }
@@ -207,7 +223,6 @@ inline void GeneticAlgorithm<T>::solver(bool retainParents, bool higherFitness)
 	while (!foundSolution)
 	{
 		vector<chromosome<T>>* newGen = create_generation(lastGenParents, retainParents, higherFitness);
-		quickSort<chromosome<T>>(*newGen, 0, newGen->size() - 1);
 		generation++;
 		//print_chromosome_vec<T>(*newGen, generation);
 		debug_check_print_best_chromosome(*newGen, higherFitness);
@@ -237,6 +252,7 @@ inline void GeneticAlgorithm<T>::debug_check_print_best_chromosome(vector<chromo
 		bestMatchCount = (data.end() - 1)->matches;
 		cout << "Generation: " << generation << endl;
 		print_chromosome_data(*(data.end() - 1));
+		print_dif_amount<T>((*(data.end() - 1)).sequence, *toSolveFor);
 		cout << "\n" << endl;
 	}
 	else if (!higherFitness && data.begin()->matches < bestMatchCount)
@@ -244,6 +260,7 @@ inline void GeneticAlgorithm<T>::debug_check_print_best_chromosome(vector<chromo
 		bestMatchCount = data.begin()->matches;
 		cout << "Generation: " << generation << endl;
 		print_chromosome_data(*data.begin());
+		print_dif_amount<T>((*data.begin()).sequence, *toSolveFor);
 		cout << "\n" << endl;
 	}
 }
