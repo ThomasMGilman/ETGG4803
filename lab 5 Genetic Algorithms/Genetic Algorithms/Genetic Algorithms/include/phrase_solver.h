@@ -7,13 +7,13 @@ Or maybe inherit and specialize certain functions for this particular problem.
 */
 
 /*
-Best solution so far:
-Matche Distance: 4
-Generation:	270503
-Time: 18mins without reaching answer
+Best solution so far: Reaches Answer
+Match Distance: 0
+Generation:	36715
+Time: 26mins
 
 phrase: "To be, or not to be, that is the question."
-samples:		100
+samples:		1000
 parentsToKeep:	10
 
 	numBits = 7;		//0-128
@@ -24,16 +24,17 @@ parentsToKeep:	10
 	randomWheelSpinRangeChance = 100;
 	randwheelSpinChance = 0;
 
+	// Random Parent chance
 	randomParentRangeChance = 100;
-	randParentChance = 20;
+	randParentChance = 60;
 
 	// Range and chance for reset of rest of population to happen
 	resetRangeChance = 100;
-	resetChance = 20;
+	resetChance = 30;
 
 	// Range and chance for mutation to occur
 	mutationRangeChance = 100;
-	mutationChance = 60;
+	mutationChance = 30;
 */
 
 class PhraseSolver : GeneticAlgorithm<char>
@@ -58,7 +59,7 @@ public:
 
 		// Random Parent chance
 		randomParentRangeChance = 100;
-		randParentChance = 40;													// 20% works well
+		randParentChance = 60;													// 20% works well
 
 		// Range and chance for reset of rest of population to happen
 		resetRangeChance = 100;
@@ -66,7 +67,7 @@ public:
 
 		// Range and chance for mutation to occur
 		mutationRangeChance = 100;
-		mutationChance = 20;													// 40% works well
+		mutationChance = 30;													// 40% works well
 
 		solver(true, false);
 	};

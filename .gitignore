@@ -11,7 +11,7 @@ Binaries/
 Build/
 Builds/
 StagedBuilds/
-*/Library/PackageCache/
+Library/
 
 #ignore this as its rather large
 SharedPCH.Engine.h.pch

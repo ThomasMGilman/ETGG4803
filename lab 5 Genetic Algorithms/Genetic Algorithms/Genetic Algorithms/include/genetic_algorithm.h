@@ -2,6 +2,7 @@
 #include "Utilities.h"
 #include <thread>
 #include <mutex>
+#include <chrono>
 
 template<typename T>
 class GeneticAlgorithm
@@ -39,6 +40,8 @@ protected:
 	int mutationChance;
 
 	int (*fitnessFunc)(vector<T>&, vector<T>&);		//Fitness Function pointer
+
+	chrono::steady_clock::time_point start, end;
 
 public:
 	GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, int (*fitFunc)(vector<T>&, vector<T>&) = get_match_count<T>);
@@ -100,6 +103,7 @@ inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenP
 	chromosome<T> childA, childB;
 	get_gen_parent(childA, lastGenParents, offset);
 	bool childBSet = false;
+
 	switch (crossOverChosen)
 	{
 		case 0:	//crossover data at single point for two children, use only one child if not enough space to keep other
@@ -153,6 +157,7 @@ inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenP
 			numBits, maxBitVal, minBitVal,
 			-1, true);
 		childB.matches = fitnessFunc(childB.sequence, *toSolveFor);			// Use function pointer to call assigned fitnessfunc
+
 		mtx.lock();
 		if (numChildrenToPush == 1)
 			newGen->push_back(get_random_int(2) ? childB : childA);
@@ -194,11 +199,9 @@ inline vector<chromosome<T>>* GeneticAlgorithm<T>::create_generation(vector<chro
 		}
 		//for (int i = 0; i < workers.size(); i++)
 		//	workers.at(i).join();
-
+		
 		for (int i = offsetToGetParent; i < numParentsIndexTo; i++)
 			newGen->push_back(lastGenParents->at(i));
-		
-		
 	}
 	else
 	{
@@ -208,8 +211,8 @@ inline vector<chromosome<T>>* GeneticAlgorithm<T>::create_generation(vector<chro
 	quickSort<chromosome<T>>(*newGen, 0, newGen->size() - 1);
 	if (lastGenParents != nullptr)
 	{
-		cout << "newgeneration == lastgeneration : " << compare_generations_equal(*newGen, *lastGenParents) << endl;
-		cout << endl;
+		//cout << "newgeneration == lastgeneration : " << compare_generations_equal(*newGen, *lastGenParents) << endl;
+		//cout << endl;
 		delete(lastGenParents);
 	}
 	return newGen;
@@ -220,6 +223,7 @@ inline void GeneticAlgorithm<T>::solver(bool retainParents, bool higherFitness)
 {
 	vector<chromosome<T>>* lastGenParents = nullptr;
 	bool foundSolution = false;
+	start = chrono::steady_clock::now();
 	while (!foundSolution)
 	{
 		vector<chromosome<T>>* newGen = create_generation(lastGenParents, retainParents, higherFitness);
@@ -227,19 +231,19 @@ inline void GeneticAlgorithm<T>::solver(bool retainParents, bool higherFitness)
 		//print_chromosome_vec<T>(*newGen, generation);
 		debug_check_print_best_chromosome(*newGen, higherFitness);
 
-		if (higherFitness && (newGen->end() - 1)->matches == toSolveFor->size())
+		if (higherFitness && (newGen->end() - 1)->matches == toSolveFor->size() || newGen->begin()->matches == 0)
 		{
-			cout << "Reached Matching Sequence on Generation: " << generation << " !!!\nSolution is: " << convert_to_string<T>((newGen->end() - 1)->sequence) << endl;
+			end = chrono::steady_clock::now();
+			chromosome<T> solution = higherFitness ? *(newGen->end() - 1) : *newGen->begin();
+			cout << "Reached Matching Sequence on Generation: " << generation << " In: "<< chrono::duration_cast<chrono::minutes>(end-start).count() <<"min. !!!\nSolution is: ";
+			int tHash = typeid(T).hash_code();
+			if (tHash == typeid(float).hash_code() || tHash == typeid(int).hash_code() || tHash == typeid(double).hash_code())
+				cout << convert_to_string<T>(solution.sequence) << endl;
+			else
+				cout << convert_to_string_using_stringstream<T>(solution.sequence) << endl;
 			foundSolution = true;
 			break;
 		}
-		else if (newGen->begin()->matches == 0)
-		{
-			cout << "Reached Matching Sequence on Generation: " << generation << " !!!\nSolution is: " << convert_to_string<T>(newGen->begin()->sequence) << endl;
-			foundSolution = true;
-			break;
-		}
-
 		lastGenParents = newGen;
 	}
 }
