@@ -62,7 +62,7 @@ public:
 
 		// Range and chance for mutation to occur
 		mutationRangeChance = 100;
-		mutationChance = 30;													// 40% works well
+		mutationChance = 50;													// 40% works well
 
 		solver(true, false);
 	};

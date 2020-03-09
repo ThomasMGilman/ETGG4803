@@ -71,7 +71,7 @@ public:
 
 	void printBest(chromosome<T>* best);
 
-	void debug_check_print_best_chromosome(vector<chromosome<T>>& data, bool higherFitness);
+	void debug_check_print_best_chromosome(vector<chromosome<T>>& data, bool higherFitness, bool printBest = true);
 };
 
 template<typename T>
@@ -111,7 +111,7 @@ inline void GeneticAlgorithm<T>::mutate_chromosome(chromosome<T>& c, int mutatio
 	int chance = get_random_int(mutationChanceRange, 1);
 	if (chance <= mutationChance || forceMutation)
 	{
-		int m = mutation != -1 ? mutation : get_random_int(3);
+		int m = mutation != -1 ? mutation : get_random_int(4);
 		switch (m)
 		{
 			case 0:	//Shuffle the childs data
@@ -129,8 +129,14 @@ inline void GeneticAlgorithm<T>::mutate_chromosome(chromosome<T>& c, int mutatio
 				bit_inversion<T>(c.sequence, numbits, maxRange, minRange);
 				break;
 			}
+			case 3:	//Selection Sampling
+			{
+				c.sequence = selection_sample<T>(c.sequence, c.sequence.size());
+				break;
+			}
 		}
 	}
+	c.matches = fitnessFunc(c.sequence, *toSolveFor);
 }
 
 template<typename T>
@@ -138,22 +144,16 @@ inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenP
 {
 	chromosome<T> childA, childB;
 	get_gen_parent(childA, lastGenParents, offset);
-	bool childBSet = false;
+	get_gen_parent(childB, lastGenParents, offset);
 	switch (crossOverChosen)
 	{
 		case 0:	//crossover data at single point for two children, use only one child if not enough space to keep other
 		{
-			get_gen_parent(childB, lastGenParents, offset);
-			childBSet = true;
-
 			multi_point_crossover<T>(childA.sequence, childB.sequence, get_random_int(childA.sequence.size()));
 			break;
 		}
 		case 1: //crossover data at multiple points for two children, use only one child if not enough space to keep other
 		{
-			get_gen_parent(childB, lastGenParents, offset);
-			childBSet = true;
-
 			int end = get_random_int(childA.sequence.size());
 			if (end == 0) end++;
 			int start = get_random_int(end);
@@ -163,48 +163,29 @@ inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenP
 		}
 		case 2: //Uniform_crossover
 		{
-			get_gen_parent(childB, lastGenParents, offset);
-			childA.sequence = uniform_crossover<T>(childA.sequence, childB.sequence);
+			uniform_crossover<T>(childA.sequence, childB.sequence);
 			break;
 		}
-		case 3:	//Selection Sampling
-		{
-			get_gen_parent(childB, lastGenParents, offset);
-			childA.sequence = selection_sample<T>(childB.sequence, childB.sequence.size());
-			break;
-		}
-		case 4: //Force Mutation
-		{
-			mutate_chromosome<T>(childA, mutationRangeChance, mutationChance,
-				numBits, maxBitVal, minBitVal,
-				-1, true);
-			break;
-		}
+		
 	}
-	mutate_chromosome<T>(childA, mutationRangeChance, mutationChance,
+	mutate_chromosome(childA, mutationRangeChance, mutationChance,
 		numBits, maxBitVal, minBitVal,
 		-1, true);
-	childA.matches = fitnessFunc(childA.sequence, *toSolveFor);				// Use function pointer to call assigned fitnessfunc
-
-	if (childBSet)
-	{
-		mutate_chromosome<T>(childB, mutationRangeChance, mutationChance,
-			numBits, maxBitVal, minBitVal,
-			-1, true);
-		childB.matches = fitnessFunc(childB.sequence, *toSolveFor);			// Use function pointer to call assigned fitnessfunc
-		mtx.lock();
-		if (numChildrenToPush == 1)
-			newGen->push_back(get_random_int(2) ? childB : childA);
-		else
-		{
-			newGen->push_back(childA);
-			newGen->push_back(childB);
-		}
-	}
-	else
+	mutate_chromosome(childB, mutationRangeChance, mutationChance,
+		numBits, maxBitVal, minBitVal,
+		-1, true);
+	
+	if (numChildrenToPush > 1)
 	{
 		mtx.lock();
 		newGen->push_back(childA);
+		newGen->push_back(childB);
+	}
+	else
+	{
+		int which = get_random_int(2);
+		mtx.lock();
+		newGen->push_back(which ? childA : childB);
 	}
 	mtx.unlock();
 }
@@ -223,7 +204,7 @@ inline vector<chromosome<T>>* GeneticAlgorithm<T>::create_generation(vector<chro
 		int numParentsIndexTo = offsetToGetParent + parentsToKeep;
 		for (int i = 0; i <= numChildrenToAdd; )
 		{
-			int crossOverChosen = get_random_int(5);
+			int crossOverChosen = get_random_int(3);
 			int childrenToAdd = (crossOverChosen == 0 || crossOverChosen == 1) ? 2 : 1;
 			i += childrenToAdd;
 			if (i + childrenToAdd > numChildrenToAdd)
@@ -279,22 +260,25 @@ inline void GeneticAlgorithm<T>::printBest(chromosome<T>* best)
 	cout << "Reached Matching Sequence on Generation: " << generation << " In: " << chrono::duration_cast<chrono::minutes>(end - start).count() << "min. !!!\nSolution is: ";
 	int typeHash = typeid(T).hash_code();
 	if(typeHash == typeid(int).hash_code() || typeHash == typeid(float).hash_code() || typeHash == typeid(double).hash_code())
-		cout << convert_to_string<T>(best->sequence) << endl;
+		cout << convert_to_string<T>(best->sequence);
 	else
-		cout << convert_to_string_using_stringstream<T>(best->sequence) << endl;
+		cout << convert_to_string_using_stringstream<T>(best->sequence);
 }
 
 template<typename T>
-inline void GeneticAlgorithm<T>::debug_check_print_best_chromosome(vector<chromosome<T>>& data, bool higherFitness)
+inline void GeneticAlgorithm<T>::debug_check_print_best_chromosome(vector<chromosome<T>>& data, bool higherFitness, bool printBest)
 {
 	chromosome<T>& best = higherFitness ? *(data.end() - 1) : *data.begin();
 	if ((higherFitness && best.matches > bestMatchCount) || (!higherFitness && best.matches < bestMatchCount))
 	{
 		lastBestGen = generation;
 		bestMatchCount = best.matches;
-		cout << "Generation: " << generation << endl;
-		print_chromosome_data(best);
-		//print_dif_amount<T>(best.sequence, *toSolveFor);
-		cout << "\n" << endl;
+		if (printBest)
+		{
+			cout << "Generation: " << generation << endl;
+			print_chromosome_data(best);
+			//print_dif_amount<T>(best.sequence, *toSolveFor);
+			cout << "\n" << endl;
+		}
 	}
 }

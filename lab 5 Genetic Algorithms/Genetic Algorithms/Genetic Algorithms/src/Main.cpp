@@ -1,13 +1,13 @@
 #include "master_mind_solver.h"
 #include "phrase_solver.h"
+#include "n_queens_solver.h"
 #include <iostream>
 
 void main(int argc, char** argv)
 {
-	
 	const int toSolveForSize = 10;		// number of digits in problem
-	const int samples = 1000;			// number of samples per generation
-	const int parentsToKeep = 10;		// number of parents to keep in next generation
+	const int samples = 700;			// number of samples per generation
+	const int parentsToKeep = 15;		// number of parents to keep in next generation
 	vector<int> sequenceIntRange;
 	for (int i = 1; i < 8; i++)
 		sequenceIntRange.push_back(i);
@@ -20,10 +20,17 @@ void main(int argc, char** argv)
 	for (int i = 32; i < 127; i++)
 		sequenceCharRange.push_back(i);
 
-	PhraseSolver* ps = new PhraseSolver(phrase.size(), samples, parentsToKeep, phrase, sequenceCharRange);
-	delete(ps);
+	PhraseSolver(phrase.size(), samples, parentsToKeep, phrase, sequenceCharRange);
 	
-
+	/*for (int i = 2; i <= 10; i++)
+	{
+		vector<int> boardSpots;
+		for (int j = 0; j <= i; j++)
+			boardSpots.push_back(j);
+		cout << "BoardSize: " << to_string(i) << endl;
+		NQueensSolver(boardSpots.size() - 1, samples, parentsToKeep, boardSpots, 700);
+		cout << endl;
+	}*/
 
 	std::cout << "\ndone!!" << std::endl;
 }

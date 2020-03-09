@@ -10,8 +10,8 @@ public:
 		
 		// Set Mutation Properties
 		numBits = 4;	//Nibble 0-15
-		maxBitVal = 8;
-		minBitVal = 1;
+		maxBitVal = *(sequenceRange.end()-1);
+		minBitVal = *sequenceRange.begin();
 
 		// Roulette wheel chance
 		randomWheelSpinRangeChance = 100;
@@ -23,7 +23,7 @@ public:
 
 		// Range and chance for reset of rest of population to happen
 		resetRangeChance = 100;
-		resetChance = 5;														// 5% works well
+		resetChance = 45;														// 5% works well
 
 		// Range and chance for mutation to occur
 		mutationRangeChance = 100;
@@ -32,7 +32,9 @@ public:
 		solver();
 	};
 
-	vector<chromosome<int>>* create_generation(vector<chromosome<int>>* lastGenParents, bool retainParents, bool higherFitness);
+	void pick_cross_over(vector<chromosome<int>>* lastGenParents, vector<chromosome<int>>* newGen, int offset);
 
-	void solver(bool retainParents = true, bool higherFitness = false);
+	vector<chromosome<int>>* create_generation(vector<chromosome<int>>* lastGenParents, bool retainParents);
+
+	void solver(bool retainParents = true);
 };

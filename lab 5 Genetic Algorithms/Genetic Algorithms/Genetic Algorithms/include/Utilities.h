@@ -7,6 +7,7 @@
 #include <map>
 #include <thread>
 #include <mutex>
+#include <time.h>
 #include <chrono>
 
 using namespace std;
@@ -48,7 +49,7 @@ void swap_data(T& a, T& b)
 	b = tmp;
 };
 
-int get_random_int(int max, int min = 0);
+int get_random_int(int max = 1, int min = 0);
 
 float get_random_float(float max = 1.0f, float min = 0.0f);
 
@@ -149,6 +150,8 @@ void print_chromosome_vec(vector<chromosome<T>>& data, int generation)
 
 std::map<int, PipCount>* pip_probability_counter(int sampleSize, int numDice, int numFaces, bool outputData = false);
 
+float bayesian_probability(float sensitivity, float specificity, float testPositive);
+
 ///Get the number of matches between a and b
 template<typename T>
 int get_match_count(vector<T>& a, vector<T>& b)
@@ -175,22 +178,7 @@ int get_match_difference_offset(vector<T>& a, vector<T>& b)
 	return distance;
 }
 
-int check_queens(vector<int>& a)
-{
-	int invalidSpots = 0;
-	for (int i = 0; i < a.size(); i++)
-	{
-		for (int j = 0; j < a.size(); j++)
-		{
-			if (j == i) continue;
-
-			float dRow = abs(a[i] - a[j]);
-			float dCol = abs(i - j);
-			if (a[i] == a[j]) invalidSpots += a.size();				// Check in same row
-			if (abs(dRow / dCol) == 1) invalidSpots += a.size();	// Check Diagonals
-		}
-	}
-}
+int check_queens(vector<int>& a);
 
 template<typename T>
 bool compare_generations_equal(vector<chromosome<T>>& a, vector<chromosome<T>>& b)
@@ -211,6 +199,12 @@ bool compare_generations_equal(vector<chromosome<T>>& a, vector<chromosome<T>>& 
 	}
 	return true;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////// TIME FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////// SELECTION FUNCTIONS ///////////////////////////////////////////////////////////////////////////////////////
@@ -293,15 +287,20 @@ void multi_point_crossover(vector<T>& a, vector<T>& b, int end, int start = NULL
 };
 
 template<typename T>
-vector<T> uniform_crossover(vector<T>& a, vector<T>& b)
+void uniform_crossover(vector<T>& a, vector<T>& b)
 {
-	vector<T> child;
+	vector<T> newA, newB;
 	if (a.size() != b.size())
 		throw new exception("passed mismatched vector sizes!!!");
 
 	for (int i = 0; i < a.size(); i++)
-		child.push_back(get_random_int(2) ? a.at(i) : b.at(i));
-	return child;
+	{
+		int which = get_random_int(2);
+		newA.push_back(which ? a.at(i) : b.at(i));
+		newB.push_back(which ? b.at(i) : a.at(i));
+	}
+	a = newA;
+	b = newB;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -434,7 +433,7 @@ bool random_reset_check(chromosome<T>& c, vector<T>& sequenceToCreateFrom, int r
 	int chance = get_random_int(randResetChanceRange, 1);
 	if (chance <= randResetChance)
 	{
-		c = create_chromosome<T>(sequenceToCreateFrom, fitnessFunc);
+		c = create_chromosome<T>(sequenceToCreateFrom, sequenceToCreateFrom.size(), fitnessFunc);
 		return true;
 	}
 	return false;
@@ -501,17 +500,7 @@ void get_parent(chromosome<T>& parent, vector<chromosome<T>>* lastGenParents, ve
 	}
 	else if (!random_reset_check<T>(parent, sequenceToCreateFrom, randResetChanceRange, randResetChance, fitnessFunc))
 	{
-		chance = get_random_int(randWheelSpinChanceRange, 1);
-		if (chance <= randWheelSpinChance)
-		{
-			vector<chromosome<T>> copy;
-			safe_copy_vector<chromosome<T>>(copy, *lastGenParents);
-			parent = roulette_wheel_selection<chromosome<T>>(copy, sequenceToMatch.size());
-		}
-		else
-		{
-			index = get_random_int(parentsToKeep, offsetIntoParents);
-			retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
-		}
+		index = get_random_int(parentsToKeep, offsetIntoParents);
+		retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
 	}
 }
