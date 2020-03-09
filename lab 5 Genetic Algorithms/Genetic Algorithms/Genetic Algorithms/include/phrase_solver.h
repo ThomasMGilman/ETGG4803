@@ -2,15 +2,10 @@
 #include "genetic_algorithm.h"
 
 /*
-Can probably convert the mastermind class to solve this problem as well.
-Or maybe inherit and specialize certain functions for this particular problem.
-*/
-
-/*
 Best solution so far: Reaches Answer
 Match Distance: 0
 Generation:	36715
-Time: 26mins
+Time: 22mins
 
 phrase: "To be, or not to be, that is the question."
 samples:		1000
@@ -43,7 +38,7 @@ protected:
 private:
 public:
 	PhraseSolver(const int& size, const int& samples, const int& toKeep, string phrase, vector<char> sequenceRange) :
-		GeneticAlgorithm(size, samples, toKeep, sequenceRange, get_match_difference_offset<char>)
+		GeneticAlgorithm(size, samples, toKeep, sequenceRange, 0, get_match_difference_offset<char>)
 	{
 		for (char c : phrase)
 			toSolveFor->push_back(c);

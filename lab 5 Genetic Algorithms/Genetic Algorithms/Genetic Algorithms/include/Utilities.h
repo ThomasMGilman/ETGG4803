@@ -7,6 +7,7 @@
 #include <map>
 #include <thread>
 #include <mutex>
+#include <chrono>
 
 using namespace std;
 
@@ -172,6 +173,23 @@ int get_match_difference_offset(vector<T>& a, vector<T>& b)
 	for (int i = 0; i < a.size(); i++)
 		distance += abs(a[i] - b[i]);
 	return distance;
+}
+
+int check_queens(vector<int>& a)
+{
+	int invalidSpots = 0;
+	for (int i = 0; i < a.size(); i++)
+	{
+		for (int j = 0; j < a.size(); j++)
+		{
+			if (j == i) continue;
+
+			float dRow = abs(a[i] - a[j]);
+			float dCol = abs(i - j);
+			if (a[i] == a[j]) invalidSpots += a.size();				// Check in same row
+			if (abs(dRow / dCol) == 1) invalidSpots += a.size();	// Check Diagonals
+		}
+	}
 }
 
 template<typename T>
@@ -372,11 +390,29 @@ chromosome<T> create_chromosome(vector<T>& sequenceToCreateFrom, vector<T>& sequ
 }
 
 template<typename T>
+chromosome<T> create_chromosome(vector<T>& sequenceToCreateFrom, int size, int (*fitnessFunc)(vector<T>&))
+{
+	chromosome<T> c;
+	c.sequence = create_chromosome_data<T>(sequenceToCreateFrom, size);
+	c.matches = fitnessFunc(c.sequence);
+	return c;
+}
+
+template<typename T>
 vector<chromosome<T>>* create_population(vector<T>& sequenceToCreateFrom, vector<T>& sequenceToMatch, int populationSize, int (*fitnessFunc)(vector<T>&, vector<T>&))
 {
 	vector<chromosome<T>>* population = new vector<chromosome<T>>();
 	for (int i = 0; i < populationSize; i++)
 		population->push_back(create_chromosome<T>(sequenceToCreateFrom, sequenceToMatch, fitnessFunc));
+	return population;
+}
+
+template<typename T>
+vector<chromosome<T>>* create_population(vector<T>& sequenceToCreateFrom, int sizeOfData, int populationSize, int (*fitnessFunc)(vector<T>&))
+{
+	vector<chromosome<T>>* population = new vector<chromosome<T>>();
+	for (int i = 0; i < populationSize; i++)
+		population->push_back(create_chromosome<T>(sequenceToCreateFrom, sizeOfData, fitnessFunc));
 	return population;
 }
 
@@ -393,33 +429,15 @@ bool random_reset_check(chromosome<T>& c, vector<T>& sequenceToMatch, vector<T>&
 }
 
 template<typename T>
-void mutate_chromosome(chromosome<T>& c, int mutationChanceRange, int mutationChance,
-	int numbits, int maxRange, int minRange,
-	int mutation = -1, bool forceMutation = false)
+bool random_reset_check(chromosome<T>& c, vector<T>& sequenceToCreateFrom, int randResetChanceRange, int randResetChance, int (*fitnessFunc)(vector<T>&))
 {
-	int chance = get_random_int(mutationChanceRange, 1);
-	if (chance <= mutationChance || forceMutation)
+	int chance = get_random_int(randResetChanceRange, 1);
+	if (chance <= randResetChance)
 	{
-		int m = mutation != -1 ? mutation : get_random_int(3);
-		switch (m)
-		{
-			case 0:	//Shuffle the childs data
-			{
-				sample_shuffle<T>(c.sequence, get_random_int(c.sequence.size()));
-				break;
-			}
-			case 1:	//Scramble the childs data
-			{
-				scramble<T>(c.sequence);
-				break;
-			}
-			case 2:	//invert the childs bit data
-			{
-				bit_inversion<T>(c.sequence, numbits, maxRange, minRange);
-				break;
-			}
-		}
+		c = create_chromosome<T>(sequenceToCreateFrom, fitnessFunc);
+		return true;
 	}
+	return false;
 }
 
 template<typename T>
@@ -451,6 +469,37 @@ void get_parent(chromosome<T>& parent, vector<T>& sequenceToMatch, vector<chromo
 		retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
 	}
 	else if (!random_reset_check<T>(parent, sequenceToMatch, sequenceToCreateFrom, randResetChanceRange, randResetChance, fitnessFunc))
+	{
+		chance = get_random_int(randWheelSpinChanceRange, 1);
+		if (chance <= randWheelSpinChance)
+		{
+			vector<chromosome<T>> copy;
+			safe_copy_vector<chromosome<T>>(copy, *lastGenParents);
+			parent = roulette_wheel_selection<chromosome<T>>(copy, sequenceToMatch.size());
+		}
+		else
+		{
+			index = get_random_int(parentsToKeep, offsetIntoParents);
+			retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
+		}
+	}
+}
+
+template<typename T>
+void get_parent(chromosome<T>& parent, vector<chromosome<T>>* lastGenParents, vector<T>& sequenceToCreateFrom,
+	int parentsToKeep, int offsetIntoParents,
+	int randParChanceRange, int randParChance,
+	int randWheelSpinChanceRange, int randWheelSpinChance,
+	int randResetChanceRange, int randResetChance,
+	int (*fitnessFunc)(vector<T>&))
+{
+	int index, chance = get_random_int(randParChanceRange + 1);
+	if (chance <= randParChance)
+	{
+		index = get_random_int(lastGenParents->size());
+		retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
+	}
+	else if (!random_reset_check<T>(parent, sequenceToCreateFrom, randResetChanceRange, randResetChance, fitnessFunc))
 	{
 		chance = get_random_int(randWheelSpinChanceRange, 1);
 		if (chance <= randWheelSpinChance)

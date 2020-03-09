@@ -7,10 +7,10 @@ void main(int argc, char** argv)
 	
 	const int toSolveForSize = 10;		// number of digits in problem
 	const int samples = 1000;			// number of samples per generation
-	const int parentsToKeep = 100;		// number of parents to keep in next generation
-	//vector<int> sequenceIntRange;
-	//for (int i = 1; i < 10; i++)
-	//	sequenceIntRange.push_back(i);
+	const int parentsToKeep = 10;		// number of parents to keep in next generation
+	vector<int> sequenceIntRange;
+	for (int i = 1; i < 8; i++)
+		sequenceIntRange.push_back(i);
 
 	//MasterMind* mm = new MasterMind(toSolveForSize, samples, parentsToKeep, sequenceIntRange);
 	//delete(mm);
@@ -23,5 +23,7 @@ void main(int argc, char** argv)
 	PhraseSolver* ps = new PhraseSolver(phrase.size(), samples, parentsToKeep, phrase, sequenceCharRange);
 	delete(ps);
 	
+
+
 	std::cout << "\ndone!!" << std::endl;
 }
