@@ -54,7 +54,7 @@ public:
 		mutationChance = 40;													// 40% works well
 
 		// Set Random Mastermind number range
-		*toSolveFor = create_chromosome_data<int>(sequenceValues, size);
+		*toSolveFor = create_chromosome_data();
 		solver();
 	};
 

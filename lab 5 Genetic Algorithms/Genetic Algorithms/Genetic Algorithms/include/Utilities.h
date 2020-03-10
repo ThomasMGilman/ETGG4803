@@ -129,21 +129,6 @@ void print_dif_amount(vector<T>& a, vector<T>& b)
 	cout << endl;
 }
 
-template<typename T>
-void print_chromosome_data(chromosome<T>& data)
-{
-	cout << "matches: " << data.matches << " child:\t" << convert_to_string_using_stringstream(data.sequence) << endl;
-}
-
-template<typename T>
-void print_chromosome_vec(vector<chromosome<T>>& data, int generation)
-{
-	cout << "Generation: " << generation << endl;
-	for (chromosome<T> c : data)
-		print_chromosome_data<T>(c);
-	cout << "\n" << endl;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////// COUNT FUNCTIONS ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -180,30 +165,9 @@ int get_match_difference_offset(vector<T>& a, vector<T>& b)
 
 int check_queens(vector<int>& a);
 
-template<typename T>
-bool compare_generations_equal(vector<chromosome<T>>& a, vector<chromosome<T>>& b)
-{
-	for (int i = 0; i < a.size(); i++)
-	{
-		cout << "index: " << to_string(i) << endl;
-		print_chromosome_data(a[i]);
-		print_chromosome_data(b[i]);
-		cout << endl;
-		if (get_match_difference_offset(a[i].sequence, b[i].sequence))
-		{
-			cout << "difference at: " << to_string(i) << endl;
-			print_chromosome_data(a[i]);
-			print_chromosome_data(b[i]);
-			return false;
-		}
-	}
-	return true;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////// TIME FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -295,42 +259,6 @@ vector<T> selection_sample(vector<T>& samples, int sampleCount)
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////// CROSSOVER FUNCTIONS ///////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-///sawp the contents of a and b up to the point of crossover
-///should pass the children/copies of the parent vectors to this function to retain parent info
-template<typename T>
-void multi_point_crossover(vector<T>& a, vector<T>& b, int end, int start = NULL)
-{
-	if (a.size() != b.size())
-		throw new exception("passed mismatched vector sizes!!!");
-	else if (end >= a.size() || end < 0 || (start != NULL && (start >= a.size() || start < 0 || start > end)))
-		throw new exception("Given an crossover point greater than or less than size of vectors");
-
-	int begining = start != NULL ? start : 0;
-	for (int i = begining; i <= end; i++)
-		swap_data(a.at(i), b.at(i));
-};
-
-template<typename T>
-void uniform_crossover(vector<T>& a, vector<T>& b)
-{
-	vector<T> newA, newB;
-	if (a.size() != b.size())
-		throw new exception("passed mismatched vector sizes!!!");
-
-	for (int i = 0; i < a.size(); i++)
-	{
-		int which = get_random_int(2);
-		newA.push_back(which ? a.at(i) : b.at(i));
-		newB.push_back(which ? b.at(i) : a.at(i));
-	}
-	a = newA;
-	b = newB;
-};
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////// SORTING FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -366,54 +294,22 @@ void quickSort(vector<T>& data, int start, int end)
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////// GENETIC FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////
+/////////////////// COPY FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 template<typename T>
-vector<T> create_chromosome_data(vector<T>& sequenceToCreateFrom, int sizeOfChromosomeData)
+T safe_copy_data_from_vector(vector<T>& from, int index)
 {
 	lock_guard<mutex> lock(mtx);
-	vector<T> sequence;
-	for (int i = 0; i < sizeOfChromosomeData; i++)
-		sequence.push_back(sequenceToCreateFrom.at(get_random_int(sequenceToCreateFrom.size())));
-	return sequence;
+	T data = from.at(index);
+	return data;
 }
 
 template<typename T>
-chromosome<T> create_chromosome(vector<T>& sequenceToCreateFrom, int sizeOfSequence)
-{
-	chromosome<T> c;
-	c.sequence = create_chromosome_data<T>(sequenceToCreateFrom, sizeOfSequence);
-	return c;
-}
-
-
-template<typename T>
-vector<chromosome<T>>* create_population(vector<T>& sequenceToCreateFrom, int sizeOfSequence, int populationSize)
-{
-	vector<chromosome<T>>* population = new vector<chromosome<T>>();
-	for (int i = 0; i < populationSize; i++)
-		population->push_back(create_chromosome<T>(sequenceToCreateFrom, sizeOfSequence));
-	return population;
-}
-
-template<typename T>
-bool random_reset_check(chromosome<T>& c, vector<T>& sequenceToCreateFrom, int sizeOfSequence, int randResetChanceRange, int randResetChance)
-{
-	int chance = get_random_int(randResetChanceRange, 1);
-	if (chance <= randResetChance)
-	{
-		c = create_chromosome<T>(sequenceToCreateFrom, sizeOfSequence);
-		return true;
-	}
-	return false;
-}
-
-template<typename T>
-void retrieve_chromosome_from_vector(T& data, vector<T>* from, int index)
+void safe_copy_data_from_vector(T& data, vector<T>& from, int index)
 {
 	lock_guard<mutex> lock(mtx);
-	data = from->at(index);
+	data = from.at(index);
 }
 
 template<typename T>
@@ -421,35 +317,4 @@ void safe_copy_vector(vector<T>& copyTo, vector<T>& copyFrom)
 {
 	lock_guard<mutex> lock(mtx);
 	copyTo = copyFrom;
-}
-
-template<typename T>
-void get_parent(chromosome<T>& parent, vector<chromosome<T>>* lastGenParents, vector<T>& sequenceToCreateFrom,
-	int sizeOfSequence,
-	int parentsToKeep, int offsetIntoParents,
-	int randParChanceRange, int randParChance,
-	int randWheelSpinChanceRange, int randWheelSpinChance,
-	int randResetChanceRange, int randResetChance)
-{
-	int index, chance = get_random_int(randParChanceRange + 1);
-	if (chance <= randParChance)
-	{
-		index = get_random_int(lastGenParents->size());
-		retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
-	}
-	else if (!random_reset_check<T>(parent, sequenceToCreateFrom, sizeOfSequence, randResetChanceRange, randResetChance))
-	{
-		chance = get_random_int(randWheelSpinChanceRange, 1);
-		if (chance <= randWheelSpinChance)
-		{
-			vector<chromosome<T>> copy;
-			safe_copy_vector<chromosome<T>>(copy, *lastGenParents);
-			parent = roulette_wheel_selection<chromosome<T>>(copy, sizeOfSequence);
-		}
-		else
-		{
-			index = get_random_int(parentsToKeep, offsetIntoParents);
-			retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
-		}
-	}
 }
