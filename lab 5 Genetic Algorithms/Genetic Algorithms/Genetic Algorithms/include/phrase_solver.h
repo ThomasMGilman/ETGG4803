@@ -38,7 +38,7 @@ protected:
 private:
 public:
 	PhraseSolver(const int& size, const int& samples, const int& toKeep, string phrase, vector<char> sequenceRange) :
-		GeneticAlgorithm(size, samples, toKeep, sequenceRange, 0, get_match_difference_offset<char>)
+		GeneticAlgorithm(size, samples, toKeep, sequenceRange, 0)
 	{
 		for (char c : phrase)
 			toSolveFor->push_back(c);
@@ -66,4 +66,6 @@ public:
 
 		solver(true, false);
 	};
+
+	void fitness_function_check(chromosome<char>& c) override;
 };

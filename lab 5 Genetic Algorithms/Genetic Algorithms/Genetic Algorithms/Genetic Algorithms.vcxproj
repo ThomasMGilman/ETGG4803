@@ -81,6 +81,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\master_mind_solver.cpp" />
+    <ClCompile Include="include\phrase_solver.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\n_queens_solver.cpp" />
     <ClCompile Include="src\Utilities.cpp" />

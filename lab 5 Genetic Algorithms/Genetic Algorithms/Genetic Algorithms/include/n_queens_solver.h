@@ -32,9 +32,5 @@ public:
 		solver();
 	};
 
-	void pick_cross_over(vector<chromosome<int>>* lastGenParents, vector<chromosome<int>>* newGen, int offset);
-
-	vector<chromosome<int>>* create_generation(vector<chromosome<int>>* lastGenParents, bool retainParents);
-
-	void solver(bool retainParents = true);
+	void fitness_function_check(chromosome<int>& c) override;
 };

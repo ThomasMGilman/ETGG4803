@@ -268,6 +268,33 @@ void bit_inversion(vector<T>& data, int numbits, T maxrange, T minrange)
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////// SAMPLING FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///Selection Sampling algorithm using Algorithm S in 'Art of Computer Programming' Vol.2 by Knuth
+template<typename T>
+vector<T> selection_sample(vector<T>& samples, int sampleCount)
+{
+	if (sampleCount > samples.size())
+		throw new exception("Got Bad sampleSize, needs to be equal or less than the size of the arrayProvided");
+
+	int t = 0, m = 0;
+	vector<T> sampledElements;
+	while (m < sampleCount)
+	{
+		int U = get_random_int(1);
+		int sampleIndex = (samples.size() - t) * U;
+		if (sampleIndex < sampleCount - m)
+		{
+			sampledElements.push_back(samples[sampleIndex]);
+			m++;
+		}
+		t++;
+	}
+	return sampledElements;
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////// CROSSOVER FUNCTIONS ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -301,33 +328,6 @@ void uniform_crossover(vector<T>& a, vector<T>& b)
 	}
 	a = newA;
 	b = newB;
-};
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////// SAMPLING FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-///Selection Sampling algorithm using Algorithm S in 'Art of Computer Programming' Vol.2 by Knuth
-template<typename T>
-vector<T> selection_sample(vector<T>& samples, int sampleCount)
-{
-	if (sampleCount > samples.size())
-		throw new exception("Got Bad sampleSize, needs to be equal or less than the size of the arrayProvided");
-
-	int t = 0, m = 0;
-	vector<T> sampledElements;
-	while (m < sampleCount)
-	{
-		int U = get_random_int(1);
-		int sampleIndex = (samples.size() - t) * U;
-		if (sampleIndex < sampleCount - m)
-		{
-			sampledElements.push_back(samples[sampleIndex]);
-			m++;
-		}
-		t++;
-	}
-	return sampledElements;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -380,60 +380,30 @@ vector<T> create_chromosome_data(vector<T>& sequenceToCreateFrom, int sizeOfChro
 }
 
 template<typename T>
-chromosome<T> create_chromosome(vector<T>& sequenceToCreateFrom, vector<T>& sequenceToMatch, int (*fitnessFunc)(vector<T>&, vector<T>&))
+chromosome<T> create_chromosome(vector<T>& sequenceToCreateFrom, int sizeOfSequence)
 {
 	chromosome<T> c;
-	c.sequence = create_chromosome_data<T>(sequenceToCreateFrom, sequenceToMatch.size());
-	c.matches = fitnessFunc(c.sequence, sequenceToMatch);
+	c.sequence = create_chromosome_data<T>(sequenceToCreateFrom, sizeOfSequence);
 	return c;
 }
 
-template<typename T>
-chromosome<T> create_chromosome(vector<T>& sequenceToCreateFrom, int size, int (*fitnessFunc)(vector<T>&))
-{
-	chromosome<T> c;
-	c.sequence = create_chromosome_data<T>(sequenceToCreateFrom, size);
-	c.matches = fitnessFunc(c.sequence);
-	return c;
-}
 
 template<typename T>
-vector<chromosome<T>>* create_population(vector<T>& sequenceToCreateFrom, vector<T>& sequenceToMatch, int populationSize, int (*fitnessFunc)(vector<T>&, vector<T>&))
+vector<chromosome<T>>* create_population(vector<T>& sequenceToCreateFrom, int sizeOfSequence, int populationSize)
 {
 	vector<chromosome<T>>* population = new vector<chromosome<T>>();
 	for (int i = 0; i < populationSize; i++)
-		population->push_back(create_chromosome<T>(sequenceToCreateFrom, sequenceToMatch, fitnessFunc));
+		population->push_back(create_chromosome<T>(sequenceToCreateFrom, sizeOfSequence));
 	return population;
 }
 
 template<typename T>
-vector<chromosome<T>>* create_population(vector<T>& sequenceToCreateFrom, int sizeOfData, int populationSize, int (*fitnessFunc)(vector<T>&))
-{
-	vector<chromosome<T>>* population = new vector<chromosome<T>>();
-	for (int i = 0; i < populationSize; i++)
-		population->push_back(create_chromosome<T>(sequenceToCreateFrom, sizeOfData, fitnessFunc));
-	return population;
-}
-
-template<typename T>
-bool random_reset_check(chromosome<T>& c, vector<T>& sequenceToMatch, vector<T>& sequenceToCreateFrom, int randResetChanceRange, int randResetChance, int (*fitnessFunc)(vector<T>&, vector<T>&))
+bool random_reset_check(chromosome<T>& c, vector<T>& sequenceToCreateFrom, int sizeOfSequence, int randResetChanceRange, int randResetChance)
 {
 	int chance = get_random_int(randResetChanceRange, 1);
 	if (chance <= randResetChance)
 	{
-		c = create_chromosome<T>(sequenceToCreateFrom, sequenceToMatch, fitnessFunc);
-		return true;
-	}
-	return false;
-}
-
-template<typename T>
-bool random_reset_check(chromosome<T>& c, vector<T>& sequenceToCreateFrom, int randResetChanceRange, int randResetChance, int (*fitnessFunc)(vector<T>&))
-{
-	int chance = get_random_int(randResetChanceRange, 1);
-	if (chance <= randResetChance)
-	{
-		c = create_chromosome<T>(sequenceToCreateFrom, sequenceToCreateFrom.size(), fitnessFunc);
+		c = create_chromosome<T>(sequenceToCreateFrom, sizeOfSequence);
 		return true;
 	}
 	return false;
@@ -454,12 +424,12 @@ void safe_copy_vector(vector<T>& copyTo, vector<T>& copyFrom)
 }
 
 template<typename T>
-void get_parent(chromosome<T>& parent, vector<T>& sequenceToMatch, vector<chromosome<T>>* lastGenParents, vector<T>& sequenceToCreateFrom,
+void get_parent(chromosome<T>& parent, vector<chromosome<T>>* lastGenParents, vector<T>& sequenceToCreateFrom,
+	int sizeOfSequence,
 	int parentsToKeep, int offsetIntoParents,
 	int randParChanceRange, int randParChance,
 	int randWheelSpinChanceRange, int randWheelSpinChance,
-	int randResetChanceRange, int randResetChance,
-	int (*fitnessFunc)(vector<T>&, vector<T>&))
+	int randResetChanceRange, int randResetChance)
 {
 	int index, chance = get_random_int(randParChanceRange + 1);
 	if (chance <= randParChance)
@@ -467,40 +437,19 @@ void get_parent(chromosome<T>& parent, vector<T>& sequenceToMatch, vector<chromo
 		index = get_random_int(lastGenParents->size());
 		retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
 	}
-	else if (!random_reset_check<T>(parent, sequenceToMatch, sequenceToCreateFrom, randResetChanceRange, randResetChance, fitnessFunc))
+	else if (!random_reset_check<T>(parent, sequenceToCreateFrom, sizeOfSequence, randResetChanceRange, randResetChance))
 	{
 		chance = get_random_int(randWheelSpinChanceRange, 1);
 		if (chance <= randWheelSpinChance)
 		{
 			vector<chromosome<T>> copy;
 			safe_copy_vector<chromosome<T>>(copy, *lastGenParents);
-			parent = roulette_wheel_selection<chromosome<T>>(copy, sequenceToMatch.size());
+			parent = roulette_wheel_selection<chromosome<T>>(copy, sizeOfSequence);
 		}
 		else
 		{
 			index = get_random_int(parentsToKeep, offsetIntoParents);
 			retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
 		}
-	}
-}
-
-template<typename T>
-void get_parent(chromosome<T>& parent, vector<chromosome<T>>* lastGenParents, vector<T>& sequenceToCreateFrom,
-	int parentsToKeep, int offsetIntoParents,
-	int randParChanceRange, int randParChance,
-	int randWheelSpinChanceRange, int randWheelSpinChance,
-	int randResetChanceRange, int randResetChance,
-	int (*fitnessFunc)(vector<T>&))
-{
-	int index, chance = get_random_int(randParChanceRange + 1);
-	if (chance <= randParChance)
-	{
-		index = get_random_int(lastGenParents->size());
-		retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
-	}
-	else if (!random_reset_check<T>(parent, sequenceToCreateFrom, randResetChanceRange, randResetChance, fitnessFunc))
-	{
-		index = get_random_int(parentsToKeep, offsetIntoParents);
-		retrieve_chromosome_from_vector<chromosome<T>>(parent, lastGenParents, index);
 	}
 }

@@ -6,12 +6,12 @@ class GeneticAlgorithm
 {
 private:
 protected:
-	vector<T>* toSolveFor;
+	vector<T>* toSolveFor = nullptr;
 	vector<T> sequenceValues;
 	int samplesPerGeneration;
 	int parentsToKeep;
 	int sizeOfProblem;
-	int SPBGU;
+	int SPBGU;					//stagnation Period Befor Give Up
 	int lastBestGen = 0;
 	int generation = 0;
 
@@ -38,22 +38,23 @@ protected:
 	int mutationRangeChance;
 	int mutationChance;
 
-	//Fitness Function pointer
-	int (*fitnessFunc)(vector<T>&, vector<T>&);
-
 	// Timer
 	chrono::steady_clock::time_point start, end;
 
 public:
-	GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, const int& stagnationPeriodBeforGiveUp = 0, int (*fitFunc)(vector<T>&, vector<T>&) = get_match_count<T>);
+	GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, const int& stagnationPeriodBeforGiveUp = 0);
 
 	~GeneticAlgorithm();
 
 	void get_gen_parent(chromosome<T>& c, vector<chromosome<T>>* lastGenParents, int offset);
 
+	virtual void fitness_function_check(chromosome<T>& c) = NULL;
+
 	void mutate_chromosome(chromosome<T>& c, int mutationChanceRange, int mutationChance, int numbits, int maxRange, int minRange, int mutation = -1, bool forceMutation = false);
 
-	virtual void pick_cross_over(vector<chromosome<T>>* lastGenParents, vector<chromosome<T>>* newGen, int offset, int numChildrenToPush, int crossOverChosen);
+
+
+	void pick_cross_over(vector<chromosome<T>>* lastGenParents, vector<chromosome<T>>* newGen, int offset, int numChildrenToPush, int crossOverChosen, bool noRepeats);
 
 	/*
 	Create a new generation using last gen parents. If specified, will retain a requested number of parents to keep in the next generation until a better parent is found.
@@ -65,9 +66,9 @@ public:
 	retainParents	: Keep a fixed number of best parents in the next generation until a better one is found
 	higherFitness	: Specifies whether to use a higher or lower fitness score for best parent.
 	*/
-	virtual vector<chromosome<T>>* create_generation(vector<chromosome<T>>* lastGenParents, bool retainParents, bool higherFitness);
+	vector<chromosome<T>>* create_generation(vector<chromosome<T>>* lastGenParents, bool retainParents, bool higherFitness, bool noRepeats = false);
 
-	virtual void solver(bool retainParents = true, bool higherFitness = true);
+	void solver(bool retainParents = true, bool higherFitness = true);
 
 	void printBest(chromosome<T>* best);
 
@@ -75,7 +76,7 @@ public:
 };
 
 template<typename T>
-inline GeneticAlgorithm<T>::GeneticAlgorithm(const int& size, const int& samples, const int& toKeep, vector<T> sequenceRange, const int& stagnationPeriodBeforGiveUp, int (*fitFunc)(vector<T>&, vector<T>&))
+inline GeneticAlgorithm<T>::GeneticAlgorithm(const int& size, const int& samples, const int& toKeep, vector<T> sequenceRange, const int& stagnationPeriodBeforGiveUp)
 {
 	toSolveFor = new vector<T>();
 	SPBGU = stagnationPeriodBeforGiveUp;
@@ -83,7 +84,6 @@ inline GeneticAlgorithm<T>::GeneticAlgorithm(const int& size, const int& samples
 	sizeOfProblem = size;
 	samplesPerGeneration = samples;
 	parentsToKeep = toKeep > samplesPerGeneration ? samplesPerGeneration : toKeep;
-	fitnessFunc = fitFunc;
 }
 
 template<typename T>
@@ -95,12 +95,12 @@ inline GeneticAlgorithm<T>::~GeneticAlgorithm()
 template<typename T>
 inline void GeneticAlgorithm<T>::get_gen_parent(chromosome<T>& c, vector<chromosome<T>>* lastGenParents, int offset)
 {
-	get_parent<T>(c, *toSolveFor, lastGenParents, sequenceValues,
+	get_parent<T>(c, lastGenParents, sequenceValues,
+		sizeOfProblem,
 		parentsToKeep, offset,
 		randomParentRangeChance, randParentChance,
 		randomWheelSpinRangeChance, randwheelSpinChance,
-		resetRangeChance, resetChance,
-		fitnessFunc);
+		resetRangeChance, resetChance);
 }
 
 template<typename T>
@@ -136,11 +136,11 @@ inline void GeneticAlgorithm<T>::mutate_chromosome(chromosome<T>& c, int mutatio
 			}
 		}
 	}
-	c.matches = fitnessFunc(c.sequence, *toSolveFor);
+	fitness_function_check(c);
 }
 
 template<typename T>
-inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenParents, vector<chromosome<T>>* newGen, int offset, int numChildrenToPush, int crossOverChosen)
+inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenParents, vector<chromosome<T>>* newGen, int offset, int numChildrenToPush, int crossOverChosen, bool noRepeats)
 {
 	chromosome<T> childA, childB;
 	get_gen_parent(childA, lastGenParents, offset);
@@ -191,7 +191,7 @@ inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenP
 }
 
 template<typename T>
-inline vector<chromosome<T>>* GeneticAlgorithm<T>::create_generation(vector<chromosome<T>>* lastGenParents, bool retainParents, bool higherFitness)
+inline vector<chromosome<T>>* GeneticAlgorithm<T>::create_generation(vector<chromosome<T>>* lastGenParents, bool retainParents, bool higherFitness, bool noRepeats)
 {
 	vector<chromosome<T>>* newGen;
 	//vector<thread> workers;
@@ -209,7 +209,7 @@ inline vector<chromosome<T>>* GeneticAlgorithm<T>::create_generation(vector<chro
 			i += childrenToAdd;
 			if (i + childrenToAdd > numChildrenToAdd)
 				childrenToAdd--;
-			pick_cross_over(lastGenParents, newGen, offsetToGetParent, childrenToAdd, crossOverChosen);
+			pick_cross_over(lastGenParents, newGen, offsetToGetParent, childrenToAdd, crossOverChosen, noRepeats);
 			//workers.push_back(thread(&GeneticAlgorithm<T>::pick_cross_over, this, lastGenParents, newGen, offsetToGetParent, childrenToAdd, crossOverChosen));
 		}
 		//for (int i = 0; i < workers.size(); i++)
@@ -220,7 +220,9 @@ inline vector<chromosome<T>>* GeneticAlgorithm<T>::create_generation(vector<chro
 	}
 	else
 	{
-		newGen = create_population<T>(sequenceValues, *toSolveFor, samplesPerGeneration, fitnessFunc);
+		newGen = create_population<T>(sequenceValues, sizeOfProblem, samplesPerGeneration);
+		for(int i = 0; i < newGen->size(); i++)
+			fitness_function_check(newGen->at(i));
 		bestMatchCount = higherFitness ? (newGen->end() - 1)->matches : newGen->begin()->matches;
 	}
 	quickSort<chromosome<T>>(*newGen, 0, newGen->size() - 1);

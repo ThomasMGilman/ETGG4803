@@ -57,6 +57,8 @@ public:
 		*toSolveFor = create_chromosome_data<int>(sequenceValues, size);
 		solver();
 	};
+
+	void fitness_function_check(chromosome<int>& c) override;
 };
 
 
