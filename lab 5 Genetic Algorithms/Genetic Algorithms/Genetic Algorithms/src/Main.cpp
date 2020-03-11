@@ -20,7 +20,7 @@ void main(int argc, char** argv)
 	for (int i = 32; i < 127; i++)
 		sequenceCharRange.push_back(i);
 
-	PhraseSolver(phrase.size(), samples, parentsToKeep, phrase, sequenceCharRange);
+	//PhraseSolver(phrase.size(), samples, parentsToKeep, phrase, sequenceCharRange);
 	
 	/*for (int i = 2; i <= 10; i++)
 	{
@@ -32,5 +32,12 @@ void main(int argc, char** argv)
 		cout << endl;
 	}*/
 
-	std::cout << "\ndone!!" << std::endl;
+	stringstream ss;
+	
+	ss << bayesian_probability(.05, .02, .024);
+	cout << ss.str() << endl;
+
+	//pip_probability_counter(20000, 1, 6, true);
+
+	//std::cout << "\ndone!!" << std::endl;
 }

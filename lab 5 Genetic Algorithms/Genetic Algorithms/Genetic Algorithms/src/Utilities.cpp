@@ -4,6 +4,29 @@
 /////////////////// UTILITY FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+struct diceRoll {
+	bool evenRoll;
+	int even, odd;
+	int max, evenleft, oddLeft;
+	double probability;
+	diceRoll* Even, * Odd;
+};
+/*
+diceRoll setDice(diceRoll* p, bool evenRoll)
+{
+	diceRoll d;
+	//d.eve
+}*/
+
+void roll(diceRoll* p)
+{
+	if (p->evenleft != p->max && p->oddLeft != p->max)
+	{
+		p->Even->evenRoll = true;
+		
+	}
+}
+
 int get_random_int(int max, int min) {
 	lock_guard<mutex> lock(mtx);
 	int num = (rand() % max + min);
@@ -45,15 +68,23 @@ std::map<int, PipCount>* pip_probability_counter(int sampleSize, int numDice, in
 		for (std::map<int, PipCount>::iterator probabilitySamples = pipCount->begin(); probabilitySamples != pipCount->end(); probabilitySamples++)
 		{
 			probabilitySamples->second.probability = (float)probabilitySamples->second.timesRolled / (float)sampleSize * probabilitySize;
-			std::cout << "\tPipCount: " << probabilitySamples->first << "\tCount: " << probabilitySamples->second.timesRolled << "\tProbability: " << probabilitySamples->second.probability << " / " << probabilitySize << std::endl;
+			std::cout << "\tPipCount: " << probabilitySamples->first << "\tCount: " << probabilitySamples->second.timesRolled << "\tProbability: " << probabilitySamples->second.probability / probabilitySize << std::endl;
 		}
 	}
 	return pipCount;
 }
 
-float bayesian_probability(float sensitivity, float specificity, float truePercentage)
+/*PR(+|ILL) = Sensitivity | PR(+|WELL) = Specificity
+PR(ILL|+) = (PR(+|ILL)PR(ILL)) / (PR(+|ILL)PR(ILL) + PR(+|WELL)PR(WELL)
+Ex:
+	Sensitivity = 99%	Specificity = 99%	TruePositive = 0.5%
+	False Positive = 1% = 1-Specificity
+	Well = 1 - TruePositive
+	PR(ILL|+) = ((.99)*(.005)) / ((.99)*(.005) + (.01)*(.995))
+*/
+double bayesian_probability(double sensitivity, double specificity, double truePercentage)
 {
-	return ((specificity)*truePercentage) / (specificity * truePercentage + specificity * (sensitivity + truePercentage));
+	return (sensitivity*truePercentage) / (sensitivity * truePercentage +  (1 - specificity) * (1 - truePercentage));
 }
 
 

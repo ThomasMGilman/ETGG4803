@@ -5,12 +5,12 @@
 class NQueensSolver : GeneticAlgorithm<int>
 {
 public:
-	NQueensSolver(const int& size, const int& samples , int toKeep, vector<int>& sequenceRange, int generationsBeforeGiveUp) :
-		GeneticAlgorithm(size, samples, toKeep, sequenceRange, generationsBeforeGiveUp) {
-		
+	NQueensSolver(const int& size, const int& samples, int toKeep, vector<int>& sequenceRange, int generationsBeforeGiveUp) :
+		GeneticAlgorithm(size, samples, toKeep, sequenceRange, generationsBeforeGiveUp) 
+	{
 		// Set Mutation Properties
 		numBits = 4;	//Nibble 0-15
-		maxBitVal = *(sequenceRange.end()-1);
+		maxBitVal = *(sequenceRange.end() - 1);
 		minBitVal = *sequenceRange.begin();
 
 		// Roulette wheel chance
@@ -32,5 +32,17 @@ public:
 		solver();
 	};
 
+	/////////////////// PARENT CREATION AND GETTER FUNCTIONS //////////////////////////////////////////////////////////////////////
+
+	vector<int> create_chromosome_data() override;
+
+	/////////////////// FITNESS FUNCTION //////////////////////////////////////////////////////////////////////////////////////////
+
 	void fitness_function_check(chromosome<int>& c) override;
+
+	/////////////////// CROSSOVER FUNCTIONS ///////////////////////////////////////////////////////////////////////////////////////
+
+	void multi_point_crossover(vector<int>& a, vector<int>& b, int end, int start = NULL) override;
+
+	void uniform_crossover(vector<int>& a, vector<int>& b) override;
 };

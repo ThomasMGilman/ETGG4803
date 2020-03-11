@@ -135,7 +135,7 @@ void print_dif_amount(vector<T>& a, vector<T>& b)
 
 std::map<int, PipCount>* pip_probability_counter(int sampleSize, int numDice, int numFaces, bool outputData = false);
 
-float bayesian_probability(float sensitivity, float specificity, float testPositive);
+double bayesian_probability(double sensitivity, double specificity, double testPositive);
 
 ///Get the number of matches between a and b
 template<typename T>

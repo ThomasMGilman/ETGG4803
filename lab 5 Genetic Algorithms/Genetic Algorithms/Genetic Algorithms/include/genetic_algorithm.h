@@ -48,7 +48,7 @@ public:
 
 	/////////////////// PARENT CREATION AND GETTER FUNCTIONS //////////////////////////////////////////////////////////////////////
 
-	vector<T> create_chromosome_data();
+	virtual vector<T> create_chromosome_data();
 
 	chromosome<T> create_chromosome();
 
