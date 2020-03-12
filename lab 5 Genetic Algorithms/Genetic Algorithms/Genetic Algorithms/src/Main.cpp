@@ -1,13 +1,13 @@
+#include <stdafx.h>
 #include "master_mind_solver.h"
 #include "phrase_solver.h"
 #include "n_queens_solver.h"
-#include <iostream>
 
 void main(int argc, char** argv)
 {
 	const int toSolveForSize = 10;		// number of digits in problem
-	const int samples = 700;			// number of samples per generation
-	const int parentsToKeep = 15;		// number of parents to keep in next generation
+	const int samples = 1000;			// number of samples per generation
+	const int parentsToKeep = 10;		// number of parents to keep in next generation
 	vector<int> sequenceIntRange;
 	for (int i = 1; i < 8; i++)
 		sequenceIntRange.push_back(i);
@@ -22,22 +22,17 @@ void main(int argc, char** argv)
 
 	//PhraseSolver(phrase.size(), samples, parentsToKeep, phrase, sequenceCharRange);
 	
-	/*for (int i = 2; i <= 10; i++)
+	for (int i = 2; i <= 10; i++)
 	{
 		vector<int> boardSpots;
 		for (int j = 0; j <= i; j++)
 			boardSpots.push_back(j);
 		cout << "BoardSize: " << to_string(i) << endl;
-		NQueensSolver(boardSpots.size() - 1, samples, parentsToKeep, boardSpots, 700);
+		NQueensSolver(boardSpots.size() - 1, samples, parentsToKeep, boardSpots, 30);
 		cout << endl;
-	}*/
-
-	stringstream ss;
-	
-	ss << bayesian_probability(.05, .02, .024);
-	cout << ss.str() << endl;
+	}
 
 	//pip_probability_counter(20000, 1, 6, true);
 
-	//std::cout << "\ndone!!" << std::endl;
+	std::cout << "\ndone!!" << std::endl;
 }

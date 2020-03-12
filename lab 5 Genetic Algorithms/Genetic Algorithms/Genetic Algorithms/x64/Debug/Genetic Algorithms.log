@@ -1,101 +1,90 @@
 ﻿  Main.cpp
 D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Main.cpp(7,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(132,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(129): message : while compiling class template member function 'std::vector<int,std::allocator<int>> GeneticAlgorithm<int>::create_chromosome_data(void)'
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(57): message : see reference to function template instantiation 'std::vector<int,std::allocator<int>> GeneticAlgorithm<int>::create_chromosome_data(void)' being compiled
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(26): message : see reference to class template instantiation 'GeneticAlgorithm<int>' being compiled
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\chrono(632): message : see reference to class template instantiation 'std::chrono::duration<double,std::ratio<1,1>>' being compiled
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\chrono(178): message : see reference to class template instantiation 'std::chrono::duration<__int64,std::nano>' being compiled
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\chrono(610): message : see reference to class template instantiation 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>' being compiled
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(204,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(195): message : while compiling class template member function 'void GeneticAlgorithm<int>::mutate_chromosome(chromosome<T> &,int,bool)'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Main.cpp(31,79): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(137,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(134): message : while compiling class template member function 'std::vector<int,std::allocator<int>> GeneticAlgorithm<int>::create_chromosome_data(void)'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(58): message : see reference to function template instantiation 'std::vector<int,std::allocator<int>> GeneticAlgorithm<int>::create_chromosome_data(void)' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(27): message : see reference to class template instantiation 'GeneticAlgorithm<int>' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(228,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(216): message : while compiling class template member function 'void GeneticAlgorithm<int>::mutate_chromosome(chromosome<T> &,int,bool)'
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(219,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(269,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(261): message : while compiling class template member function 'void GeneticAlgorithm<int>::pick_cross_over(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int,int,int,bool)'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(243,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(294,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(285): message : while compiling class template member function 'void GeneticAlgorithm<int>::pick_cross_over(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int,int,int,bool)'
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(274,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(171,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(167): message : while compiling class template member function 'void GeneticAlgorithm<int>::get_gen_parent(chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(299,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(369,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(336): message : while compiling class template member function 'std::vector<chromosome<T>,std::allocator<chromosome<T>>> *GeneticAlgorithm<T>::create_generation(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,bool,bool,bool)'
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(263): message : see reference to function template instantiation 'void GeneticAlgorithm<int>::get_gen_parent(chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(384): message : see reference to function template instantiation 'std::vector<chromosome<T>,std::allocator<chromosome<T>>> *GeneticAlgorithm<T>::create_generation(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,bool,bool,bool)' being compiled
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(110): message : while compiling class template member function 'GeneticAlgorithm<int>::GeneticAlgorithm(const int &,const int &,const int &,std::vector<int,std::allocator<int>>,const int &)'
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(33): message : see reference to function template instantiation 'GeneticAlgorithm<int>::GeneticAlgorithm(const int &,const int &,const int &,std::vector<int,std::allocator<int>>,const int &)' being compiled
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(342,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(309): message : while compiling class template member function 'std::vector<chromosome<T>,std::allocator<chromosome<T>>> *GeneticAlgorithm<T>::create_generation(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,bool,bool,bool)'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(114): message : while compiling class template member function 'GeneticAlgorithm<int>::GeneticAlgorithm(const int &,const int &,const int &,std::vector<int,std::allocator<int>>,const int &,bool)'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\master_mind_solver.h(34): message : see reference to function template instantiation 'GeneticAlgorithm<int>::GeneticAlgorithm(const int &,const int &,const int &,std::vector<int,std::allocator<int>>,const int &,bool)' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(222,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(238): message : see reference to function template instantiation 'void bit_inversion<T>(std::vector<int,std::allocator<int>> &,int,T,T)' being compiled
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(357): message : see reference to function template instantiation 'std::vector<chromosome<T>,std::allocator<chromosome<T>>> *GeneticAlgorithm<T>::create_generation(std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,bool,bool,bool)' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(216): message : while compiling class template member function 'void GeneticAlgorithm<int>::mutate_chromosome(chromosome<T> &,int,bool)'
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(414,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(412): message : while compiling class template member function 'void GeneticAlgorithm<int>::printBest(chromosome<T> *)'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(249,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(243): message : see reference to function template instantiation 'std::vector<int,std::allocator<int>> selection_sample<T>(std::vector<int,std::allocator<int>> &,int)' being compiled
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(365): message : see reference to function template instantiation 'void GeneticAlgorithm<int>::printBest(chromosome<T> *)' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(176,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(172): message : while compiling class template member function 'void GeneticAlgorithm<int>::get_gen_parent(chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)'
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(223,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(214): message : see reference to function template instantiation 'void bit_inversion<T>(std::vector<int,std::allocator<int>> &,int,T,T)' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(201): message : see reference to function template instantiation 'void GeneticAlgorithm<int>::get_gen_parent(chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)' being compiled
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(195): message : while compiling class template member function 'void GeneticAlgorithm<int>::mutate_chromosome(chromosome<T> &,int,bool)'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(198): message : while compiling class template member function 'void GeneticAlgorithm<int>::get_chromosomes_to_manipulate(chromosome<T> &,chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)'
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(250,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(219): message : see reference to function template instantiation 'std::vector<int,std::allocator<int>> selection_sample<T>(std::vector<int,std::allocator<int>> &,int)' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(287): message : see reference to function template instantiation 'void GeneticAlgorithm<int>::get_chromosomes_to_manipulate(chromosome<T> &,chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)' being compiled
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(180,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(181): message : see reference to function template instantiation 'T roulette_wheel_selection<chromosome<int>>(std::vector<chromosome<int>,std::allocator<chromosome<int>>>,int)' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(179,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(186): message : see reference to function template instantiation 'T roulette_wheel_selection<chromosome<int>>(std::vector<chromosome<int>,std::allocator<chromosome<int>>>,int)' being compiled
           with
           [
               T=chromosome<int>
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(167): message : while compiling class template member function 'void GeneticAlgorithm<int>::get_gen_parent(chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)'
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(172): message : while compiling class template member function 'void GeneticAlgorithm<int>::get_gen_parent(chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)'
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(263): message : see reference to function template instantiation 'void GeneticAlgorithm<int>::get_gen_parent(chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)' being compiled
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\genetic_algorithm.h(201): message : see reference to function template instantiation 'void GeneticAlgorithm<int>::get_gen_parent(chromosome<T> &,std::vector<chromosome<T>,std::allocator<chromosome<T>>> *,int)' being compiled
           with
           [
               T=int
           ]
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(187,15): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Utilities.cpp
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(51,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(109,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(110,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(112,37): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(117,29): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
-D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\src\Utilities.cpp(123,34): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
+D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\Genetic Algorithms\include\Utilities.h(186,15): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Genetic Algorithms.vcxproj -> D:\SchoolAndProjects\Programs\ETGG 4803_02 Artificial Intelligence\lab 5 Genetic Algorithms\Genetic Algorithms\x64\Debug\Genetic Algorithms.exe

@@ -1,3 +1,4 @@
+#include <stdafx.h>
 #include "phrase_solver.h"
 
 void PhraseSolver::fitness_function_check(chromosome<char>& c)

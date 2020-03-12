@@ -1,3 +1,4 @@
+#include <stdafx.h>
 #include "Utilities.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,41 +86,4 @@ Ex:
 double bayesian_probability(double sensitivity, double specificity, double truePercentage)
 {
 	return (sensitivity*truePercentage) / (sensitivity * truePercentage +  (1 - specificity) * (1 - truePercentage));
-}
-
-
-int check_queens(vector<int>& a)
-{
-	int invalidSpots = 0;
-	bool allZeros = true;
-	bool usingZero = false;
-	for (int i = 0; i < a.size(); i++)
-	{
-		if (a[i] != 0) allZeros = false;
-		if (a[i] == 0)
-		{
-			usingZero = true;
-			invalidSpots += 2;
-		}
-		bool queenConflict = false;
-		for (int j = 0; j < a.size(); j++)
-		{
-			if (j == i) continue;
-
-			float dRow = abs(a[i] - a[j]);
-			float dCol = abs(i - j);
-			if (a[i] == a[j]) {
-				invalidSpots += pow(a.size(), 2);				// Check in same row
-				queenConflict = true;
-			}
-			if (abs(dRow / dCol) == 1)
-			{
-				invalidSpots += a.size();				// Check Diagonals
-				queenConflict = true;
-			}
-		}
-		if (!queenConflict && !usingZero) invalidSpots++;
-	}
-	if (allZeros) invalidSpots = pow(a.size(), 2);
-	return invalidSpots;
 }

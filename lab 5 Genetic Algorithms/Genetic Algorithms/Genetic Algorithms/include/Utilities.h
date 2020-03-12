@@ -1,14 +1,5 @@
 #pragma once
-#include <vector>
-#include <string>
-#include <iostream>
-#include <sstream>
-#include <algorithm>
-#include <map>
-#include <thread>
-#include <mutex>
-#include <time.h>
-#include <chrono>
+#include <stdafx.h>
 
 using namespace std;
 
@@ -28,11 +19,21 @@ template<typename T>
 struct chromosome
 {
 	std::vector<T> sequence;
-	int matches = 0;
+	int matches = -1;
+	int crossOverChosen = -1;
+	int mutationChosen = -1;
 
 	bool operator> (chromosome<T>& other) const { return matches > other.matches; };
 	bool operator< (chromosome<T>& other) const { return matches < other.matches; };
-	bool operator==(chromosome<T>& other) const { return matches == other.matches; };
+	bool operator==(chromosome<T>& other) const 
+	{ 
+		bool m = matches == other.matches;
+		bool s = true;
+		for (int i = 0; i < sequence.size(); i++)
+			if (sequence[i] != other.sequence[i]) s = false;
+		return (s == m); 
+	};
+	bool operator!=(chromosome<T>& other) const { return !(*this == other); };
 	float operator/(chromosome<T>& other) const { return (float)matches / (float)other.matches; };
 	float operator/(float other) const { return (float)matches / other; };
 };
@@ -162,8 +163,6 @@ int get_match_difference_offset(vector<T>& a, vector<T>& b)
 		distance += abs(a[i] - b[i]);
 	return distance;
 }
-
-int check_queens(vector<int>& a);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////// TIME FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////////

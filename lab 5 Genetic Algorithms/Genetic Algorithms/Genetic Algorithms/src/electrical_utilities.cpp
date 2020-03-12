@@ -1,6 +1,5 @@
+#include <stdafx.h>
 #include <electrical_utilities.h>
-#include <iostream>
-#include <sstream>
 
 double calculate_electrical_value(double a, double b, bool divide)
 {

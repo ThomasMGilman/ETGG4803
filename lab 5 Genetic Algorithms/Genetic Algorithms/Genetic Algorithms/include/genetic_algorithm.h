@@ -1,10 +1,12 @@
 #pragma once
+#include <stdafx.h>
 #include "Utilities.h"
 
 template<typename T>
 class GeneticAlgorithm
 {
 private:
+	bool debugPrintMode;
 protected:
 	vector<T>* toSolveFor = nullptr;
 	vector<T> sequenceValues;
@@ -42,7 +44,7 @@ protected:
 	chrono::steady_clock::time_point start, end;
 
 public:
-	GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, const int& stagnationPeriodBeforGiveUp = 0);
+	GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, const int& stagnationPeriodBeforGiveUp = 0, bool debugPrint = false);
 
 	~GeneticAlgorithm();
 
@@ -57,6 +59,8 @@ public:
 	bool random_reset_check(chromosome<T>& c);
 
 	void get_gen_parent(chromosome<T>& c, vector<chromosome<T>>* lastGenParents, int offset);
+
+	void get_chromosomes_to_manipulate(chromosome<T>& childA, chromosome<T>& childB, vector<chromosome<T>>* lastGenParents, int offset);
 
 	/////////////////// FITNESS FUNCTION //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -96,7 +100,7 @@ public:
 
 	bool compare_generations_equal(vector<chromosome<T>>& a, vector<chromosome<T>>& b);
 
-	void print_chromosome_data(chromosome<T>& data);
+	virtual void print_chromosome_data(chromosome<T>& data);
 
 	void print_chromosome_vec(vector<chromosome<T>>& data);
 
@@ -106,7 +110,7 @@ public:
 };
 
 template<typename T>
-inline GeneticAlgorithm<T>::GeneticAlgorithm(const int& size, const int& samples, const int& toKeep, vector<T> sequenceRange, const int& stagnationPeriodBeforGiveUp)
+inline GeneticAlgorithm<T>::GeneticAlgorithm(const int& size, const int& samples, const int& toKeep, vector<T> sequenceRange, const int& stagnationPeriodBeforGiveUp, bool debugPrint)
 {
 	toSolveFor = new vector<T>();
 	SPBGU = stagnationPeriodBeforGiveUp;
@@ -114,6 +118,7 @@ inline GeneticAlgorithm<T>::GeneticAlgorithm(const int& size, const int& samples
 	sizeOfProblem = size;
 	samplesPerGeneration = samples;
 	parentsToKeep = toKeep > samplesPerGeneration ? samplesPerGeneration : toKeep;
+	debugPrintMode = debugPrint;
 }
 
 template<typename T>
@@ -188,6 +193,22 @@ inline void GeneticAlgorithm<T>::get_gen_parent(chromosome<T>& c, vector<chromos
 	}
 }
 
+template<typename T>
+inline void GeneticAlgorithm<T>::get_chromosomes_to_manipulate(chromosome<T>& childA, chromosome<T>& childB, vector<chromosome<T>>* lastGenParents, int offset)
+{
+	while (childA == childB)
+	{
+		get_gen_parent(childA, lastGenParents, offset);
+		get_gen_parent(childB, lastGenParents, offset);
+	}
+	if (debugPrintMode)
+	{
+		cout << endl;
+		cout << "ChildA: "; print_chromosome_data(childA);
+		cout << "ChildB: "; print_chromosome_data(childB);
+	}
+}
+
 /////////////////// MUTATION FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////
 
 template<typename T>
@@ -196,7 +217,10 @@ inline void GeneticAlgorithm<T>::mutate_chromosome(chromosome<T>& c, int mutatio
 	int chance = get_random_int(mutationRangeChance, 1);
 	if (chance <= mutationChance || forceMutation)
 	{
-		int m = mutation != -1 ? mutation : get_random_int(4);
+		int m = mutation != -1 ? mutation : get_random_int(3);
+		c.mutationChosen = m;
+		if(debugPrintMode) 
+			cout << "Mutation: " << to_string(m) << endl;
 		switch (m)
 		{
 			case 0:	//Shuffle the childs data
@@ -260,8 +284,9 @@ template<typename T>
 inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenParents, vector<chromosome<T>>* newGen, int offset, int numChildrenToPush, int crossOverChosen, bool noRepeats)
 {
 	chromosome<T> childA, childB;
-	get_gen_parent(childA, lastGenParents, offset);
-	get_gen_parent(childB, lastGenParents, offset);
+	get_chromosomes_to_manipulate(childA, childB, lastGenParents, offset);
+	if(debugPrintMode)
+		cout << "CrossOver: " << to_string(crossOverChosen) << endl;
 	switch (crossOverChosen)
 	{
 		case 0:	//crossover data at single point for two children, use only one child if not enough space to keep other
@@ -284,8 +309,10 @@ inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenP
 			break;
 		}
 	}
-	mutate_chromosome(childA, -1, true);
-	mutate_chromosome(childB, -1, true);
+	childA.crossOverChosen = crossOverChosen;
+	childB.crossOverChosen = crossOverChosen;
+	mutate_chromosome(childA);
+	mutate_chromosome(childB);
 	
 	if (numChildrenToPush > 1)
 	{
@@ -356,6 +383,8 @@ inline void GeneticAlgorithm<T>::solver(bool retainParents, bool higherFitness)
 	{
 		vector<chromosome<T>>* newGen = create_generation(lastGenParents, retainParents, higherFitness);
 		generation++;
+		if (debugPrintMode)
+			print_chromosome_vec(*newGen);
 
 		debug_check_print_best_chromosome(*newGen, higherFitness);
 		chromosome<T>& best = higherFitness ? *(newGen->end() - 1) : *newGen->begin();
@@ -395,7 +424,15 @@ inline bool GeneticAlgorithm<T>::compare_generations_equal(vector<chromosome<T>>
 template<typename T>
 inline void GeneticAlgorithm<T>::print_chromosome_data(chromosome<T>& data)
 {
-	cout << "matches: " << data.matches << " child:\t" << convert_to_string_using_stringstream(data.sequence) << endl;
+	cout << "\tData:\t\t";
+	const char* typeHash = typeid(T).name();
+	if (typeHash == typeid(int).name() || typeHash == typeid(float).name() || typeHash == typeid(double).name())
+		cout << convert_to_string<T>(data.sequence) << endl;
+	else
+		cout << convert_to_string_using_stringstream<T>(data.sequence) << endl;
+	cout << "\tmatches:\t" << (data.matches == -1 ? "N/A" : to_string(data.matches)) << endl;
+	cout << "\tCrossOver:\t" << (data.crossOverChosen == -1 ? "N/A" : to_string(data.crossOverChosen)) << endl;
+	cout << "\tMutation:\t" << (data.mutationChosen == -1 ? "N/A" : to_string(data.mutationChosen)) << endl;
 }
 
 template<typename T>
@@ -410,12 +447,8 @@ inline void GeneticAlgorithm<T>::print_chromosome_vec(vector<chromosome<T>>& dat
 template<typename T>
 inline void GeneticAlgorithm<T>::printBest(chromosome<T>* best)
 {
-	cout << "Reached Matching Sequence on Generation: " << generation << " In: " << chrono::duration_cast<chrono::minutes>(end - start).count() << "min. !!!\nSolution is: ";
-	int typeHash = typeid(T).hash_code();
-	if(typeHash == typeid(int).hash_code() || typeHash == typeid(float).hash_code() || typeHash == typeid(double).hash_code())
-		cout << convert_to_string<T>(best->sequence);
-	else
-		cout << convert_to_string_using_stringstream<T>(best->sequence);
+	cout << "Reached Matching Sequence on Generation: " << generation << " In: " << chrono::duration_cast<chrono::milliseconds>(end - start).count() << "mSec. " <<  "!!!\nSolution is: ";
+	print_chromosome_data(*best);
 }
 
 template<typename T>
@@ -425,8 +458,8 @@ inline void GeneticAlgorithm<T>::debug_check_print_best_chromosome(vector<chromo
 	if ((higherFitness && best.matches > bestMatchCount) || (!higherFitness && best.matches < bestMatchCount))
 	{
 		lastBestGen = generation;
-		bestMatchCount = best.matches;
-		if (printBest)
+		bestMatchCount = best.matches == -1 ? (higherFitness ? 0 : sizeOfProblem) : best.matches;
+		if (printBest && debugPrintMode)
 		{
 			cout << "Generation: " << generation << endl;
 			print_chromosome_data(best);

@@ -1,7 +1,5 @@
 #pragma once
-#include <math.h>
-#include <map>
-#include <list>
+#include <stdafx.h>
 
 using namespace std;
 

@@ -1,3 +1,4 @@
+#include <stdafx.h>
 #include "master_mind_solver.h"
 
 void MasterMind::fitness_function_check(chromosome<int>& c)

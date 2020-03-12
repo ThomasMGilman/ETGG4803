@@ -1,12 +1,13 @@
 #pragma once
+#include <stdafx.h>
 #include "genetic_algorithm.h"
 
 
 class NQueensSolver : GeneticAlgorithm<int>
 {
 public:
-	NQueensSolver(const int& size, const int& samples, int toKeep, vector<int>& sequenceRange, int generationsBeforeGiveUp) :
-		GeneticAlgorithm(size, samples, toKeep, sequenceRange, generationsBeforeGiveUp) 
+	NQueensSolver(const int& size, const int& samples, int toKeep, vector<int>& sequenceRange, int stagnationPeriodBeforGiveUp) :
+		GeneticAlgorithm(size, samples, toKeep, sequenceRange, stagnationPeriodBeforGiveUp)
 	{
 		// Set Mutation Properties
 		numBits = 4;	//Nibble 0-15
@@ -29,7 +30,7 @@ public:
 		mutationRangeChance = 100;
 		mutationChance = 40;													// 40% works well
 
-		solver();
+		solver(true, false);
 	};
 
 	/////////////////// PARENT CREATION AND GETTER FUNCTIONS //////////////////////////////////////////////////////////////////////
@@ -45,4 +46,6 @@ public:
 	void multi_point_crossover(vector<int>& a, vector<int>& b, int end, int start = NULL) override;
 
 	void uniform_crossover(vector<int>& a, vector<int>& b) override;
+
+	void print_chromosome_data(chromosome<int>& data) override;
 };
