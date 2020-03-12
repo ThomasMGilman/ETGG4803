@@ -38,8 +38,8 @@ class PhraseSolver : GeneticAlgorithm<char>
 protected:
 private:
 public:
-	PhraseSolver(const int& size, const int& samples, const int& toKeep, string phrase, vector<char> sequenceRange) :
-		GeneticAlgorithm(size, samples, toKeep, sequenceRange, 0)
+	PhraseSolver(const int& size, const int& samples, const int& toKeep, string phrase, vector<char> sequenceRange, bool debugPrint = false, const int& stagnationPeriodBeforGiveUp = 0) :
+		GeneticAlgorithm(size, samples, toKeep, sequenceRange, debugPrint, stagnationPeriodBeforGiveUp)
 	{
 		for (char c : phrase)
 			toSolveFor->push_back(c);
@@ -64,6 +64,8 @@ public:
 		// Range and chance for mutation to occur
 		mutationRangeChance = 100;
 		mutationChance = 50;													// 40% works well
+
+		allowDuplicateParent = true;
 
 		solver(true, false);
 	};

@@ -173,6 +173,15 @@ int get_match_difference_offset(vector<T>& a, vector<T>& b)
 /////////////////// SELECTION FUNCTIONS ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+Evaluate fitness score for each chromosome
+Normalize all fitness scores
+Sort normalized scores in descending order
+Generate random number U, uniformly distributed between 0 and 1
+Select first chromosome whose accumulated normalized fitness score is at least U
+Repeat to select second parent
+Repeat parent selection process as many times as desired
+*/
 template<typename T>
 T roulette_wheel_selection(vector<T> data, int maxMatches)
 {
@@ -181,9 +190,11 @@ T roulette_wheel_selection(vector<T> data, int maxMatches)
 	while (true)
 	{
 		float U = get_random_float();
+		float accumulatedScore = 0;
 		for (T val : data)
 		{
-			if ((val / maxMatches) >= U)
+			accumulatedScore += (val / maxMatches);
+			if (accumulatedScore >= U)
 				return val;
 		}
 	}

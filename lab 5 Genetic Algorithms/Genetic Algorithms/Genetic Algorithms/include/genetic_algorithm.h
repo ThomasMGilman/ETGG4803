@@ -6,7 +6,7 @@ template<typename T>
 class GeneticAlgorithm
 {
 private:
-	bool debugPrintMode;
+	bool debugPrintMode, retainParentHistory;
 protected:
 	vector<T>* toSolveFor = nullptr;
 	vector<T> sequenceValues;
@@ -40,11 +40,13 @@ protected:
 	int mutationRangeChance;
 	int mutationChance;
 
+	bool allowDuplicateParent = false;
+
 	// Timer
 	chrono::steady_clock::time_point start, end;
 
 public:
-	GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, const int& stagnationPeriodBeforGiveUp = 0, bool debugPrint = false);
+	GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, bool debugPrint,  const int& stagnationPeriodBeforGiveUp);
 
 	~GeneticAlgorithm();
 
@@ -110,14 +112,14 @@ public:
 };
 
 template<typename T>
-inline GeneticAlgorithm<T>::GeneticAlgorithm(const int& size, const int& samples, const int& toKeep, vector<T> sequenceRange, const int& stagnationPeriodBeforGiveUp, bool debugPrint)
+inline GeneticAlgorithm<T>::GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, bool debugPrint, const int& stagnationPeriodBeforGiveUp)
 {
 	toSolveFor = new vector<T>();
 	SPBGU = stagnationPeriodBeforGiveUp;
 	sequenceValues = sequenceRange;
 	sizeOfProblem = size;
 	samplesPerGeneration = samples;
-	parentsToKeep = toKeep > samplesPerGeneration ? samplesPerGeneration : toKeep;
+	this->parentsToKeep = parentsToKeep > samplesPerGeneration ? samplesPerGeneration : parentsToKeep;
 	debugPrintMode = debugPrint;
 }
 
@@ -196,11 +198,20 @@ inline void GeneticAlgorithm<T>::get_gen_parent(chromosome<T>& c, vector<chromos
 template<typename T>
 inline void GeneticAlgorithm<T>::get_chromosomes_to_manipulate(chromosome<T>& childA, chromosome<T>& childB, vector<chromosome<T>>* lastGenParents, int offset)
 {
-	while (childA == childB)
+	if (!allowDuplicateParent)
+	{
+		while (childA == childB)
+		{
+			get_gen_parent(childA, lastGenParents, offset);
+			get_gen_parent(childB, lastGenParents, offset);
+		}
+	}
+	else
 	{
 		get_gen_parent(childA, lastGenParents, offset);
 		get_gen_parent(childB, lastGenParents, offset);
 	}
+	
 	if (debugPrintMode)
 	{
 		cout << endl;
