@@ -27,11 +27,9 @@ struct chromosome
 	bool operator< (chromosome<T>& other) const { return matches < other.matches; };
 	bool operator==(chromosome<T>& other) const 
 	{ 
-		bool m = matches == other.matches;
-		bool s = true;
 		for (int i = 0; i < sequence.size(); i++)
-			if (sequence[i] != other.sequence[i]) s = false;
-		return (s == m); 
+			if (sequence[i] != other.sequence[i]) return false;
+		return true; 
 	};
 	bool operator!=(chromosome<T>& other) const { return !(*this == other); };
 	float operator/(chromosome<T>& other) const { return (float)matches / (float)other.matches; };
@@ -185,17 +183,15 @@ Repeat parent selection process as many times as desired
 template<typename T>
 T roulette_wheel_selection(vector<T> data, int maxMatches)
 {
-	quickSort(data, 0, data.size() - 1);
-	reverse(data.begin(), data.end() - 1);
 	while (true)
 	{
 		float U = get_random_float();
 		float accumulatedScore = 0;
-		for (T val : data)
+		for (int i = data.size() - 1; i > 0; i--)
 		{
-			accumulatedScore += (val / maxMatches);
+			accumulatedScore += (data[i] / maxMatches);
 			if (accumulatedScore >= U)
-				return val;
+				return data[i];
 		}
 	}
 }

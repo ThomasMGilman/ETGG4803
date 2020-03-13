@@ -23,8 +23,6 @@ void MasterMind::set_chances_and_bit_values()
 	// Range and chance for mutation to occur
 	mutationRangeChance = 100;
 	mutationChance = 40;													// 40% works well
-	
-	allowDuplicateParent = true;
 }
 
 void MasterMind::fitness_function_check(chromosome<int>& c)

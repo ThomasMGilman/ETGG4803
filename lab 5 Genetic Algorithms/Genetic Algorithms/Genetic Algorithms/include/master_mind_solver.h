@@ -30,8 +30,8 @@ private:
 public:
 	/// Initializer, takes argument of type T and converts it into a string to solve for
 
-	MasterMind(vector<int>* toSolveFor, const int& samples, const int& toKeep, vector<int>& sequenceRange, bool debugPrint = false, const int& stagnationPeriodBeforGiveUp = 0) :
-		GeneticAlgorithm(0, samples, toKeep, sequenceRange, debugPrint, stagnationPeriodBeforGiveUp)
+	MasterMind(vector<int>* toSolveFor, const int& samples, const int& toKeep, vector<int>& sequenceRange, bool debugPrint = false, bool debugPrintBest = false, const int& stagnationPeriodBeforGiveUp = 0) :
+		GeneticAlgorithm(0, samples, toKeep, sequenceRange, debugPrint, debugPrintBest, stagnationPeriodBeforGiveUp)
 	{
 		set_chances_and_bit_values();
 		this->toSolveFor = toSolveFor;
@@ -39,8 +39,8 @@ public:
 		solver();
 	}
 
-	MasterMind(const int& size, const int& samples, const int& toKeep, vector<int>& sequenceRange, bool debugPrint = false, const int& stagnationPeriodBeforGiveUp = 0) :
-		GeneticAlgorithm(size, samples, toKeep, sequenceRange, debugPrint, stagnationPeriodBeforGiveUp)
+	MasterMind(const int& size, const int& samples, const int& toKeep, vector<int>& sequenceRange, bool debugPrint = false, bool debugPrintBest = false, const int& stagnationPeriodBeforGiveUp = 0) :
+		GeneticAlgorithm(size, samples, toKeep, sequenceRange, debugPrint, debugPrintBest, stagnationPeriodBeforGiveUp)
 	{
 		set_chances_and_bit_values();
 		*this->toSolveFor = create_chromosome_data(); // Set Random Mastermind number range

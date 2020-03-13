@@ -11,6 +11,7 @@
 #include <mutex>
 
 ///////////////////////////////// CONTAINER INCLUDES /////////////////////////////////////////////////
+#include <iterator>
 #include <list>
 #include <vector>
 #include <stack>

@@ -38,8 +38,8 @@ class PhraseSolver : GeneticAlgorithm<char>
 protected:
 private:
 public:
-	PhraseSolver(const int& size, const int& samples, const int& toKeep, string phrase, vector<char> sequenceRange, bool debugPrint = false, const int& stagnationPeriodBeforGiveUp = 0) :
-		GeneticAlgorithm(size, samples, toKeep, sequenceRange, debugPrint, stagnationPeriodBeforGiveUp)
+	PhraseSolver(const int& size, const int& samples, const int& toKeep, string phrase, vector<char> sequenceRange, bool debugPrint = false, bool debugPrintBest = false, const int& stagnationPeriodBeforGiveUp = 0) :
+		GeneticAlgorithm(size, samples, toKeep, sequenceRange, debugPrint, debugPrintBest, stagnationPeriodBeforGiveUp)
 	{
 		for (char c : phrase)
 			toSolveFor->push_back(c);
@@ -51,7 +51,7 @@ public:
 
 		// Roulette wheel chance
 		randomWheelSpinRangeChance = 100;
-		randwheelSpinChance = 0;												// 0% works best, as it takes a long time
+		randwheelSpinChance = 5;												// 0% works best, as it takes a long time
 
 		// Random Parent chance
 		randomParentRangeChance = 100;
@@ -64,8 +64,6 @@ public:
 		// Range and chance for mutation to occur
 		mutationRangeChance = 100;
 		mutationChance = 50;													// 40% works well
-
-		allowDuplicateParent = true;
 
 		solver(true, false);
 	};

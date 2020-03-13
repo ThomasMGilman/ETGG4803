@@ -6,8 +6,8 @@
 class NQueensSolver : GeneticAlgorithm<int>
 {
 public:
-	NQueensSolver(const int& size, const int& samples, int toKeep, vector<int>& sequenceRange, bool debugPrint = false, const int& stagnationPeriodBeforGiveUp = 0) :
-		GeneticAlgorithm(size, samples, toKeep, sequenceRange, debugPrint, stagnationPeriodBeforGiveUp)
+	NQueensSolver(const int& size, const int& samples, int toKeep, vector<int>& sequenceRange, bool debugPrint = false, bool debugPrintBest = false, const int& stagnationPeriodBeforGiveUp = 0) :
+		GeneticAlgorithm(size, samples, toKeep, sequenceRange, debugPrint, debugPrintBest, stagnationPeriodBeforGiveUp)
 	{
 		// Set Mutation Properties
 		numBits = 4;	//Nibble 0-15

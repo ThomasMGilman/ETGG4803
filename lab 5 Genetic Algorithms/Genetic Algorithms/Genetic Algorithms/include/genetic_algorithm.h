@@ -6,7 +6,7 @@ template<typename T>
 class GeneticAlgorithm
 {
 private:
-	bool debugPrintMode, retainParentHistory;
+	bool debugPrintMode, debugPrintBest, retainParentHistory;
 protected:
 	vector<T>* toSolveFor = nullptr;
 	vector<T> sequenceValues;
@@ -46,7 +46,7 @@ protected:
 	chrono::steady_clock::time_point start, end;
 
 public:
-	GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, bool debugPrint,  const int& stagnationPeriodBeforGiveUp);
+	GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, bool debugPrint, bool debugPrintBest, const int& stagnationPeriodBeforGiveUp);
 
 	~GeneticAlgorithm();
 
@@ -108,19 +108,20 @@ public:
 
 	void printBest(chromosome<T>* best);
 
-	void debug_check_print_best_chromosome(vector<chromosome<T>>& data, bool higherFitness, bool printBest = true);
+	void debug_check_print_best_chromosome(vector<chromosome<T>>& data, bool higherFitness);
 };
 
 template<typename T>
-inline GeneticAlgorithm<T>::GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, bool debugPrint, const int& stagnationPeriodBeforGiveUp)
+inline GeneticAlgorithm<T>::GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, bool debugPrint, bool debugPrintBest, const int& stagnationPeriodBeforGiveUp)
 {
-	toSolveFor = new vector<T>();
-	SPBGU = stagnationPeriodBeforGiveUp;
-	sequenceValues = sequenceRange;
-	sizeOfProblem = size;
-	samplesPerGeneration = samples;
+	this->toSolveFor = new vector<T>();
+	this->SPBGU = stagnationPeriodBeforGiveUp;
+	this->sequenceValues = sequenceRange;
+	this->sizeOfProblem = size;
+	this->samplesPerGeneration = samples;
 	this->parentsToKeep = parentsToKeep > samplesPerGeneration ? samplesPerGeneration : parentsToKeep;
-	debugPrintMode = debugPrint;
+	this->debugPrintMode = debugPrint;
+	this->debugPrintBest = debugPrintBest;
 }
 
 template<typename T>
@@ -351,7 +352,7 @@ inline vector<chromosome<T>>* GeneticAlgorithm<T>::create_generation(vector<chro
 	{
 		newGen = new vector<chromosome<T>>();
 		// Fill in the rest of the children with crossover values, mutations, or random resets
-		int numChildrenToAdd = samplesPerGeneration - parentsToKeep;
+		int numChildrenToAdd = samplesPerGeneration - parentsToKeep - 1;
 		int offsetToGetParent = higherFitness ? numChildrenToAdd : 0;
 		int numParentsIndexTo = offsetToGetParent + parentsToKeep;
 		for (int i = 0; i <= numChildrenToAdd; )
@@ -463,14 +464,14 @@ inline void GeneticAlgorithm<T>::printBest(chromosome<T>* best)
 }
 
 template<typename T>
-inline void GeneticAlgorithm<T>::debug_check_print_best_chromosome(vector<chromosome<T>>& data, bool higherFitness, bool printBest)
+inline void GeneticAlgorithm<T>::debug_check_print_best_chromosome(vector<chromosome<T>>& data, bool higherFitness)
 {
 	chromosome<T>& best = higherFitness ? *(data.end() - 1) : *data.begin();
 	if ((higherFitness && best.matches > bestMatchCount) || (!higherFitness && best.matches < bestMatchCount))
 	{
 		lastBestGen = generation;
 		bestMatchCount = best.matches == -1 ? (higherFitness ? 0 : sizeOfProblem) : best.matches;
-		if (printBest && debugPrintMode)
+		if (debugPrintBest || debugPrintMode)
 		{
 			cout << "Generation: " << generation << endl;
 			print_chromosome_data(best);

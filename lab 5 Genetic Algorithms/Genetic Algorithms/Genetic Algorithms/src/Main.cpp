@@ -15,14 +15,14 @@ void main(int argc, char** argv)
 	cout << "MasterMind:" << endl;
 	MasterMind(toSolveForSize, samples, parentsToKeep, sequenceIntRange);
 	
-	/*cout << "\nNQueensSolver:" << endl;
+	cout << "\nNQueensSolver:" << endl;
 	for (int i = 2; i <= 10; i++)
 	{
 		vector<int> boardSpots;
 		for (int j = 0; j <= i; j++)
 			boardSpots.push_back(j);
 		cout << "BoardSize: " << to_string(i) << endl;
-		NQueensSolver(boardSpots.size() - 1, samples, parentsToKeep, boardSpots, false, 30);
+		NQueensSolver(boardSpots.size() - 1, samples, parentsToKeep, boardSpots, false, false, 30);
 		cout << endl;
 	}
 
@@ -32,9 +32,9 @@ void main(int argc, char** argv)
 		sequenceCharRange.push_back(i);
 
 	cout << "\nPhraseSolver:" << endl;
-	PhraseSolver(phrase.size(), samples, parentsToKeep, phrase, sequenceCharRange);
+	PhraseSolver(phrase.size(), samples, parentsToKeep, phrase, sequenceCharRange, false, true);
 
-	//pip_probability_counter(20000, 1, 6, true);*/
+	//pip_probability_counter(20000, 1, 6, true);
 
 	std::cout << "\ndone!!" << std::endl;
 }

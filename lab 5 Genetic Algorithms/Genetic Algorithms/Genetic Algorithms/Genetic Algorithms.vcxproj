@@ -86,6 +86,7 @@
     <ClCompile Include="include\master_mind_solver.cpp" />
     <ClCompile Include="include\phrase_solver.cpp" />
     <ClCompile Include="src\electrical_utilities.cpp" />
+    <ClCompile Include="src\graphing_utilities.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\n_queens_solver.cpp" />
     <ClCompile Include="src\stdafx.cpp">
@@ -97,6 +98,7 @@
   <ItemGroup>
     <ClInclude Include="include\electrical_utilities.h" />
     <ClInclude Include="include\genetic_algorithm.h" />
+    <ClInclude Include="include\graphing_utilities.h" />
     <ClInclude Include="include\master_mind_solver.h" />
     <ClInclude Include="include\n_queens_solver.h" />
     <ClInclude Include="include\phrase_solver.h" />
