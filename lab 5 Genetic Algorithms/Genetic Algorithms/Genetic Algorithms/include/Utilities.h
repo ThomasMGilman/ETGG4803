@@ -3,7 +3,7 @@
 
 using namespace std;
 
-static mutex mtx;	//global mutex lock
+static mutex randomMutex, comparisonMutex, copyMutex;	//global randomlock
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////// UTILITY STRUCTS ///////////////////////////////////////////////////////////////////////////////////////////
@@ -140,7 +140,7 @@ double bayesian_probability(double sensitivity, double specificity, double testP
 template<typename T>
 int get_match_count(vector<T>& a, vector<T>& b)
 {
-	lock_guard<mutex> lock(mtx);
+	lock_guard<mutex> lock(comparisonMutex);
 	int matches = 0;
 	if (a.size() != b.size())
 		throw new exception("Mismatched list sizes given, need to give equally sized lists");
@@ -153,7 +153,7 @@ int get_match_count(vector<T>& a, vector<T>& b)
 template<typename T>
 int get_match_difference_offset(vector<T>& a, vector<T>& b)
 {
-	lock_guard<mutex> lock(mtx);
+	lock_guard<mutex> lock(comparisonMutex);
 	int distance = 0;
 	if (a.size() != b.size())
 		throw new exception("Mismatched list sizes given, need to give equally sized lists");
@@ -181,17 +181,29 @@ Repeat to select second parent
 Repeat parent selection process as many times as desired
 */
 template<typename T>
-T roulette_wheel_selection(vector<T> data, int maxMatches)
+T roulette_wheel_selection(vector<T>& data, int maxMatches, bool reverseOrder = true)
 {
 	while (true)
 	{
 		float U = get_random_float();
 		float accumulatedScore = 0;
-		for (int i = data.size() - 1; i > 0; i--)
+		if(reverseOrder)
 		{
-			accumulatedScore += (data[i] / maxMatches);
-			if (accumulatedScore >= U)
-				return data[i];
+			for (int i = data.size() - 1; i > 0; i--)
+			{
+				accumulatedScore += (data[i] / maxMatches);
+				if (accumulatedScore >= U)
+					return safe_copy_data_from_vector(data, i);
+			}
+		}
+		else
+		{
+			for (int i = 0; i < data.size(); i++)
+			{
+				accumulatedScore += (data[i] / maxMatches);
+				if (accumulatedScore >= U)
+					return safe_copy_data_from_vector(data, i);
+			}
 		}
 	}
 }
@@ -306,7 +318,7 @@ void quickSort(vector<T>& data, int start, int end)
 template<typename T>
 T safe_copy_data_from_vector(vector<T>& from, int index)
 {
-	lock_guard<mutex> lock(mtx);
+	lock_guard<mutex> lock(copyMutex);
 	T data = from.at(index);
 	return data;
 }
@@ -314,13 +326,13 @@ T safe_copy_data_from_vector(vector<T>& from, int index)
 template<typename T>
 void safe_copy_data_from_vector(T& data, vector<T>& from, int index)
 {
-	lock_guard<mutex> lock(mtx);
+	lock_guard<mutex> lock(copyMutex);
 	data = from.at(index);
 }
 
 template<typename T>
 void safe_copy_vector(vector<T>& copyTo, vector<T>& copyFrom)
 {
-	lock_guard<mutex> lock(mtx);
+	lock_guard<mutex> lock(copyMutex);
 	copyTo = copyFrom;
 }

@@ -40,10 +40,11 @@ protected:
 	int mutationRangeChance;
 	int mutationChance;
 
-	bool allowDuplicateParent = false;
-
 	// Timer
 	chrono::steady_clock::time_point start, end;
+
+	// Shared Locks
+	mutex parentGenMutex, newGenMutex;
 
 public:
 	GeneticAlgorithm(const int& size, const int& samples, const int& parentsToKeep, vector<T> sequenceRange, bool debugPrint, bool debugPrintBest, const int& stagnationPeriodBeforGiveUp);
@@ -62,7 +63,9 @@ public:
 
 	void get_gen_parent(chromosome<T>& c, vector<chromosome<T>>* lastGenParents, int offset);
 
-	void get_chromosomes_to_manipulate(chromosome<T>& childA, chromosome<T>& childB, vector<chromosome<T>>* lastGenParents, int offset);
+	chromosome<T> safe_copy_parent(vector<chromosome<T>>* lastGenParents, int index);
+
+	void get_chromosomes_to_manipulate(chromosome<T>& childA, chromosome<T>& childB, vector<chromosome<T>>* lastGenParents, int offset, bool allowDuplicateParent = false);
 
 	/////////////////// FITNESS FUNCTION //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -177,27 +180,31 @@ inline void GeneticAlgorithm<T>::get_gen_parent(chromosome<T>& c, vector<chromos
 	if (chance <= randParentChance)
 	{
 		index = get_random_int(lastGenParents->size());
-		safe_copy_data_from_vector<chromosome<T>>(c, *lastGenParents, index);
+		c = safe_copy_parent(lastGenParents, index);
 	}
 	else if (!random_reset_check(c))
 	{
 		chance = get_random_int(randomWheelSpinRangeChance, 1);
 		if (chance <= randwheelSpinChance)
-		{
-			vector<chromosome<T>> copy;
-			safe_copy_vector<chromosome<T>>(copy, *lastGenParents);
-			c = roulette_wheel_selection<chromosome<T>>(copy, sizeOfProblem);
-		}
+			c = roulette_wheel_selection<chromosome<T>>(*lastGenParents, sizeOfProblem);
 		else
 		{
 			index = get_random_int(parentsToKeep, offset);
-			safe_copy_data_from_vector<chromosome<T>>(c, *lastGenParents, index);
+			c = safe_copy_parent(lastGenParents, index);
 		}
 	}
 }
 
 template<typename T>
-inline void GeneticAlgorithm<T>::get_chromosomes_to_manipulate(chromosome<T>& childA, chromosome<T>& childB, vector<chromosome<T>>* lastGenParents, int offset)
+inline chromosome<T> GeneticAlgorithm<T>::safe_copy_parent(vector<chromosome<T>>* lastGenParents, int index)
+{
+	lock_guard<mutex> lock(parentGenMutex);
+	chromosome<T> c = lastGenParents->at(index);
+	return c;
+}
+
+template<typename T>
+inline void GeneticAlgorithm<T>::get_chromosomes_to_manipulate(chromosome<T>& childA, chromosome<T>& childB, vector<chromosome<T>>* lastGenParents, int offset, bool allowDuplicateParent)
 {
 	if (!allowDuplicateParent)
 	{
@@ -296,7 +303,7 @@ template<typename T>
 inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenParents, vector<chromosome<T>>* newGen, int offset, int numChildrenToPush, int crossOverChosen, bool noRepeats)
 {
 	chromosome<T> childA, childB;
-	get_chromosomes_to_manipulate(childA, childB, lastGenParents, offset);
+	get_chromosomes_to_manipulate(childA, childB, lastGenParents, offset, crossOverChosen > 2);
 	if(debugPrintMode)
 		cout << "CrossOver: " << to_string(crossOverChosen) << endl;
 	switch (crossOverChosen)
@@ -328,17 +335,17 @@ inline void GeneticAlgorithm<T>::pick_cross_over(vector<chromosome<T>>* lastGenP
 	
 	if (numChildrenToPush > 1)
 	{
-		mtx.lock();
+		newGenMutex.lock();
 		newGen->push_back(childA);
 		newGen->push_back(childB);
 	}
 	else
 	{
 		int which = get_random_int(2);
-		mtx.lock();
+		newGenMutex.lock();
 		newGen->push_back(which ? childA : childB);
 	}
-	mtx.unlock();
+	newGenMutex.unlock();
 }
 
 /////////////////// GENERATION PICKER AND SOLVER /////////////////////////////////////////////////////////////////////////////
@@ -352,8 +359,8 @@ inline vector<chromosome<T>>* GeneticAlgorithm<T>::create_generation(vector<chro
 	{
 		newGen = new vector<chromosome<T>>();
 		// Fill in the rest of the children with crossover values, mutations, or random resets
-		int numChildrenToAdd = samplesPerGeneration - parentsToKeep - 1;
-		int offsetToGetParent = higherFitness ? numChildrenToAdd : 0;
+		int numChildrenToAdd = samplesPerGeneration - parentsToKeep;
+		int offsetToGetParent = higherFitness ? numChildrenToAdd - 1 : 0;
 		int numParentsIndexTo = offsetToGetParent + parentsToKeep;
 		for (int i = 0; i <= numChildrenToAdd; )
 		{

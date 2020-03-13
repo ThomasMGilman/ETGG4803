@@ -45,7 +45,7 @@ public:
 			toSolveFor->push_back(c);
 
 		// Set Mutation Properties
-		numBits = 7;		//0-128
+		numBits = 7;		//0-127
 		maxBitVal = 127;
 		minBitVal = 32;
 

@@ -29,7 +29,7 @@ void roll(diceRoll* p)
 }
 
 int get_random_int(int max, int min) {
-	lock_guard<mutex> lock(mtx);
+	lock_guard<mutex> lock(randomMutex);
 	int num = (rand() % max + min);
 	//cout << "got randomNum: " << to_string(num) << endl;
 	return num;
@@ -37,7 +37,7 @@ int get_random_int(int max, int min) {
 
 float get_random_float(float max, float min)
 {
-	lock_guard<mutex> lock(mtx);
+	lock_guard<mutex> lock(randomMutex);
 	return min + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (max - min));
 }
 

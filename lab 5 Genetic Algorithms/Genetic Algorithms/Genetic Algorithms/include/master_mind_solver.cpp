@@ -10,7 +10,7 @@ void MasterMind::set_chances_and_bit_values()
 
 	// Roulette wheel chance
 	randomWheelSpinRangeChance = 100;
-	randwheelSpinChance = 5;												// 0% works best, as it takes a long time
+	randwheelSpinChance = 25;												// 0% works best, as it takes a long time
 
 	// Random Parent chance
 	randomParentRangeChance = 100;
