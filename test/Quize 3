@@ -1,0 +1,187 @@
+Question 1: WRONG not 0.83%
+	Seven envelopes are placed randomly at each seat position of a round table that can be easily rotated. 
+	Each envelope contains the name of one of seven people. 
+	Each envelope contains exactly one name and each person's name is in one of the envelopes.
+	The seven people each take a seat at the table in front of one of the envelopes. 
+	If at least two people are seated in front of the envelope containing their name, all seven people win The Prize. 
+	If not, they are permitted to rotate the table as much as they like, so long as they not change the relative order of the envelopes on the table. 
+	If they are successful in matching two of the people and their envelopes, then the group still wins.
+	Suppose at the start that none of the seven people are seated in front of the correct envelope. 
+	What is the probability that the group can win The Prize?
+	
+	[1, 2, 3, 4, 5, 6, 7]
+	[1, 3, 5, 7, 2, 4, 6]
+
+
+Question 2: WRONG not a: 50% b: 30%
+	Percentage chance per bowl pick one green marble without looking.
+	Bowl 1:
+		1 Red
+		3 green
+		2 blue
+	Percentage chance: 3 / 6 = 50%
+		
+	Bowl 2:
+		2 Red
+		3 green
+		5 blue
+	Percentage chance: 3 / 10 = 30%
+	
+Question 3: WRONG not 677 (THREE NOT TWO PEOPLE)
+	How many people would have to watch the live stream of the 2020 Shawnee House Tank Battle,
+	to guarantee that at least THREE of the them share the same first and last initials in their real names?
+	Just enter the actual numerical value
+	26 * 26 = 676 * 2 + 1 = 1,352
+	
+for n people
+	(26 * 26) * n-1 + 1
+	
+Question 4: WRONG not 1/21
+	A bag contains 20 balanced, fair coins. 
+	Nineteen of the coins are real, with heads on one side and tails on the other. 
+	One of the coins is fake and has heads on both sides.
+	
+	21 heads,
+	19 tails
+		
+	You reach into the bag, take out a coin at random, and flip heads. The probability that you got the fake coin is
+		1 / 21
+		
+Question 5: RIGHT 1/7
+	A certain person has a very messy sock drawer containing a pair of 
+	black socks, a pair of blue socks, a pair of green socks, and a pair of white socks. 
+	The socks are otherwise identical.
+
+	It is extremely dark and there are no sources of light in the room. 
+	The light bulb has blown, the mobile battery is dead, and there are no other lights, candles, or anything to illuminate the drawer. 
+	However, this does not change the fact that the person needs a matching pair of socks.
+
+	The person takes one sock from the drawer, puts it on, then gets another and puts it on. 
+	What is the probability that the two socks are the same colour?
+	
+	socks:
+		2 black
+		2 blue
+		2 green
+		2 white
+	8 socks total
+		
+	chose 1 sock, chance of getting matching sock is (1 / 7)
+	
+Question 6: WRONG not (3/8)
+	Two identical-looking bowls contain some marbles. 
+	Bowl One contains one Red, three Green, and two Blue marbles. 
+	Bowl Two contains two Red, three Green, and five Blue marbles. 
+	You cannot see into either bowl.
+
+	If we randomly select a bowl then draw one marble at random from that bowl, what is the probability that the marble is Green?
+	
+	Bowl 1:
+		1 Red
+		3 Green
+		2 Blue
+	Green chance 3 / 6
+		
+	Bowl 2:
+		2 Red
+		3 Green
+		5 Blue
+	Green chance 3 / 10
+	
+	Total Green chance 6 / 16 = 3 / 8 = 37.5% chance
+	
+Question 7: RIGHT 5
+	A certain person has a very messy sock drawer containing 
+	ten black socks, eight blue socks, four green socks, and two white socks. 
+	The socks are otherwise identical.
+
+	It is extremely dark and there are no sources of light in the room. 
+	The light bulb has blown, the mobile battery is dead, and there are no other lights, candles, or anything to illuminate the drawer. 
+	However, this does not change the fact that the person needs a matching pair of socks.
+
+	What is the least number of socks that can be taken from the drawer to guarantee that at least two socks of the same colour are chosen? 
+	
+	Socks:
+		10 black
+		8 blue
+		4 green
+		2 white
+	24 total socks
+	
+	5 socks to guarantee at least two socks of the same colour
+	
+Question 8: WRONG not 0.9
+	A bowl contains one Red, three Green, and two Blue marbles. You cannot see into the bowl.
+	Drawing marbles with replacement means to draw a marble from the bowl, record its colour, then return it to the bowl before drawing another marble.
+	Drawing marbles without replacement means to draw a marble from the bowl, record its colour, then put it to the side before drawing another. 
+
+	If we draw two marbles from Bowl One without replacement, what is the probability that at least one of the two marbles is Green?
+	
+	Bowl:
+		1 Red
+		3 Green
+		2 Blue
+	6 Marbles
+	
+	1st marble green chance: 3 / 6
+	2nd marble green chacne: 2 / 5
+	
+Question 9: WRONG not 0.86
+	A certain person has a very messy sock drawer containing ten black socks, eight blue socks, four green socks, and two white socks. 
+	The socks are otherwise identical.
+
+	It is extremely dark and there are no sources of light in the room. 
+	The light bulb has blown, the mobile battery is dead, and there are no other lights, candles, or anything to illuminate the drawer. 
+	However, this does not change the fact that the person needs a matching pair of socks.
+
+	The person takes one sock from the drawer, puts it on, then gets another and puts it on. 
+	Rounded to two decimal places, what is the probability that the two socks are the same colour?
+	
+	
+	Socks:
+		10 black
+		8 blue
+		4 green
+		2 white
+	24 Total
+	
+	probability both socks same colour
+	
+	first pick:
+	chance black: 10 / 24 = .416
+	chance blue: 8 / 24 = .33
+	chance green: 4 / 24 = .16
+	chance white: 2 / 24 = .083
+	
+	second pick:
+	chance black: 9 / 23 = .39
+	chance blue: 7 / 23 = .304
+	chance green: 3 / 23 = .13
+	chance white: 1 / 23 = .043
+	
+Question 10: RIGHT
+	A bowl contains one Red, three Green, and two Blue marbles. You cannot see into the bowl.
+	Drawing marbles with replacement means to draw a marble from the bowl, record its colour, then return it to the bowl before drawing another marble.
+	Drawing marbles without replacement means to draw a marble from the bowl, record its colour, then put it to the side before drawing another. 
+
+	If we draw two marbles from the bowl, which of the following is TRUE?
+	
+	Marbles:
+		1 Red
+		3 Green
+		2 Blue
+		
+	with replacement:
+		3 / 6
+		3 / 6
+	probability = .25
+		
+	without replacement:
+		3 / 6
+		3 / 5
+	probability = .3
+
+ 4. The probability of drawing at least one Green marble with replacement  | is LESS than the probability of drawing at least one Green marble without replacement.
+
+
+	
