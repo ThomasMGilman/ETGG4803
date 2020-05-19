@@ -12,6 +12,7 @@ Build/
 Builds/
 StagedBuilds/
 Library/
+Media/
 
 #ignore this as its rather large
 SharedPCH.Engine.h.pch

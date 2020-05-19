@@ -1,0 +1,58 @@
+﻿  occupancy_detector.cpp
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(73,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(74,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(75,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(160,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(161,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(162,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_detector.h(38,23): warning C4129: 'T': unrecognized character escape sequence
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_detector.cpp(63,25): warning C4244: 'initializing': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_detector.cpp(64,22): warning C4244: 'initializing': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\sorting_functions.h(73,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_detector.cpp(126): message : see reference to function template instantiation 'std::vector<float,std::allocator<float>> merge_sort<float>(std::vector<float,std::allocator<float>>,bool,int)' being compiled
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\sorting_functions.h(78,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\sorting_functions.h(82,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\utility(151,16): warning C4244: 'initializing': conversion from '_Ty' to '_Ty1', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty1=float
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_detector.cpp(217): message : see reference to function template instantiation 'std::pair<float,float>::pair<int,int,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=int,
+              _Other2=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_detector.cpp(217): message : see reference to function template instantiation 'std::pair<float,float>::pair<int,int,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=int,
+              _Other2=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\utility(151,1): warning C4244: 'initializing': conversion from '_Ty' to '_Ty2', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty2=float
+          ]
+  Generating code
+  46 of 1259 functions ( 3.7%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    65 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Machine Learning Occupancy Detection.vcxproj -> D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\bin\Release\Machine Learning Occupancy Detection.exe

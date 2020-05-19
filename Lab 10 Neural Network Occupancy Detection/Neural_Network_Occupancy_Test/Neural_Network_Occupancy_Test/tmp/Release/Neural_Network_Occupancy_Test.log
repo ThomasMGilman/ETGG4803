@@ -1,0 +1,97 @@
+﻿  main.cpp
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(73,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(74,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(75,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(160,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(161,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(162,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neuron.h(15,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neuron.h(27,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_detector.h(43,23): warning C4129: 'T': unrecognized character escape sequence
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\main.cpp(16,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\main.cpp(18,107): warning C4305: 'argument': truncation from 'double' to 'float'
+  neural_network.cpp
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neuron.h(15,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neuron.h(27,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(10,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(14,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(17,37): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(18,21): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(19,46): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(23,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(56,39): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(81,32): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(81,94): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(112,43): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(153,43): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neural_network.h(55,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(83): message : see reference to function template instantiation 'std::vector<float,std::allocator<float>> NeuralNetwork::activate_neurons<Input_Neuron>(std::vector<float,std::allocator<float>> *,std::vector<Input_Neuron *,std::allocator<Input_Neuron *>> *,bool)' being compiled
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neural_network.h(59,1): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neural_network.h(74,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(84): message : see reference to function template instantiation 'void NeuralNetwork::process_layer<Input_Neuron,Hidden_Neuron>(std::vector<Input_Neuron *,std::allocator<Input_Neuron *>> *,std::vector<Hidden_Neuron *,std::allocator<Hidden_Neuron *>> *,std::vector<float,std::allocator<float>> *,bool)' being compiled
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neural_network.h(78,1): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neural_network.h(91,34): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neural_network.h(110,162): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\neural_network.cpp(108): message : see reference to function template instantiation 'void NeuralNetwork::debug_print_error_dif<Output_Neuron>(std::vector<float,std::allocator<float>> *,std::vector<float,std::allocator<float>> *,std::vector<Output_Neuron *,std::allocator<Output_Neuron *>> *,std::string)' being compiled
+  occupancy_detector.cpp
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(73,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(74,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(75,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(160,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(161,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_test.h(162,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neuron.h(15,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\neuron.h(27,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\occupancy_detector.h(43,23): warning C4129: 'T': unrecognized character escape sequence
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\occupancy_detector.cpp(62,25): warning C4244: 'initializing': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\occupancy_detector.cpp(63,22): warning C4244: 'initializing': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\sorting_functions.h(73,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\src\occupancy_detector.cpp(131): message : see reference to function template instantiation 'std::vector<float,std::allocator<float>> merge_sort<float>(std::vector<float,std::allocator<float>>,bool,int)' being compiled
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\sorting_functions.h(78,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\include\sorting_functions.h(82,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Generating code
+  5 of 1499 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    3 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Neural_Network_Occupancy_Test.vcxproj -> D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 10 Neural Network Occupancy Detection\Neural_Network_Occupancy_Test\Neural_Network_Occupancy_Test\bin\Release\Neural_Network_Occupancy_Test.exe

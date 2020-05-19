@@ -1,0 +1,41 @@
+﻿  occupancy_test.cpp
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(73,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(74,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(75,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(160,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(161,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\occupancy_test.h(162,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(119,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(122,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(125,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(128,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(131,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(185,38): warning C4244: '=': conversion from '_Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(213,126): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(253,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(409,11): warning C4129: 'd': unrecognized character escape sequence
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(410,7): warning C4474: 'printf_s' : too many arguments passed for format string
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(410,7): message : placeholders and their parameters expect 0 variadic arguments, but 13 were provided
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(499,117): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(545,140): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\sorting_functions.h(73,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\src\occupancy_test.cpp(464): message : see reference to function template instantiation 'std::vector<Date,std::allocator<Date>> merge_sort<Date>(std::vector<Date,std::allocator<Date>>,bool,int)' being compiled
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\sorting_functions.h(78,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\includes\sorting_functions.h(82,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Machine Learning Occupancy Detection.vcxproj -> D:\School\Programs\ETGG 4803 Artificial Intelligence\lab 7 Occupancy Detection\Machine Learning Occupancy Detection\Machine Learning Occupancy Detection\bin\Debug\Machine Learning Occupancy Detection.exe

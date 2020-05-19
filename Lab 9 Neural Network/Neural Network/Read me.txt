@@ -1,0 +1,4 @@
+Please note, the repl.it version has no exception handling as repl.it complains everywhere I declare a new std::exception,
+and I could not find any resources or other people who have used std::exception inside repl.it with a quick google search.
+
+The included Visual Studio Project contains std::exception functions including precompiled header and utility functions.

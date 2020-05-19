@@ -1,0 +1,8 @@
+﻿  main.cpp
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Quize\Quize_helper\Quize_helper\main.cpp(15,22): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Quize\Quize_helper\Quize_helper\main.cpp(20,31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Quize\Quize_helper\Quize_helper\main.cpp(28,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Quize\Quize_helper\Quize_helper\main.cpp(43,43): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Quize\Quize_helper\Quize_helper\main.cpp(67,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Quize\Quize_helper\Quize_helper\main.cpp(80,20): warning C4018: '<': signed/unsigned mismatch
+  Quize_helper.vcxproj -> D:\School\Programs\ETGG 4803 Artificial Intelligence\Quize\Quize_helper\Debug\Quize_helper.exe

@@ -1,0 +1,39 @@
+﻿  neural_network.cpp
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\include\neuron.h(15,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\include\neuron.h(27,22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\src\neural_network.cpp(7,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\src\neural_network.cpp(11,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\src\neural_network.cpp(15,20): warning C4018: '<': signed/unsigned mismatch
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\src\neural_network.cpp(55,32): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\src\neural_network.cpp(55,92): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\src\neural_network.cpp(113,43): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\include\neural_network.h(75,1): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\src\neural_network.cpp(57): message : see reference to function template instantiation 'std::vector<float,std::allocator<float>> NeuralNetwork::activate_neurons<Input_Neuron>(std::vector<float,std::allocator<float>> *,std::vector<Input_Neuron *,std::allocator<Input_Neuron *>> *)' being compiled
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\include\neural_network.h(93,1): warning C4267: 'argument': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\src\neural_network.cpp(59): message : see reference to function template instantiation 'void NeuralNetwork::process_layer<Input_Neuron,Hidden_Neuron>(std::vector<Input_Neuron *,std::allocator<Input_Neuron *>> *,std::vector<Hidden_Neuron *,std::allocator<Hidden_Neuron *>> *,Bias_Neuron *,std::vector<float,std::allocator<float>> *)' being compiled
+D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\include\neural_network.h(106,46): warning C4244: '=': conversion from 'double' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+  Neural Network.vcxproj -> D:\School\Programs\ETGG 4803 Artificial Intelligence\Lab 9 Neural Network\Neural Network\Neural Network\bin\Debug\Neural Network.exe
